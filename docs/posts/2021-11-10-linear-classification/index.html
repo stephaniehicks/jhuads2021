@@ -1,0 +1,3267 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>JHU Advanced Data Science 2021: Linear Classification</title>
+
+<meta property="description" itemprop="description" content="Introduction to linear classification methods."/>
+
+<link rel="canonical" href="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-11-07"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-11-07"/>
+<meta name="article:author" content="Stephanie Hicks"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="JHU Advanced Data Science 2021: Linear Classification"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Introduction to linear classification methods."/>
+<meta property="og:url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"/>
+<meta property="og:image" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/../../images/pants.jpg"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="JHU Advanced Data Science 2021"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="JHU Advanced Data Science 2021: Linear Classification"/>
+<meta property="twitter:description" content="Introduction to linear classification methods."/>
+<meta property="twitter:url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"/>
+<meta property="twitter:image" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/../../images/pants.jpg"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="JHU Advanced Data Science 2021: Linear Classification"/>
+<meta name="citation_fulltext_html_url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"/>
+<meta name="citation_fulltext_world_readable" content=""/>
+<meta name="citation_online_date" content="2021/11/07"/>
+<meta name="citation_publication_date" content="2021/11/07"/>
+<meta name="citation_author" content="Stephanie Hicks"/>
+<meta name="citation_author_institution" content="Department of Biostatistics, Johns Hopkins"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY-NC-SA"]},{"type":"character","attributes":{},"value":["Linear Classification"]},{"type":"character","attributes":{},"value":["Introduction to linear classification methods."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Stephanie Hicks"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/"]},{"type":"character","attributes":{},"value":["Department of Biostatistics, Johns Hopkins"]},{"type":"character","attributes":{},"value":["https://www.jhsph.edu"]}]}]},{"type":"character","attributes":{},"value":["11-07-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]},{"type":"character","attributes":{},"value":["machine learning","linear classification"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["linear-classification_files/anchor-4.2.2/anchor.min.js","linear-classification_files/bowser-1.9.3/bowser.min.js","linear-classification_files/distill-2.2.21/template.v2.js","linear-classification_files/figure-html5/unnamed-chunk-10-1.png","linear-classification_files/figure-html5/unnamed-chunk-11-1.png","linear-classification_files/figure-html5/unnamed-chunk-14-1.png","linear-classification_files/figure-html5/unnamed-chunk-16-1.png","linear-classification_files/figure-html5/unnamed-chunk-17-1.png","linear-classification_files/figure-html5/unnamed-chunk-19-1.png","linear-classification_files/figure-html5/unnamed-chunk-23-1.png","linear-classification_files/figure-html5/unnamed-chunk-24-1.png","linear-classification_files/figure-html5/unnamed-chunk-25-1.png","linear-classification_files/figure-html5/unnamed-chunk-26-1.png","linear-classification_files/figure-html5/unnamed-chunk-27-1.png","linear-classification_files/figure-html5/unnamed-chunk-29-1.png","linear-classification_files/figure-html5/unnamed-chunk-31-1.png","linear-classification_files/figure-html5/unnamed-chunk-32-1.png","linear-classification_files/figure-html5/unnamed-chunk-33-1.png","linear-classification_files/figure-html5/unnamed-chunk-39-1.png","linear-classification_files/figure-html5/unnamed-chunk-4-1.png","linear-classification_files/figure-html5/unnamed-chunk-41-1.png","linear-classification_files/figure-html5/unnamed-chunk-45-1.png","linear-classification_files/figure-html5/unnamed-chunk-5-1.png","linear-classification_files/figure-html5/unnamed-chunk-6-1.png","linear-classification_files/figure-html5/unnamed-chunk-7-1.png","linear-classification_files/figure-html5/unnamed-chunk-9-1.png","linear-classification_files/header-attrs-2.10/header-attrs.js","linear-classification_files/jquery-1.11.3/jquery.min.js","linear-classification_files/popper-2.6.0/popper.min.js","linear-classification_files/tippy-6.2.7/tippy-bundle.umd.min.js","linear-classification_files/tippy-6.2.7/tippy-light-border.css","linear-classification_files/tippy-6.2.7/tippy.css","linear-classification_files/tippy-6.2.7/tippy.umd.min.js","linear-classification_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #2B3851FF; /* #0F2E3D; */
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #2B3851FF; /* #0F2E3D; */
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+
+
+
+
+/* -----------div tips------------- */
+
+
+  div.puzzle, div.fyi, div.demo, div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+  }
+  
+div.puzzle {
+  background-image: url("Your-turn.png");
+}
+
+div.fyi {
+ background-image: url("images/fyi.png");
+}
+
+div.demo {
+  background-image: url("images/Live-code.png");
+}
+
+div.note {
+  background-image: url("images/lightbulb.png");
+}
+
+  .questions {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 50px;
+    color: #000000 ;
+    background-color: #9BB1BBFF;
+    border: solid 5px #000000;
+    background-image: url("images/study.png");
+  }
+  
+  
+   .resources {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 50px;
+    color: #000000;
+    background-color: #ECBD95FF; /* #e5d468; */
+    border: solid 5px #000000;
+    background-image: url("images/list.png");
+  }
+
+.keyideas{
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #441F29;
+    background-color: #E56889;
+    border: solid 5px #441F29;
+    background-image: url('images/important.png') ;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Linear Classification","description":"Introduction to linear classification methods.","authors":[{"author":"Stephanie Hicks","authorURL":"https://stephaniehicks.com/","affiliation":"Department of Biostatistics, Johns Hopkins","affiliationURL":"https://www.jhsph.edu","orcidID":""}],"publishedDate":"2021-11-07T00:00:00.000+00:00","citationText":"Hicks, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a class="logo" href="https://stephaniehicks.com/jhuads2021">
+<img src="../../images/ads2020-small.png" alt="Logo"/>
+</a>
+<a href="../../index.html" class="title">JHU Advanced Data Science 2021</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">General Information</a>
+<a href="../../lectures.html">Lectures</a>
+<a href="../../index.xml">
+<i class="fa fa-rss" aria-hidden="true"></i>
+</a>
+<a href="https://github.com/stephaniehicks/jhuads2021" aria-label="Link to source">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Linear Classification</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../lectures.html#category:machine_learning" class="dt-tag">machine learning</a>
+  <a href="../../lectures.html#category:linear_classification" class="dt-tag">linear classification</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Introduction to linear classification methods.</p></p>
+</div>
+
+<div class="d-byline">
+  Stephanie Hicks <a href="https://stephaniehicks.com/" class="uri">https://stephaniehicks.com/</a> (Department of Biostatistics, Johns Hopkins)<a href="https://www.jhsph.edu" class="uri">https://www.jhsph.edu</a>
+  
+<br/>11-07-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#pre-lecture-materials">Pre-lecture materials</a>
+<ul>
+<li><a href="#read-ahead">Read ahead</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li><a href="#learning-objectives">Learning objectives</a></li>
+<li><a href="#motivation">Motivation</a>
+<ul>
+<li><a href="#three-widely-used-linear-classifiers">Three widely used linear classifiers</a></li>
+</ul></li>
+<li><a href="#data">Data</a>
+<ul>
+<li><a href="#data-import">Data import</a>
+<ul>
+<li><a href="#what-are-the-features">What are the features?</a></li>
+<li><a href="#what-are-the-outcomes">What are the outcomes?</a></li>
+<li><a href="#how-does-this-related-to-machine-learning">How does this related to machine learning?</a></li>
+<li><a href="#calculating-the-top-pcs">Calculating the top PCs</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#data-wrangling">Data wrangling</a>
+<ul>
+<li><a href="#feature-engineering">Feature engineering</a></li>
+<li><a href="#exploratory-data-analysis">Exploratory data analysis</a></li>
+<li><a href="#create-train_set-and-test_set">Create <code>train_set</code> and <code>test_set</code></a></li>
+</ul></li>
+<li><a href="#linear-methods-for-classification">Linear methods for classification</a>
+<ul>
+<li><a href="#linear-regression">Linear regression</a></li>
+<li><a href="#logistic-regression">Logistic regression</a></li>
+<li><a href="#linear-discriminant-analysis">Linear discriminant analysis</a></li>
+<li><a href="#k-nearest-neighbors"><span class="math inline">\(K\)</span>-nearest neighbors</a></li>
+</ul></li>
+<li><a href="#post-lecture-materials">Post-lecture materials</a>
+<ul>
+<li><a href="#final-questions">Final Questions</a></li>
+<li><a href="#additional-resources">Additional Resources</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="pre-lecture-materials">Pre-lecture materials</h1>
+<h3 id="read-ahead">Read ahead</h3>
+<div class="resources">
+<p><strong>Before class, you can prepare by reading the following materials:</strong></p>
+<ol type="1">
+<li></li>
+</ol>
+</div>
+<h3 id="acknowledgements">Acknowledgements</h3>
+<p>Material for this lecture was borrowed and adopted from</p>
+<ul>
+<li><a href="https://www.springer.com/us/book/9781461471370">An Introduction to Statistical Learning, 2013</a> by James, Witten, Hastie and Tibshirani</li>
+<li>The <a href="https://rafalab.github.io/dsbook">dsbook</a> from Rafael Irizarry</li>
+</ul>
+<h1 id="learning-objectives">Learning objectives</h1>
+<div class="keyideas">
+<p><strong>At the end of this lesson you will:</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<h1 id="motivation">Motivation</h1>
+<p>In the previous lectures, we have learned about machine learning algorithms, where decisions made are based on algorithms built on data. The data we have often comes in the form of an <em>outcome</em> we want to predict and the <em>features</em> that we will use to predict the outcome. This setting is often called a <strong>supervised learning</strong> (as opposed to the <strong>unsupervised learning</strong> setting without an <em>outcome</em> variable, such as clustering or dimensionality reduction).</p>
+<div class="keyideas">
+<p>The <strong>general idea</strong> of supervised learning is that we build the algorithm using the data that includes the outcome so that in the future we can predict the outcome only using the features. Here we will use <span class="math inline">\(Y\)</span> to denote the outcome and <span class="math inline">\(X_1, \dots, X_p\)</span> to denote features.</p>
+<p><strong>Note</strong>: the features are sometimes referred to as <strong>predictors</strong> or <strong>covariates</strong> and the outcome is sometimes referred to as a <strong>response variable</strong>.</p>
+</div>
+<p>If the outcome <span class="math inline">\(Y\)</span> is quantitative, something like linear regression is very useful for predicting a quantitative response. But in many situations, the responsible variable is qualitative (or categorical).</p>
+<p>Predicting a qualitative response <span class="math inline">\(Y\)</span> is referred to as <strong>classification</strong> since it involves assigning each observation to a category or class.</p>
+<p>So the general set-up is as follows. Given a set of predictors <span class="math inline">\(X_{ij}\)</span> and and qualitative outcome <span class="math inline">\(Y_i\)</span>, we can collect data to <em>classify</em> or <em>predict</em> which class or category each outcome (or observation) belongs in:</p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">outcome</th>
+<th style="text-align: center;">feature_1</th>
+<th style="text-align: center;">feature_2</th>
+<th style="text-align: center;">feature_3</th>
+<th style="text-align: center;">feature_4</th>
+<th style="text-align: center;">feature_5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Y_1</td>
+<td style="text-align: center;">X_1,1</td>
+<td style="text-align: center;">X_1,2</td>
+<td style="text-align: center;">X_1,3</td>
+<td style="text-align: center;">X_1,4</td>
+<td style="text-align: center;">X_1,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y_2</td>
+<td style="text-align: center;">X_2,1</td>
+<td style="text-align: center;">X_2,2</td>
+<td style="text-align: center;">X_2,3</td>
+<td style="text-align: center;">X_2,4</td>
+<td style="text-align: center;">X_2,5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y_3</td>
+<td style="text-align: center;">X_3,1</td>
+<td style="text-align: center;">X_3,2</td>
+<td style="text-align: center;">X_3,3</td>
+<td style="text-align: center;">X_3,4</td>
+<td style="text-align: center;">X_3,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y_4</td>
+<td style="text-align: center;">X_4,1</td>
+<td style="text-align: center;">X_4,2</td>
+<td style="text-align: center;">X_4,3</td>
+<td style="text-align: center;">X_4,4</td>
+<td style="text-align: center;">X_4,5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y_5</td>
+<td style="text-align: center;">X_5,1</td>
+<td style="text-align: center;">X_5,2</td>
+<td style="text-align: center;">X_5,3</td>
+<td style="text-align: center;">X_5,4</td>
+<td style="text-align: center;">X_5,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y_6</td>
+<td style="text-align: center;">X_6,1</td>
+<td style="text-align: center;">X_6,2</td>
+<td style="text-align: center;">X_6,3</td>
+<td style="text-align: center;">X_6,4</td>
+<td style="text-align: center;">X_6,5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y_7</td>
+<td style="text-align: center;">X_7,1</td>
+<td style="text-align: center;">X_7,2</td>
+<td style="text-align: center;">X_7,3</td>
+<td style="text-align: center;">X_7,4</td>
+<td style="text-align: center;">X_7,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y_8</td>
+<td style="text-align: center;">X_8,1</td>
+<td style="text-align: center;">X_8,2</td>
+<td style="text-align: center;">X_8,3</td>
+<td style="text-align: center;">X_8,4</td>
+<td style="text-align: center;">X_8,5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Y_9</td>
+<td style="text-align: center;">X_9,1</td>
+<td style="text-align: center;">X_9,2</td>
+<td style="text-align: center;">X_9,3</td>
+<td style="text-align: center;">X_9,4</td>
+<td style="text-align: center;">X_9,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Y_10</td>
+<td style="text-align: center;">X_10,1</td>
+<td style="text-align: center;">X_10,2</td>
+<td style="text-align: center;">X_10,3</td>
+<td style="text-align: center;">X_10,4</td>
+<td style="text-align: center;">X_10,5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="three-widely-used-linear-classifiers">Three widely used linear classifiers</h3>
+<p>Today, we will focus on the three of the most widely used classifiers:</p>
+<ol type="1">
+<li>Linear and Logistic regression</li>
+<li>Linear and Quadratic discriminant analysis</li>
+<li><span class="math inline">\(K\)</span>-nearest neighbors</li>
+</ol>
+<p>You have already learned about other methods including, trees, random forests, and boosting. Next week, we will cover support vector machines.</p>
+<h1 id="data">Data</h1>
+<p>For this lecture, we will use the <a href="https://www.kaggle.com/zalando-research/fashionmnist">Fashion-MNIST</a> dataset from Kaggle.</p>
+<p>The motivating question is:</p>
+<p><strong>Can we build a classier to accurately classify images of pieces of clothing?</strong></p>
+<p>The data consists of a training set of 60,000 images and a test set of 10,000 examples. We will assume the test set is the only data available for the purposes of this lecture (mostly because it is 1/6 of the size of the training set!).</p>
+<p>For example, we want to build a classifier to recognize this image as a pair of pants:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/pants.jpg" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>And the classifier should be able to recognize this image as shoe:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/shoe.jpg" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>The fashion MNIST dataset contains a set of images of clothing or fashion pieces. Each observation <span class="math inline">\(Y_i\)</span> is labeled one of the following:</p>
+<ul>
+<li><code>0</code> = T-shirt/top</li>
+<li><code>1</code> = Trouser</li>
+<li><code>2</code> = Pullover</li>
+<li><code>3</code> = Dress</li>
+<li><code>4</code> = Coat</li>
+<li><code>5</code> = Sandal</li>
+<li><code>6</code> = Shirt</li>
+<li><code>7</code> = Sneaker</li>
+<li><code>8</code> = Bag</li>
+<li><code>9</code> = Ankle boot</li>
+</ul>
+<p>The are images are converted into <span class="math inline">\(28 \times 28\)</span> pixels and for each we obtain an gray scale intensity between 0 (white) to 256 (black).</p>
+<p>We will explore this data set using some common machine learning algorithms for classification.</p>
+<h2 id="data-import">Data import</h2>
+<p>First, we load a few R packages</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/topepo/caret/'>caret</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://expasy.org/tools/pROC/'>pROC</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The data are available in the <code>/data</code> folder of this repository.</p>
+<p>First, let’s read in the <code>fashion-mnist_test.csv</code> dataset using the <code>read_csv()</code> function in the <code>readr</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/exists.html'>exists</a></span><span class='op'>(</span><span class='st'>"fashion"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span> 
+  <span class='va'>fashion</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"data"</span>, <span class='st'>"fashion-mnist_test.csv"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Here we save just pixels</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>X</span> <span class='op'>&lt;-</span> 
+  <span class='va'>fashion</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>label</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10000   784</code></pre>
+</div>
+<p>And we also save the labels (i.e. 0-9)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fashion_labels</span> <span class='op'>&lt;-</span> 
+  <span class='va'>fashion</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>label</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>We can look at the first three images to see what they look like.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>Row<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span>, Column<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span><span class='op'>)</span> <span class='op'>%&gt;%</span>  
+      <span class='fu'>mutate</span><span class='op'>(</span>id<span class='op'>=</span><span class='va'>i</span>, label<span class='op'>=</span><span class='va'>fashion</span><span class='op'>$</span><span class='va'>label</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,  
+             value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>fashion</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>}</span><span class='op'>)</span>
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='va'>tmp</span><span class='op'>)</span>
+<span class='va'>tmp</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>Row</span>, <span class='va'>Column</span>, fill<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'>geom_raster</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'>scale_y_reverse</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_fill_gradient</span><span class='op'>(</span>low<span class='op'>=</span><span class='st'>"white"</span>, high<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>facet_grid</span><span class='op'>(</span><span class='va'>.</span><span class='op'>~</span><span class='va'>label</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-6-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="what-are-the-features">What are the features?</h3>
+<p>Each image is converted into <span class="math inline">\(28 \times 28\)</span> pixels and for each we obtain an grey scale intensity between <code>0</code> (white) to <code>255</code> (black).</p>
+<p>This means one image has 784 (=28*28) features.</p>
+<p>We can see these values like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span> <span class='op'>%&gt;%</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>Row</span>, <span class='va'>Column</span>, fill<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'>geom_point</span><span class='op'>(</span>pch<span class='op'>=</span><span class='fl'>21</span>,cex<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'>scale_y_reverse</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>scale_fill_gradient</span><span class='op'>(</span>low<span class='op'>=</span><span class='st'>"white"</span>, high<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'>facet_grid</span><span class='op'>(</span><span class='va'>.</span><span class='op'>~</span><span class='va'>label</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-7-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We use bold face to denote this vector of predictors</p>
+<p><span class="math display">\[ \mathbf{X}_i = (X_{i,1}, \dots, X_{i,784}) \]</span></p>
+<p>Let’s take a peek at <span class="math inline">\(\mathbf{X}\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>X</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>      pixel1 pixel2 pixel3 pixel4 pixel5 pixel6 pixel7 pixel8 pixel9
+ [1,]      0      0      0      0      0      0      0      9      8
+ [2,]      0      0      0      0      0      0      0      0      0
+ [3,]      0      0      0      0      0      0     14     53     99
+ [4,]      0      0      0      0      0      0      0      0      0
+ [5,]      0      0      0      0      0      0      0      0      0
+ [6,]      0      0      0      0      0     44    105     44     10
+ [7,]      0      0      0      0      0      0      0      0      0
+ [8,]      0      0      0      0      0      0      0      1      0
+ [9,]      0      0      0      0      0      0      0      0      0
+[10,]      0      0      0      0      0      0      0      0      0
+      pixel10
+ [1,]       0
+ [2,]       0
+ [3,]      17
+ [4,]     161
+ [5,]       0
+ [6,]       0
+ [7,]       0
+ [8,]       0
+ [9,]       0
+[10,]       0</code></pre>
+</div>
+<h3 id="what-are-the-outcomes">What are the outcomes?</h3>
+<p>Even though the <code>label</code> here is a whole number between 0 and 10, this is a qualitative outcome (e.g. shirt, pants, shoes, etc).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fashion_labels</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] 0 1 2 2 3 2 8</code></pre>
+</div>
+<p>So for each image <span class="math inline">\(i\)</span> we have an outcome <span class="math inline">\(Y_i\)</span> which can be one of 10 categories: <span class="math inline">\(0,1,2,3,4,5,6,7,8,9\)</span> and the features <span class="math inline">\(X_{i,1}, \dots, X_{i,784}\)</span> which can take values from 0 to 255.</p>
+<h3 id="how-does-this-related-to-machine-learning">How does this related to machine learning?</h3>
+<p>The machine learning task here is to build a predictor function, <span class="math inline">\(f\)</span> that converts <span class="math inline">\(\mathbf{X}\)</span> into a prediction category <span class="math inline">\(\hat{Y}_i = f(\mathbf{X}_i)\)</span> that minimizes the <span class="math inline">\(d(Y,\hat{Y})\)</span></p>
+<h3 id="calculating-the-top-pcs">Calculating the top PCs</h3>
+<p>If you recall, the first PC is will explain the most variation, the second PC will explain the second most variation in the data, etc.</p>
+<p>Because the pixels are so small we expect those to be close to each other on the grid to be correlated, meaning that dimension reduction should be possible.</p>
+<p>Let’s take the SVD of <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span> <span class='co'>#  10000 observation, 784 features</span>
+</code></pre>
+</div>
+<pre><code>[1] 10000   784</code></pre>
+</div>
+<p>Remember, we need to column center the data. We also will create a new variable <span class="math inline">\(\mathbf{Y}\)</span> to represent the standardized data that is also transposed (features along rows).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='va'>X</span>,center<span class='op'>=</span><span class='cn'>TRUE</span>, scale<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1]   784 10000</code></pre>
+</div>
+<p>Now apply the <code>svd()</code> function to <span class="math inline">\(\mathbf{Y}\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/svd.html'>svd</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>List of 3
+ $ d: num [1:784] 113672 89269 51516 47079 41325 ...
+ $ u: num [1:784, 1:784] -7.63e-08 -1.01e-05 -4.32e-05 -5.51e-05 -1.87e-04 ...
+ $ v: num [1:10000, 1:784] -0.012246 0.000349 0.007291 -0.006896 -0.00233 ...</code></pre>
+</div>
+<p>First note that we can in fact reconstruct <span class="math inline">\(\mathbf{Y}\)</span> using all the PCs:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Yhat</span> <span class='op'>&lt;-</span> <span class='va'>s</span><span class='op'>$</span><span class='va'>u</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>)</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>v</span><span class='op'>)</span>
+<span class='va'>resid</span> <span class='op'>&lt;-</span> <span class='va'>Y</span> <span class='op'>-</span> <span class='va'>Yhat</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>resid</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 6.843166e-10</code></pre>
+</div>
+<p>If we look at the eigenvalues in <span class="math inline">\(\mathbf{D}\)</span>, we see that the last few are quite close to 0.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-14-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>This implies that the last columns of <span class="math inline">\(\mathbf{V}\)</span> have a very small effect on the reconstruction of <span class="math inline">\(\mathbf{X}\)</span>. To see this, consider the extreme example in which the last entry of <span class="math inline">\(\mathbf{V}\)</span> is 0. In this case the last column of <span class="math inline">\(\mathbf{V}\)</span> is not needed at all.</p>
+<p>Because of the way the SVD is created, the columns of <span class="math inline">\(\mathbf{V}\)</span>, have less and less influence on the reconstruction of <span class="math inline">\(\mathbf{X}\)</span>. You commonly see this described as “explaining less variance”. This implies that for a large matrix, by the time you get to the last columns, it is possible that there is not much left to “explain”.</p>
+<p>As an example, we will look at what happens if we remove the 100 last columns:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>v</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>100</span>
+<span class='va'>Yhat</span> <span class='op'>&lt;-</span> <span class='va'>s</span><span class='op'>$</span><span class='va'>u</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>v</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>resid</span> <span class='op'>&lt;-</span> <span class='va'>Y</span> <span class='op'>-</span> <span class='va'>Yhat</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='va'>resid</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 182.8126</code></pre>
+</div>
+<p>The largest residual is practically 0, meaning that <code>Yhat</code> is practically the same as <code>Y</code>, yet we need 100 less dimensions to transmit the information.</p>
+<p>By looking at <span class="math inline">\(\mathbf{D}\)</span>, we can see that, in this particular dataset, we can obtain a good approximation keeping only a subset of columns. The following plots are useful for seeing how much of the variability is explained by each column:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,
+     ylab<span class='op'>=</span><span class='st'>"Percent variability explained"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-16-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can also make a cumulative plot:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>100</span>,
+     ylab<span class='op'>=</span><span class='st'>"Percent variability explained"</span>,
+     ylim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>100</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"l"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-17-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>Although we start with 784 dimensions, we can approximate <span class="math inline">\(X\)</span> with just a few:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fl'>100</span> <span class='co'>## out a possible 784</span>
+<span class='va'>Yhat</span> <span class='op'>&lt;-</span> <span class='va'>s</span><span class='op'>$</span><span class='va'>u</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span> <span class='op'>%*%</span> <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>v</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>resid</span> <span class='op'>&lt;-</span> <span class='va'>Y</span> <span class='op'>-</span> <span class='va'>Yhat</span>
+</code></pre>
+</div>
+</div>
+<p>Therefore, by using only 100 dimensions, we retain most of the variability in our data:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fl'>1</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/pkg/pROC/man/var.html'>var</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='va'>resid</span><span class='op'>)</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/var.html'>var</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='va'>Y</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9140806</code></pre>
+</div>
+<p>We say that we explain 91 percent of the variability in our data with 100 PCs.</p>
+<p>Note that we can compute this proportion from <span class="math inline">\(\mathbf{D}\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='va'>k</span><span class='op'>]</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>$</span><span class='va'>d</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9140806</code></pre>
+</div>
+<p>The entries of <span class="math inline">\(\mathbf{D}\)</span> therefore tell us how much each PC contributes in term of variability explained.</p>
+<p>Another way of calculating the PCs is to use <code>prcomp()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='va'>X</span>, center<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The proportion of variance of the first ten PCs is quite high (almost 75%):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>pc</span><span class='op'>)</span><span class='op'>$</span><span class='va'>importance</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>                              PC1       PC2       PC3       PC4
+Standard deviation     1136.77538 892.73736 515.18167 470.80915
+Proportion of Variance    0.29028   0.17903   0.05962   0.04979
+Cumulative Proportion     0.29028   0.46931   0.52893   0.57872
+                             PC5       PC6       PC7       PC8
+Standard deviation     413.27284 391.59029 323.28114 287.81159
+Proportion of Variance   0.03837   0.03445   0.02348   0.01861
+Cumulative Proportion    0.61708   0.65153   0.67501   0.69361
+                             PC9      PC10
+Standard deviation     246.78152 242.84965
+Proportion of Variance   0.01368   0.01325
+Cumulative Proportion    0.70729   0.72054</code></pre>
+</div>
+<p>We can also plot the standard deviations:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='va'>pc</span><span class='op'>$</span><span class='va'>sdev</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-23-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>or the more common plot variance explained:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='va'>pc</span><span class='op'>$</span><span class='va'>sdev</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>pc</span><span class='op'>$</span><span class='va'>sdev</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-24-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can also see that the first two PCs will in fact be quite informative. Here is a plot of the first two PCs, but colored by the labels that we ignored:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>PC1 <span class='op'>=</span> <span class='va'>pc</span><span class='op'>$</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span>, PC2 <span class='op'>=</span> <span class='va'>pc</span><span class='op'>$</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span>,
+           label<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>fashion_labels</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>PC1</span>, <span class='va'>PC2</span>, fill<span class='op'>=</span><span class='va'>label</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span>cex<span class='op'>=</span><span class='fl'>3</span>, pch<span class='op'>=</span><span class='fl'>21</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can also “see” the linear combinations on the grid to get an idea of what is getting weighted:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,<span class='fl'>781</span><span class='op'>:</span><span class='fl'>784</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>Row<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span>, Column<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>mutate</span><span class='op'>(</span>id<span class='op'>=</span><span class='va'>i</span>, label<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"PC"</span>,<span class='va'>i</span><span class='op'>)</span>, 
+             value <span class='op'>=</span> <span class='va'>pc</span><span class='op'>$</span><span class='va'>rotation</span><span class='op'>[</span>,<span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='va'>tmp</span><span class='op'>)</span>
+
+<span class='va'>tmp</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>&lt;</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>Row</span>, <span class='va'>Column</span>, fill<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_raster</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_reverse</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>label</span>, nrow <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-26-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>&gt;</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>Row</span>, <span class='va'>Column</span>, fill<span class='op'>=</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_raster</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_y_reverse</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>label</span>, nrow <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="data-wrangling">Data wrangling</h1>
+<p>For purposes of this lecture, we will focus only the <code>0</code>s (tshirt/top) and <code>5</code>s (sandals) observations:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat05</span> <span class='op'>&lt;-</span> <span class='va'>fashion</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>fashion_labels</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'>## labels are not numbers</span>
+<span class='va'>dat05</span> <span class='op'>&lt;-</span> <span class='fu'>mutate</span><span class='op'>(</span><span class='va'>dat05</span>, label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>label</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="feature-engineering">Feature engineering</h3>
+<p>To distinguish 0s (shirts) from 5s (sandals), it might be enough to look at the number of non-white pixels in the upper-left and lower-right quadrants:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-29-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>So we will define two features <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> as the percent of non-white pixels in these two quadrants, respectively. We add these two features to the <code>dat05</code> table</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>row_column</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>row<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span>, col<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>28</span><span class='op'>)</span>
+<span class='va'>ind1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>row_column</span><span class='op'>$</span><span class='va'>col</span> <span class='op'>&lt;=</span> <span class='fl'>14</span> <span class='op'>&amp;</span> <span class='va'>row_column</span><span class='op'>$</span><span class='va'>row</span> <span class='op'>&lt;=</span><span class='fl'>14</span><span class='op'>)</span> <span class='co'># top left quandrant</span>
+<span class='va'>ind2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>row_column</span><span class='op'>$</span><span class='va'>col</span> <span class='op'>&gt;</span> <span class='fl'>14</span> <span class='op'>&amp;</span> <span class='va'>row_column</span><span class='op'>$</span><span class='va'>row</span> <span class='op'>&gt;</span> <span class='fl'>14</span><span class='op'>)</span> <span class='co'># bottom right quadrant</span>
+<span class='va'>ind</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>ind1</span>,<span class='va'>ind2</span><span class='op'>)</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>dat05</span><span class='op'>[</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># remove label column</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='va'>X</span><span class='op'>&gt;</span><span class='fl'>200</span>
+<span class='va'>X1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>[</span>,<span class='va'>ind1</span><span class='op'>]</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+<span class='va'>X2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>[</span>,<span class='va'>ind2</span><span class='op'>]</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span>
+<span class='va'>dat05</span> <span class='op'>&lt;-</span> <span class='fu'>mutate</span><span class='op'>(</span><span class='va'>dat05</span>, X_1 <span class='op'>=</span> <span class='va'>X1</span>, X_2 <span class='op'>=</span> <span class='va'>X2</span>, 
+                y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>label</span><span class='op'>==</span><span class='st'>"0"</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>dat05</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>y</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2,000 × 4
+   label     y   X_1   X_2
+   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 0         0 0.255 0.272
+ 2 5         1 0     0.344
+ 3 0         0 0.444 0    
+ 4 5         1 0     0.409
+ 5 5         1 0.153 0.203
+ 6 5         1 0     0.362
+ 7 0         0 0.364 0.455
+ 8 0         0 0.377 0.148
+ 9 0         0 0.280 0.244
+10 0         0 0.231 0.263
+# … with 1,990 more rows</code></pre>
+</div>
+<h3 id="exploratory-data-analysis">Exploratory data analysis</h3>
+<p>Let’s explore the relationship between the predictors (or features) <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> and the outcome <span class="math inline">\(Y\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat05</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>label</span>,y<span class='op'>=</span><span class='va'>X_1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-31-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We see a pronounced relationship between the the predictor <span class="math inline">\(X_1\)</span> and the label (e.g. the <span class="math inline">\(X_1\)</span> feature is high for the t-shirts and low for the sandals, which make sense).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat05</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>label</span>,y<span class='op'>=</span><span class='va'>X_2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-32-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>In this case, we again see a difference in the distribution of <span class="math inline">\(X_2\)</span> across the t-shirts and sandals, but less so. This is still likely to be informative.</p>
+<p>Furthermore, we can also plot the relationship between <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> and see that there is separation between the <code>0</code>s (t-shirts)<code>and</code>5`s (sandals):</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat05</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>X_1</span>,y<span class='op'>=</span><span class='va'>X_2</span>, color <span class='op'>=</span> <span class='va'>label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-33-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h2 id="create-train_set-and-test_set">Create <code>train_set</code> and <code>test_set</code></h2>
+<p>In this last step of data wrangling, we will split the <code>dat05</code> dataset into two parts:</p>
+<ol type="1">
+<li><code>train_set</code> = the dataset we will use to build the classifer</li>
+<li><code>test_set</code> = the dataset we will use to assess how we are doing (not used to train the classifier)</li>
+</ol>
+<p>For this we will use the <code>createDataPartition()</code> function in the <code>caret</code> package, which you have already learned about in the last lecture. We set the seed so we will all get the same answer</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='va'>inTrain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/createDataPartition.html'>createDataPartition</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>dat05</span><span class='op'>$</span><span class='va'>label</span>,
+                               p<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
+<span class='va'>train_set</span> <span class='op'>&lt;-</span> <span class='fu'>slice</span><span class='op'>(</span><span class='va'>dat05</span>, <span class='va'>inTrain</span><span class='op'>$</span><span class='va'>Resample1</span><span class='op'>)</span>
+<span class='va'>test_set</span> <span class='op'>&lt;-</span> <span class='fu'>slice</span><span class='op'>(</span><span class='va'>dat05</span>, <span class='op'>-</span><span class='va'>inTrain</span><span class='op'>$</span><span class='va'>Resample1</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="linear-methods-for-classification">Linear methods for classification</h1>
+<h3 id="linear-regression">Linear regression</h3>
+<p>One approach would be to just try using simple linear regression.</p>
+<p>This assumes that:</p>
+<p><span class="math display">\[f(x) = \mbox{Pr}( Y = 1 | X_1=x_1, X_2 = x_2)  = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
+<p>and we estimate <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, <span class="math inline">\(\beta_2\)</span> with least squares. Once we have estimates <span class="math inline">\(\hat{\beta}_0\)</span>, <span class="math inline">\(\hat{\beta}_1\)</span>, and <span class="math inline">\(\beta_2\)</span> we can obtain an actual prediction rule:</p>
+<p><span class="math display">\[ \hat{f}(x) = \hat{\beta}_0+ \hat{\beta}_1 x_1 + \hat{\beta}_2 x_2 \]</span></p>
+<p>The problem with using linear regression is that to predict <span class="math inline">\(Y\)</span> on the basis of predictors <span class="math inline">\(\mathbf{X}_i\)</span>, we will need to order the outcomes.</p>
+<p>Does it make sense here? Not quite. Why?</p>
+<p>If <span class="math inline">\(Y\)</span> is not quantiative (e.g. ten types of fashion pieces), it doesn’t quite make sense to put a “t-shirt” ahead of a “sandal” or behind a “pants”. This is because to use linear regression, we have to decide on an ordering and if we picked a differentordering, then that coding would produce a fundamentally different linear model with a different set of predictions on the test observations.</p>
+<p>However, if the response variable’s values did take on a natural ordering, such as mild, moderate, and severe, and we felt the gap between mild and moderate was similar to the gap between moderate and severe, then a 1, 2, 3 coding would be reasonable.</p>
+<p>Unfortunately, in general there is no natural way to convert a qualitative response variable with more than two levels into a quantitative response that is ready for linear regression.</p>
+<h3 id="logistic-regression">Logistic regression</h3>
+<p>If the qualitative response is binary (<code>0</code> and <code>1</code>), then one approach is to fit a linear regression to this binary response and predict <code>1</code> if the predicted response (<span class="math inline">\(\hat{Y}\)</span>) is <span class="math inline">\(\hat{Y} &gt; 0.5\)</span> or <code>0</code> otherwise.</p>
+<p>So if we consider our linear regression model above:</p>
+<p><span class="math display">\[f(x) = \mbox{Pr}( Y = 1 | X_1=x_1, X_2 = x_2)  = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
+<p>We note that the expression on the right can be any real number while the expression on the left is bounded between 0 and 1.</p>
+<p>An extension that permits us to continue using regression-like models is to apply transformations that eliminate this disconnect. In the case of binary data the most common approach is to fit a <em>logistic regression</em> model which makes use of the <em>logit</em> transformation:</p>
+<p><span class="math display">\[ g(p) = \log \frac{p}{1-p}\]</span> and use this model instead:</p>
+<p><span class="math display">\[ g(\mbox{Pr}(Y=1 \mid X_1=x_1 , X_2 = x_2) = 
+\beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
+<p>We can fit a logistic regression model using the <code>glm()</code> function with the <code>family="binomial"</code> argument.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/glm.html'>glm</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>X_1</span>, <span class='va'>X_2</span>, data <span class='op'>=</span> <span class='fu'>select</span><span class='op'>(</span><span class='va'>train_set</span>, <span class='va'>y</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span>, 
+               family <span class='op'>=</span> <span class='st'>"binomial"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_glm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+glm(formula = y ~ X_1, family = &quot;binomial&quot;, data = select(train_set, 
+    y, X_1, X_2), weights = X_2)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4749  -0.1421   0.0000   0.2200   2.5372  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)   3.0146     0.3234   9.321   &lt;2e-16 ***
+X_1         -21.2373     2.3318  -9.108   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 343.43  on 818  degrees of freedom
+Residual deviance: 161.91  on 817  degrees of freedom
+AIC: 83.613
+
+Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+<p>We see both the <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> features are statisticially significant at the <span class="math inline">\(\alpha = 0.05\)</span> level.</p>
+<p>Next, if we predict or <em>classify</em> how each observation <span class="math inline">\(Y_i\)</span> is doing using the <code>predict()</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pred_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_glm</span>, newdata <span class='op'>=</span> <span class='va'>test_set</span>, type<span class='op'>=</span><span class='st'>"response"</span><span class='op'>)</span>
+<span class='va'>y_hat_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>pred_glm</span> <span class='op'>&gt;</span> <span class='fl'>0.5</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span>pred<span class='op'>=</span><span class='va'>y_hat_glm</span>, truth<span class='op'>=</span> <span class='va'>test_set</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span><span class='va'>tab</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+    truth
+pred   0   1
+   0 446  50
+   1  54 450
+                                          
+               Accuracy : 0.896           
+                 95% CI : (0.8754, 0.9142)
+    No Information Rate : 0.5             
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.792           
+                                          
+ Mcnemar&#39;s Test P-Value : 0.7686          
+                                          
+            Sensitivity : 0.8920          
+            Specificity : 0.9000          
+         Pos Pred Value : 0.8992          
+         Neg Pred Value : 0.8929          
+             Prevalence : 0.5000          
+         Detection Rate : 0.4460          
+   Detection Prevalence : 0.4960          
+      Balanced Accuracy : 0.8960          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<p>The confusion table can be extracted using the <code>$table</code> slot</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>table</span>
+</code></pre>
+</div>
+<pre><code>    truth
+pred   0   1
+   0 446  50
+   1  54 450</code></pre>
+</div>
+<p>And the various performance metrics too:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>overall</span><span class='op'>[</span><span class='st'>"Accuracy"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Accuracy 
+   0.896 </code></pre>
+</div>
+<p>We can also use the <code>roc()</code> function in the <code>pROC</code> package to plot the ROC curve comparing the sensitivity and specificity</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>roc_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/pROC/man/roc.html'>roc</a></span><span class='op'>(</span><span class='va'>test_set</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_glm</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/pROC/man/plot.roc.html'>plot</a></span><span class='op'>(</span><span class='va'>roc_glm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-39-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h4 id="logistic-regression-for-more-than-2-response-classes">Logistic regression for more than 2 response classes</h4>
+<p>In our example, we only considered the t-shirts and sandals, but we technically have more than two classes. If the goal is to classify a response variable or outcome with more than two clasess, there are multiple-class extensions. However, in practice they tend not to be used all that often. One of the reasons is that the method we discuss in the next section, <em>discriminant analysis</em>, is popular for multiple-class classification. So we do not go into the details of multiple-class logistic regression here, but simply note that such an approach is possible, and that software for it is available in R.</p>
+<h3 id="linear-discriminant-analysis">Linear discriminant analysis</h3>
+<p>Logistic regression involves directly modeling <span class="math inline">\(Pr(Y = k|X = x)\)</span> using the logistic function, for the case of two response classes. An alternative and less direct approach to estimate these probabilities is to model the distribution of the predictors <span class="math inline">\(X\)</span> separately in each of the response classes (i.e. given <span class="math inline">\(Y\)</span> ), and then use Bayes’ theorem to flip these around into estimates for <span class="math inline">\(Pr(Y = k|X = x)\)</span>.</p>
+<p>When these distributions are assumed to be normal, it turns out that the model is very similar in form to logistic regression.</p>
+<p>Why do we need another method, when we have logistic regression? There are several reasons:</p>
+<ol type="1">
+<li>When the classes are well-separated, the parameter estimates for the logistic regression model are surprisingly unstable. Linear discriminant analysis does not suffer from this problem.</li>
+<li>If <span class="math inline">\(n\)</span> is small and the distribution of the predictors <span class="math inline">\(X\)</span> is approximately normal in each of the classes, the linear discriminant model is again more stable than the logistic regression model.</li>
+<li>Linear discriminant analysis is popular when we have more than two response classes.</li>
+</ol>
+<p>Ok, let’s assume we have <span class="math inline">\(K\)</span> classes (<span class="math inline">\(K \geq2\)</span>). Let <span class="math inline">\(\pi_k\)</span> represent the overall or prior probability that a randomly chosen observation comes from the <span class="math inline">\(k^{th}\)</span>class or category of the response variable <span class="math inline">\(Y\)</span>.</p>
+<p>Let <span class="math inline">\(f_{k}(X) ≡ Pr(X = x|Y = k)\)</span> denote the <em>density function</em> of <span class="math inline">\(X\)</span> for an observation that comes from the <span class="math inline">\(k^{th}\)</span> class (i.e. <span class="math inline">\(f_{k}(x)\)</span> is relatively large if there is a high probability that an observation in the <span class="math inline">\(k^{th}\)</span> class has <span class="math inline">\(X \approx x\)</span>, and <span class="math inline">\(f_{k}(x)\)</span> is small if it is very unlikely. Then <em>Bayes’ theorem</em> states that</p>
+<p><span class="math display">\[ \mbox{Pr}(Y=k|X=x) = \frac{\pi_k f_{k}(x)}{\sum_{l=1}^K \pi_l f_{l}(x)} \]</span></p>
+<p>So instead of directly computing <span class="math inline">\(\mbox{Pr}(Y=1|X=x)\)</span> (i.e. if <span class="math inline">\(K=2\)</span>) in logistic regression, we can plug in estimates for <span class="math inline">\(\pi_k\)</span> and <span class="math inline">\(f_{k}(x)\)</span>. To do this, we make some assumptions the distributions of <span class="math inline">\(f_{k}(x)\)</span>, namely that they are multivariate normal. LDA assumes that the observations within each class are drawn from a multivariate Gaussian distribution with a class-specific mean vector and a covariance matrix that is common to all <span class="math inline">\(K\)</span> classes. In our case we have two predictors (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>), so we assume each one is bivariate normal. This implies we need to estimate two averages, one standard deviation, and a correlation for each case <span class="math inline">\(Y=1\)</span> and <span class="math inline">\(Y=0\)</span>.</p>
+<p>This implies that we can approximate the distributions <span class="math inline">\(f_{0}(X_1, X_2)\)</span> and <span class="math inline">\(f_{1}(X_1, X_2)\)</span>. We can easily estimate parameters from the data:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>train_set</span> <span class='op'>%&gt;%</span> <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>avg_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>X_1</span><span class='op'>)</span>, 
+            avg_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>X_2</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 × 3
+      y  avg_1 avg_2
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1     0 0.303  0.174
+2     1 0.0418 0.377</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>train_set</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>X_2</span><span class='op'>)</span>, 
+            r <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>X_1</span>,<span class='va'>X_2</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 × 2
+     sd      r
+  &lt;dbl&gt;  &lt;dbl&gt;
+1 0.211 -0.575</code></pre>
+</div>
+<p>So here are the data and contour plots showing the two normal densities:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>train_set</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>X_1</span>, <span class='va'>X_2</span>, fill <span class='op'>=</span> <span class='va'>y</span>, color<span class='op'>=</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_point</span><span class='op'>(</span>pch<span class='op'>=</span><span class='fl'>21</span>,cex<span class='op'>=</span><span class='fl'>5</span>, color<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>stat_ellipse</span><span class='op'>(</span>lwd<span class='op'>=</span><span class='fl'>2</span>, type<span class='op'>=</span><span class='st'>"norm"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-41-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We use the <code>lda()</code> function in the <code>MASS</code> R package. The <code>prior</code> argument represents the prior probability of class membership.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_lda</span> <span class='op'>&lt;-</span> <span class='fu'>MASS</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MASS/man/lda.html'>lda</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>.</span>, data<span class='op'>=</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>train_set</span>, <span class='va'>y</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span>,
+         prior <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>pred_lda</span> <span class='op'>&lt;-</span> <span class='fu'>MASS</span><span class='fu'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/MASS/man/predict.lda.html'>predict.lda</a></span><span class='op'>(</span><span class='va'>fit_lda</span>, <span class='va'>test_set</span><span class='op'>)</span><span class='op'>$</span><span class='va'>class</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span>pred<span class='op'>=</span><span class='va'>pred_lda</span>, truth<span class='op'>=</span> <span class='va'>test_set</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span><span class='va'>tab</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>table</span>
+</code></pre>
+</div>
+<pre><code>    truth
+pred   0   1
+   0 425  41
+   1  75 459</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>overall</span><span class='op'>[</span><span class='st'>"Accuracy"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Accuracy 
+    0.88 </code></pre>
+</div>
+<h4 id="quadratic-discriminant-analysis">Quadratic discriminant analysis</h4>
+<p>As we have discussed, LDA assumes that the observations within each class are drawn from a multivariate Gaussian distribution with a class-specific mean vector and a covariance matrix that is common to all <span class="math inline">\(K\)</span> classes.</p>
+<p><em>Quadratic discriminant analysis</em> (QDA) assumes that the observations from each class are again drawn from a Gaussian distribution and you plug in estimates for the parameters into Bayes’ theorem in order to perform prediction. However, unlike LDA, QDA assumes that each class has its own covariance matrix. That is, it assumes that an observation from the kth class is of the form <span class="math inline">\(X \sim N(\mu_k,\Sigma_k)\)</span>, where <span class="math inline">\(\Sigma_k\)</span> is a covariance matrix for the kth class.</p>
+<p>In our case we have two predictors (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>), so we assume each one is bivariate normal. This implies we need to estimate two averages, two standard deviations, and a correlation for each case <span class="math inline">\(Y=1\)</span> and <span class="math inline">\(Y=0\)</span>.</p>
+<p>This implies that we can approximate the distributions <span class="math inline">\(f_{0}(X_1, X_2)\)</span> and <span class="math inline">\(f_{1}(X_1, X_2)\)</span>. We can easily estimate parameters from the data:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>params</span> <span class='op'>&lt;-</span> <span class='va'>train_set</span> <span class='op'>%&gt;%</span> <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>summarize</span><span class='op'>(</span>avg_1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>X_1</span><span class='op'>)</span>, avg_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>X_2</span><span class='op'>)</span>, 
+            sd_1<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>X_1</span><span class='op'>)</span>, sd_2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>X_2</span><span class='op'>)</span>, 
+            r <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>X_1</span>,<span class='va'>X_2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>params</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 × 6
+      y  avg_1 avg_2   sd_1  sd_2      r
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     0 0.303  0.174 0.166  0.143 -0.599
+2     1 0.0418 0.377 0.0946 0.219 -0.234</code></pre>
+</div>
+<p>So here are the data and contour plots showing the two normal densities:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>train_set</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>X_1</span>, <span class='va'>X_2</span>, fill <span class='op'>=</span> <span class='va'>y</span>, color<span class='op'>=</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_point</span><span class='op'>(</span>pch<span class='op'>=</span><span class='fl'>21</span>,cex<span class='op'>=</span><span class='fl'>5</span>, color<span class='op'>=</span><span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>stat_ellipse</span><span class='op'>(</span>lwd<span class='op'>=</span><span class='fl'>2</span>, type<span class='op'>=</span><span class='st'>"norm"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="linear-classification_files/figure-html5/unnamed-chunk-45-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can use the <code>qda()</code> function in the <code>MASS</code> R package. The <code>prior</code> argument represents the prior probability of class membership.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_qda</span> <span class='op'>&lt;-</span> <span class='fu'>MASS</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MASS/man/qda.html'>qda</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>.</span>, data<span class='op'>=</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_set</span>, <span class='va'>y</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span>,
+         prior <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>pred_qda</span> <span class='op'>&lt;-</span> <span class='fu'>MASS</span><span class='fu'>:::</span><span class='fu'><a href='https://rdrr.io/pkg/MASS/man/predict.qda.html'>predict.qda</a></span><span class='op'>(</span><span class='va'>fit_qda</span>, <span class='va'>test_set</span><span class='op'>)</span><span class='op'>$</span><span class='va'>class</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span>pred<span class='op'>=</span><span class='va'>pred_qda</span>, truth<span class='op'>=</span> <span class='va'>test_set</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span><span class='va'>tab</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>table</span>
+</code></pre>
+</div>
+<pre><code>    truth
+pred   0   1
+   0 438  47
+   1  62 453</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>overall</span><span class='op'>[</span><span class='st'>"Accuracy"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Accuracy 
+    0.89 </code></pre>
+</div>
+<h4 id="why-does-it-matter-if-we-assume-a-common-covariance-matrix">Why does it matter if we assume a common covariance matrix?</h4>
+<p>In other words, why would one prefer LDA to QDA, or vice-versa? The answer is the bias-variance trade-off. When there are <span class="math inline">\(p\)</span> predictors, then estimating a covariance matrix requires estimating <span class="math inline">\(p(p+1)/2\)</span> parameters. QDA estimates a separate covariance matrix for each class, for a total of <span class="math inline">\(Kp(p+1)/2\)</span> parameters. With 50 predictors this is some multiple of 1,225, which is a lot of parameters. By instead assuming that the <span class="math inline">\(K\)</span> classes share a common covariance matrix, the LDA model becomes linear in x, which means there are <span class="math inline">\(Kp\)</span> linear coefficients to estimate.</p>
+<p>Consequently, LDA is a much less flexible classifier than QDA, and so has substantially lower variance. This can potentially lead to improved prediction performance. But there is a trade-off: if LDA’s assumption that the <span class="math inline">\(K\)</span> classes share a common covariance matrix is badly off, then LDA can suffer from high bias.</p>
+<p>Roughly speaking, LDA tends to be a better bet than QDA if there are relatively few training observations and so reducing variance is crucial. In contrast, QDA is recommended if the training set is very large, so that the variance of the classifier is not a major concern, or if the assumption of a common covariance matrix for the <span class="math inline">\(K\)</span> classes is clearly untenable.</p>
+<h3 id="k-nearest-neighbors"><span class="math inline">\(K\)</span>-nearest neighbors</h3>
+<p>A model free alternative is the <span class="math inline">\(K\)</span>-nearest neighbor classifier (KNN). Given a positive integer <span class="math inline">\(K\)</span> and a test observation <span class="math inline">\(x_0\)</span>, the KNN classifier first identifies the <span class="math inline">\(K\)</span> points in the training data that are closest to <span class="math inline">\(x_0\)</span>, represented by <span class="math inline">\(N_0\)</span>. It then estimates the conditional probability for class <span class="math inline">\(k\)</span> as the fraction of points in <span class="math inline">\(N_0\)</span> whose response values equal <span class="math inline">\(k\)</span>:</p>
+<p><span class="math display">\[\mbox{Pr}( Y = k | \mathbf{X} =\mathbf{x}_0)  = \frac{P(Y = k, \mathbf{X} = \mathbf{x}_0)}{P(\mathbf{X} = \mathbf{x}_0)} = \frac{1}{K} \sum_{i \in N_0} I(y_i = k)\]</span></p>
+<p>Finally, KNN applies Bayes rule and classifies the test observation <span class="math inline">\(x_0\)</span> to the class with the largest probability.</p>
+<p>Despite the fact that it is a very simple approach, KNN can often produce classifiers that are surprisingly close to the optimal Bayes classifier.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_knn_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/knn3.html'>knn3</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data <span class='op'>=</span> <span class='fu'>select</span><span class='op'>(</span><span class='va'>train_set</span>, <span class='va'>y</span>, <span class='va'>X_1</span>, <span class='va'>X_2</span><span class='op'>)</span>, 
+                  k<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>pred_knn_2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_knn_2</span>, newdata <span class='op'>=</span> <span class='va'>test_set</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span>
+
+<span class='va'>tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span>pred<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>pred_knn_2</span><span class='op'>)</span>, truth<span class='op'>=</span> <span class='va'>test_set</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span><span class='va'>tab</span><span class='op'>)</span>
+<span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>table</span>
+</code></pre>
+</div>
+<pre><code>    truth
+pred   0   1
+   0 462  79
+   1  38 421</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>conf_matrix</span><span class='op'>$</span><span class='va'>overall</span><span class='op'>[</span><span class='st'>"Accuracy"</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Accuracy 
+    0.88 </code></pre>
+</div>
+<p><strong>Note</strong>: The choice of <span class="math inline">\(K\)</span> has a drastic effect on the KNN classifier obtained. You can explore this own your own by trying <span class="math inline">\(K\)</span> = 1 vs a larger <span class="math inline">\(K\)</span>.</p>
+<h1 id="post-lecture-materials">Post-lecture materials</h1>
+<h3 id="final-questions">Final Questions</h3>
+<p>Here are some post-lecture questions to help you think about the material discussed.</p>
+<div class="questions">
+<p><strong>Questions:</strong></p>
+<ol type="1">
+<li></li>
+<li></li>
+<li></li>
+</ol>
+</div>
+<h3 id="additional-resources">Additional Resources</h3>
+<div class="resources">
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<div class="article-footer">
+  <p class="social_footer">
+    <span class="disqus-comments">
+      <i class="fas fa-comments"></i>
+      &nbsp;
+      <span class="disqus-comment-count" data-disqus-identifier="posts/2021-11-10-linear-classification/">Comment on this article</span>
+    </span>
+    <span class="article-sharing">
+      Share: &nbsp;
+      <a href="https://twitter.com/share?text=Linear%20Classification&amp;url=https%3A%2F%2Fstephaniehicks.com%2Fjhuads2021%2Fposts%2F2021-11-10-linear-classification%2F">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fstephaniehicks.com%2Fjhuads2021%2Fposts%2F2021-11-10-linear-classification%2F&amp;title=Linear%20Classification">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </span>
+  </p>
+  <script id="dsq-count-scr" src="https://jhuads2021.disqus.com/count.js" async></script>
+  <div id="disqus_thread" class="hidden"></div>
+  <script type="text/javascript" cookie-consent="functionality">
+var disqus_config = function () {
+  this.page.url = 'https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/';
+  this.page.identifier = 'posts/2021-11-10-linear-classification/';
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jhuads2021.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+</div>
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">Hicks (2021, Nov. 7). JHU Advanced Data Science 2021: Linear Classification. Retrieved from https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{hicks2021linear,
+  author = {Hicks, Stephanie},
+  title = {JHU Advanced Data Science 2021: Linear Classification},
+  url = {https://stephaniehicks.com/jhuads2021/posts/2021-11-10-linear-classification/},
+  year = {2021}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

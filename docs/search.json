@@ -1,0 +1,34 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this website",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\nTBA\n\n\n\n",
+      "last_modified": "2021-11-07T21:31:05-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "JHU Adv Data Science 2021",
+      "description": "Course website for Advanced Data Science (JHSPH Biostatistics 140.712 Fall 2021)\n",
+      "author": [
+        {
+          "name": "Stephanie Hicks and Roger Peng",
+          "url": "https://stephaniehicks.com/"
+        }
+      ],
+      "contents": "\nWelcome to Advanced Data Science II at Johns Hopkins Bloomberg School of Public Health!\nAcknowledgements\nThe materials here are developed and maintained by Stephanie Hicks, but they are part of a larger set of materials in ADS 2021.\nThe course materials are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Linked and embedded materials are governed by their own licenses. I assume that all external materials used or embedded here are covered under the educational fair use policy. If this is not the case and any material displayed here violates copyright, please let me know and I will remove it.\n\n\n\n",
+      "last_modified": "2021-11-07T21:31:06-05:00"
+    },
+    {
+      "path": "lectures.html",
+      "title": "Lectures",
+      "description": "A new article created using the Distill format.\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-11-07T21:31:07-05:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
