@@ -27,23 +27,13 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # Pre-lecture materials
 
-### Read ahead
-
-:::resources
-
-**Before class, you can prepare by reading the following materials:**
-
-1. 
-
-:::
-
-
 ### Acknowledgements
 
 Material for this lecture was borrowed and adopted from
 
 - [An Introduction to Statistical Learning, 2013](https://www.springer.com/us/book/9781461471370) by James, Witten, Hastie and Tibshirani
 - The [dsbook](https://rafalab.github.io/dsbook) from Rafael Irizarry
+- https://en.wikipedia.org/wiki/Linear_discriminant_analysis
 
 # Learning objectives
 
@@ -51,9 +41,8 @@ Material for this lecture was borrowed and adopted from
 
 **At the end of this lesson you will:**
 
-- 
-- 
-- 
+- Know how to implement three linear classifiers: (i) linear and logistic regression, (ii) linear and     quadratic discriminant analysis, and (iii) $K$-nearest neighbors
+
 
 :::
 
@@ -216,6 +205,7 @@ And we also save the labels (i.e. 0-9)
 fashion_labels <- 
   fashion %>% 
   pull(label)
+fashion_labels[1:5]
 ```
 
 We can look at the first three images to see what they look like. 
@@ -266,7 +256,7 @@ X[1:10, 1:10]
 ### What are the outcomes? 
 
 Even though the `label` here is a whole number between 
-0 and 10, this is a qualitative outcome (e.g. shirt, 
+0 and 9, this is a qualitative outcome (e.g. shirt, 
 pants, shoes, etc). 
 
 ```{r}
@@ -301,14 +291,14 @@ Because the pixels are so small we expect those to
 be close to each other on the grid to be correlated, 
 meaning that dimension reduction should be possible.
 
-Let's take the SVD of $\mathbf{X}$. 
+Let's take the singular value decomposition (SVD) of $\mathbf{X}$. 
 
 ```{r}
 dim(X) #  10000 observation, 784 features
 ```
 
-Remember, we need to column center the data. We also
-will create a new variable $\mathbf{Y}$ to represent
+Remember, we need to column center the data (using `scale()`).
+We also will create a new variable $\mathbf{Y}$ to represent
 the standardized data that is also transposed
 (features along rows).
 
@@ -340,10 +330,12 @@ we see that the last few are quite close to 0.
 plot(s$d)
 ```
 
-This implies that the last columns of $\mathbf{V}$ have a very 
-small effect on the reconstruction of $\mathbf{X}$. To see this, 
+This implies that the last columns of $\mathbf{V}$ (right singular vectors) 
+have a very small effect on the reconstruction of $\mathbf{X}$. 
+
+To see this, 
 consider the extreme example in which the last entry 
-of $\mathbf{V}$ is 0. In this case the last column of 
+of $\mathbf{V}$ is 0. In this case, the last column of 
 $\mathbf{V}$ is not needed at all. 
 
 Because of the way 
@@ -525,6 +517,10 @@ features to the `dat05` table
 
 ```{r}
 row_column <- expand.grid(row=1:28, col=1:28)
+head(row_column)
+```
+
+```{r}
 ind1 <- which(row_column$col <= 14 & row_column$row <=14) # top left quandrant
 ind2 <- which(row_column$col > 14 & row_column$row > 14) # bottom right quadrant
 ind <- c(ind1,ind2)
@@ -547,7 +543,7 @@ Let's explore the relationship between the predictors
 ```{r}
 dat05 %>% 
   select(label, X_1, X_2) %>% 
-  ggplot(aes(x=label,y=X_1)) + 
+  ggplot(aes(x=label, y=X_1)) + 
   geom_boxplot()
 ```
 
@@ -559,7 +555,7 @@ sandals, which make sense).
 ```{r}
 dat05 %>% 
   select(label, X_1, X_2) %>% 
-  ggplot(aes(x=label,y=X_2)) + 
+  ggplot(aes(x=label, y=X_2)) + 
   geom_boxplot()
 ```
 
@@ -576,7 +572,7 @@ separation between the `0`s (t-shirts)` and
 ```{r}
 dat05 %>% 
   select(label, X_1, X_2) %>% 
-  ggplot(aes(x=X_1,y=X_2, color = label)) + 
+  ggplot(aes(x=X_1, y=X_2, color = label)) + 
   geom_point()
 ```
 
@@ -588,9 +584,8 @@ split the `dat05` dataset into two parts:
 1. `train_set` = the dataset we will use to build the classifer
 2. `test_set` = the dataset we will use to assess how we are doing (not used to train the classifier)
 
-For this we will use the `createDataPartition()` function 
-in the `caret` package, which you have already learned 
-about in the last lecture. We set the seed so we 
+For this, we will use the `createDataPartition()` function 
+in the `caret` package. We set the seed, so we 
 will all get the same answer
 
 ```{r}
@@ -599,7 +594,6 @@ inTrain <- createDataPartition(y = dat05$label,
                                p=0.5)
 train_set <- slice(dat05, inTrain$Resample1)
 test_set <- slice(dat05, -inTrain$Resample1)
-
 ```
 
 # Linear methods for classification 
@@ -631,7 +625,7 @@ fashion pieces), it doesn't quite make sense to
 put a "t-shirt" ahead of a "sandal" or behind a 
 "pants". This is because to use linear regression,
 we have to decide on an ordering and if we picked
-a differentordering, then that coding would produce a 
+a different ordering, then that coding would produce a 
 fundamentally different linear model with a different
 set of predictions on the test observations. 
 
@@ -680,7 +674,8 @@ We can fit a logistic regression model using the
 argument. 
 
 ```{r}
-fit_glm <- glm(y ~ X_1, X_2, data = select(train_set, y, X_1, X_2), 
+fit_glm <- glm(y ~ X_1 + X_2, 
+               data = select(train_set, y, X_1, X_2), 
                family = "binomial")
 summary(fit_glm)
 ```
@@ -724,13 +719,18 @@ roc_glm <- roc(test_set$y, pred_glm)
 plot(roc_glm)
 ```
 
-#### Logistic regression for more than 2 response classes
+:::keyideas 
+
+**Logistic regression for more than 2 response classes**
 
 In our example, we only considered the t-shirts and 
 sandals, but we technically have more than two classes. 
+
 If the goal is to classify a response variable or outcome 
-with more than two clasess, there are multiple-class 
-extensions. However, in practice they tend not to be used 
+with more than two classes, there are **multiple-class 
+extensions**. 
+
+However, in practice they tend not to be used 
 all that often. One of the reasons is that the method we 
 discuss in the next section, _discriminant analysis_, is
 popular for multiple-class classification. So we do not 
@@ -738,20 +738,40 @@ go into the details of multiple-class logistic regression
 here, but simply note that such an approach is possible, 
 and that software for it is available in R.
 
+:::
+
 ### Linear discriminant analysis
 
 Logistic regression involves directly modeling
 $Pr(Y = k|X = x)$ using the logistic function, 
-for the case of two response classes. An alternative 
+for the case of two response classes. 
+
+An alternative 
 and less direct approach to estimate these probabilities
 is to model the distribution of the predictors $X$ 
 separately in each of the response classes (i.e. given 
-$Y$ ), and then use Bayes’ theorem to flip these around 
-into estimates for $Pr(Y = k|X = x)$. 
+$Y$) or $Pr(X = x|Y = k)$, and then use Bayes’ theorem 
+to flip these around into estimates for $Pr(Y = k|X = x)$. 
+Linear discriminant analysis (LDA) assumes these 
+distributions are normal.
 
-When these distributions are assumed to be normal, 
-it turns out that the model is very similar in form 
-to logistic regression.
+Broadly, LDA finds a linear combination of features 
+that characterizes or separates two or more classes of 
+objects or events. 
+
+:::keyideas 
+
+**How does LDA related to other methods?**
+
+- LDA is closely related to ANOVA and regression analysis, which also attempt to express one dependent variable as a linear combination of other features or measurements. However, ANOVA uses categorical independent variables and a continuous dependent variable, whereas discriminant analysis has continuous independent variables and a categorical dependent variable (i.e. the class label).
+
+- Logistic regression is more similar to LDA than ANOVA is, as they also explain a categorical variable by the values of continuous independent variables. In fact, logistic regression preferable in applications where it is not reasonable to assume that the distributions of $X|Y$ are normally distributed. 
+
+- LDA is also closely related to PCA in that it looks for linear combinations of variables which best explain the data. However, LDA explicitly attempts to model the difference between the classes of data and PCA does not take into account any difference in class. i.e. LDA needs class labels, but PCA does not. 
+
+- LDA works when X are continuous quantities. When dealing with categorical X, the equivalent technique is discriminant correspondence analysis.
+
+:::
 
 Why do we need another method, when we have logistic 
 regression? There are several reasons:
@@ -773,17 +793,19 @@ in the $k^{th}$ class has $X \approx x$, and $f_{k}(x)$ is
 small if it is very unlikely. Then _Bayes’ theorem_ states
 that
 
-$$ \mbox{Pr}(Y=k|X=x) = \frac{\pi_k f_{k}(x)}{\sum_{l=1}^K \pi_l f_{l}(x)} $$
+$$ \mbox{Pr}(Y=k|X=x) = \frac{\mbox{Pr}(Y=k)  Pr(X = x|Y = k)}{\sum_{l=1}^K \mbox{Pr}(Y=l) Pr(X = x|Y = l)} = \frac{\pi_k f_{k}(x)}{\sum_{l=1}^K \pi_l f_{l}(x)} $$
 
 So instead of directly computing $\mbox{Pr}(Y=1|X=x)$ (i.e. if $K=2$)
 in logistic regression, we can plug in estimates for 
-$\pi_k$ and $f_{k}(x)$. To do this, we make some assumptions
-the distributions of $f_{k}(x)$, namely that they are 
+$\pi_k$ and $f_{k}(x)$. 
+
+To do this, we **make some assumptions about the distributions** 
+of $f_{k}(x)$, namely that they are 
 multivariate normal. LDA assumes that the observations
 within each class are drawn from a multivariate 
 Gaussian distribution with a class-specific 
-mean vector and a covariance matrix that is
-common to all $K$ classes. In our case we have two predictors
+mean vector and **a covariance matrix that is common**
+to all $K$ classes. In our case we have two predictors
 ($X_1$ and $X_2$), so we assume each one is bivariate normal.
 This implies we need to estimate two averages, one
 standard deviation, and a correlation for each case
@@ -802,7 +824,6 @@ train_set %>% group_by(y) %>%
 train_set %>% 
   summarize(sd = sd(X_2), 
             r = cor(X_1,X_2))
-
 ```
 
 So here are the data and contour plots showing the two normal densities:
@@ -810,8 +831,8 @@ So here are the data and contour plots showing the two normal densities:
 ```{r}
 train_set %>% mutate(y = factor(y)) %>% 
   ggplot(aes(X_1, X_2, fill = y, color=y)) + 
-  geom_point(pch=21,cex=5, color="black") + 
-  stat_ellipse(lwd=2, type="norm")
+  geom_point(pch=21, cex=5, color="black") + 
+  stat_ellipse(lwd=2, type="norm") 
 ```
 
 
@@ -820,8 +841,9 @@ R package. The `prior` argument represents
 the prior probability of class membership. 
 
 ```{r}
-fit_lda <- MASS::lda(y ~ ., data=dplyr::select(train_set, y, X_1, X_2),
-         prior = c(1,1)/2)
+fit_lda <- MASS::lda(y ~ ., 
+                     data=dplyr::select(train_set, y, X_1, X_2),
+                     prior = c(1,1)/2)
 pred_lda <- MASS:::predict.lda(fit_lda, test_set)$class
 ```
 
@@ -847,14 +869,15 @@ _Quadratic discriminant analysis_ (QDA) assumes
 that the observations from each class are again drawn 
 from a Gaussian distribution and you plug in estimates
 for the parameters into Bayes’ theorem in 
-order to perform prediction. However, unlike LDA, 
-QDA assumes that each class has its own covariance 
-matrix. That is, it assumes that an observation 
-from the kth class is of the form 
+order to perform prediction. 
+
+However, unlike LDA, QDA assumes that each class has its 
+own covariance matrix. That is, it assumes that an 
+observation from the $k^{th}$ class is of the form 
 $X \sim N(\mu_k,\Sigma_k)$, where $\Sigma_k$ is a 
 covariance matrix for the kth class. 
 
-In our case we have two predictors
+In our case, we have two predictors
 ($X_1$ and $X_2$), so we assume each one 
 is bivariate normal. This implies we need to
 estimate two averages, two standard deviations, 
@@ -888,8 +911,9 @@ R package. The `prior` argument represents
 the prior probability of class membership. 
 
 ```{r}
-fit_qda <- MASS::qda(y ~ ., data=select(train_set, y, X_1, X_2),
-         prior = c(1,1)/2)
+fit_qda <- MASS::qda(y ~ ., 
+                     data=select(train_set, y, X_1, X_2),
+                     prior = c(1,1)/2)
 pred_qda <- MASS:::predict.qda(fit_qda, test_set)$class
 ```
 
@@ -900,12 +924,15 @@ conf_matrix$table
 conf_matrix$overall["Accuracy"]
 ```
 
+:::keyideas 
 
-#### Why does it matter if we assume a common covariance matrix?
+**Why does it matter if we assume a common covariance matrix?**
 
 In other words, why would one prefer LDA to 
-QDA, or vice-versa? The answer is the bias-variance 
-trade-off. When there are $p$ predictors, then 
+QDA, or vice-versa? 
+
+The answer is the **bias-variance trade-off**. 
+When there are $p$ predictors, then 
 estimating a covariance matrix requires estimating 
 $p(p+1)/2$ parameters. QDA estimates a separate 
 covariance matrix for each class, for a total 
@@ -913,16 +940,15 @@ of $Kp(p+1)/2$ parameters. With 50 predictors
 this is some multiple of 1,225, which is a lot of 
 parameters. By instead assuming that the $K$ classes 
 share a common covariance matrix, the LDA model
-becomes linear in x, which means there are $Kp$ linear
-coefficients to estimate.
+estimates $Kp$ linear coefficients.
 
-Consequently, LDA is a much less flexible classifier 
-than QDA, and so has substantially lower variance. 
+Consequently, **LDA is a much less flexible classifier than QDA**, 
+and so has substantially **lower variance**. 
 This can potentially lead to improved prediction 
 performance. But there is a trade-off: if LDA’s 
 assumption that the $K$ classes share a common 
 covariance matrix is badly off, then LDA can suffer 
-from high bias. 
+from **high bias**. 
 
 Roughly speaking, LDA tends to be a better bet than 
 QDA if there are relatively few training observations
@@ -932,6 +958,7 @@ so that the variance of the classifier is not a major
 concern, or if the assumption of a common covariance 
 matrix for the $K$ classes is clearly untenable.
 
+:::
 
 ### $K$-nearest neighbors
 
@@ -955,7 +982,8 @@ KNN can often produce classifiers that are
 surprisingly close to the optimal Bayes classifier.
 
 ```{r}
-fit_knn_2 <- knn3(y~., data = select(train_set, y, X_1, X_2), 
+fit_knn_2 <- knn3(y~., 
+                  data = select(train_set, y, X_1, X_2), 
                   k=2)
 pred_knn_2 <- predict(fit_knn_2, newdata = test_set)[,2]
 
@@ -968,38 +996,4 @@ conf_matrix$overall["Accuracy"]
 **Note**: The choice of $K$ has a drastic effect 
 on the KNN classifier obtained. You can explore this 
 own your own by trying $K$ = 1 vs a larger $K$. 
-
-
-
-
-
-# Post-lecture materials
-
-### Final Questions 
-
-Here are some post-lecture questions to help you think about the material discussed.
-
-:::questions
-
-**Questions:**
-
-1. 
-
-2. 
-
-3.
-
-:::
-
-
-### Additional Resources 
-
-:::resources 
-
-- 
-- 
-- 
-
-::: 
-
 
