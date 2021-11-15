@@ -330,7 +330,7 @@ We can also divide it by paragraphs:
 
 ```{r}
 pp_book_df %>% 
-  unnest_tokens(paragraph, text, token="paragraphs")
+  unnest_tokens(output = paragraph, input = text, token="paragraphs")
 ```
 
 **Note**: what you name the output column, e.g. `paragraph` in this 
@@ -341,7 +341,7 @@ We could also divide it by sentence:
 
 ```{r}
 pp_book_df %>%
-    unnest_tokens(sentence, text, token = "sentences") 
+    unnest_tokens(output = sentence, input = text, token = "sentences") 
 ```
 
 **Note**: this is tricked by terms like "Mr." and "Mrs."
@@ -352,7 +352,7 @@ and then word. This lets us keep track of which paragraph is which.
 ```{r}
 paragraphs <- 
   pp_book_df %>%
-    unnest_tokens(paragraph, text, token = "paragraphs") %>%
+    unnest_tokens(output = paragraph, input = text, token = "paragraphs") %>%
     mutate(paragraph_number = row_number()) 
 
 paragraphs
@@ -363,7 +363,7 @@ quantity to keep track of paragraphs in the original format.
 
 ```{r}
 paragraphs %>%
-    unnest_tokens(word, paragraph)
+    unnest_tokens(output = word, input = paragraph)
 ```
 
 We notice there are many what are called _stop words_ ("the", "of", 
@@ -374,6 +374,8 @@ dataset `stop_words`) with an `anti_join()`.
 
 ```{r}
 data(stop_words)
+
+table(stop_words$lexicon)
 
 stop_words %>% 
   head(n=10)
@@ -509,7 +511,7 @@ lexicons. A few things to note:
 You can use the `get_sentiments()` function to extract a specific
 lexicon. 
 
-The `nrc` lexicon categorizes words into categories of 
+The `nrc` lexicon **categorizes words into multiple categories** of 
 positive, negative, anger, anticipation, disgust, fear,
 joy, sadness, surprise, and trust
 
@@ -517,15 +519,15 @@ joy, sadness, surprise, and trust
 get_sentiments("nrc")
 ```
 
-The `bing` lexicon categorizes words in a binary fashion
+The `bing` lexicon **categorizes words in a binary fashion**
 into positive and negative categories
 
 ```{r}
 get_sentiments("bing")
 ```
 
-The `AFINN` lexicon assigns words with a score that runs between 
--5 and 5, with negative scores indicating negative sentiment and
+The `AFINN` lexicon **assigns words with a score that runs between 
+-5 and 5**, with negative scores indicating negative sentiment and
 positive scores indicating positive sentiment
 
 ```{r}
@@ -554,30 +556,28 @@ methods do not take into account qualifiers before a word, such as
 in "no good" or "not true"; a lexicon-based method like this is based 
 on unigrams only. For many kinds of text (like the narrative examples
 below), there are not sustained sections of sarcasm or negated text, 
-so this is not an important effect. Also, we can use a tidy text 
-approach to begin to understand what kinds of negation words are
-important in a given text; see Chapter 9 for an extended example 
-of such an analysis."_
+so this is not an important effect."_
 
 and 
 
 > _"One last caveat is that the size of the chunk of text that we
 use to add up unigram sentiment scores can have an effect on an 
-analysis. A text the size of many paragraphs can often have positive a
-nd negative sentiment averaged out to about zero, while sentence-sized 
+analysis. A text the size of many paragraphs can often have positive 
+and negative sentiment averaged out to about zero, while sentence-sized 
 or paragraph-sized text often works better."_
 
 
-## Joining together tidy text data with lexicons
+### Joining together tidy text data with lexicons
 
 Now that we have our data in a tidy text format and we have 
 learned about different types of lexicons in application for 
-sentiment analysis, we can join the words together using an 
-inner join function. 
+sentiment analysis, we can join the words together using a 
+join function. 
 
 For example, what are the most common joy words in the book 
 _Emma_? Here we will use the `nrc` lexicon and join the `tidy_books` 
-dataset with the `nrc_joy` lexicon using the `inner_join()` function. 
+dataset with the `nrc_joy` lexicon using the `inner_join()` function
+in `dplyr`. 
 
 ```{r}
 nrc_joy <- get_sentiments("nrc") %>% 
@@ -603,7 +603,7 @@ tidy_books %>%
 
 Then we can count how many positive and negative words there are 
 in each section of the books. We create an index to help us keep 
-track of where we are in the narriative, which uses integer division, 
+track of where we are in the narrative, which uses integer division, 
 and counts up sections of 80 lines of text.
 
 ```{r}
@@ -621,7 +621,8 @@ different columns, and then use `mutate()` to calculate a net
 sentiment (positive - negative). 
 
 ```{r}
-jane_austen_sentiment <- tidy_books %>%
+jane_austen_sentiment <- 
+  tidy_books %>%
   inner_join(get_sentiments("bing")) %>%
   count(book, index = linenumber %/% 80, sentiment) %>%
   spread(sentiment, n, fill = 0) %>%
@@ -643,7 +644,7 @@ ggplot(jane_austen_sentiment, aes(index, sentiment, fill = book)) +
 We can see how the sentiment trajectory of the novel 
 changes over time. 
 
-## Word clouds 
+### Word clouds 
 
 You can also do things like create word clouds using the 
 `wordcloud` package. 
@@ -656,6 +657,11 @@ tidy_books %>%
   count(word) %>%
   with(wordcloud(word, n, max.words = 100))
 ```
+
+
+# Converting to and from tidy and non-tidy formats 
+
+https://www.tidytextmining.com/dtm.html
 
 
 

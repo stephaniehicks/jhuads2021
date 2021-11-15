@@ -1505,10 +1505,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#example-text-from-works-of-jane-austen">Example: text from works of Jane Austen</a></li>
 <li><a href="#sentiment-analysis">Sentiment Analysis</a>
 <ul>
-<li><a href="#the-sentiments-dataset">The <code>sentiments</code> dataset</a></li>
+<li><a href="#the-sentiments-dataset">The <code>sentiments</code> dataset</a>
+<ul>
 <li><a href="#joining-together-tidy-text-data-with-lexicons">Joining together tidy text data with lexicons</a></li>
 <li><a href="#word-clouds">Word clouds</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#converting-to-and-from-tidy-and-non-tidy-formats">Converting to and from tidy and non-tidy formats</a></li>
 </ul>
 </nav>
 </div>
@@ -1834,7 +1837,7 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>paragraph</span>, <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"paragraphs"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>paragraph</span>, input <span class='op'>=</span> <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"paragraphs"</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 10,721 × 1
@@ -1857,7 +1860,7 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>sentence</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"sentences"</span><span class='op'>)</span> 
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>sentence</span>, input <span class='op'>=</span> <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"sentences"</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code># A tibble: 15,545 × 1
@@ -1881,7 +1884,7 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paragraphs</span> <span class='op'>&lt;-</span> 
   <span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>paragraph</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"paragraphs"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>paragraph</span>, input <span class='op'>=</span> <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"paragraphs"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
     <span class='fu'>mutate</span><span class='op'>(</span>paragraph_number <span class='op'>=</span> <span class='fu'>row_number</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
 
 <span class='va'>paragraphs</span>
@@ -1906,7 +1909,7 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paragraphs</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>paragraph</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>paragraph</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 122,204 × 2
@@ -1929,7 +1932,14 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span>
 
-<span class='va'>stop_words</span> <span class='op'>%&gt;%</span> 
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>$</span><span class='va'>lexicon</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+    onix    SMART snowball 
+     404      571      174 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>stop_words</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2118,7 +2128,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 <li>The lexicons contain many English words and the words are assigned scores for positive/negative sentiment, and also possibly emotions like joy, anger, sadness, and so forth</li>
 </ul>
 <p>You can use the <code>get_sentiments()</code> function to extract a specific lexicon.</p>
-<p>The <code>nrc</code> lexicon categorizes words into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust</p>
+<p>The <code>nrc</code> lexicon <strong>categorizes words into multiple categories</strong> of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span>
@@ -2139,7 +2149,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 10 abandonment fear     
 # … with 13,891 more rows</code></pre>
 </div>
-<p>The <code>bing</code> lexicon categorizes words in a binary fashion into positive and negative categories</p>
+<p>The <code>bing</code> lexicon <strong>categorizes words in a binary fashion</strong> into positive and negative categories</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span>
@@ -2160,7 +2170,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 10 aborts      negative 
 # … with 6,776 more rows</code></pre>
 </div>
-<p>The <code>AFINN</code> lexicon assigns words with a score that runs between -5 and 5, with negative scores indicating negative sentiment and positive scores indicating positive sentiment</p>
+<p>The <code>AFINN</code> lexicon <strong>assigns words with a score that runs between -5 and 5</strong>, with negative scores indicating negative sentiment and positive scores indicating positive sentiment</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"afinn"</span><span class='op'>)</span>
@@ -2187,15 +2197,15 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 </blockquote>
 <p>Two other caveats:</p>
 <blockquote>
-<p><em>“Not every English word is in the lexicons because many English words are pretty neutral. It is important to keep in mind that these methods do not take into account qualifiers before a word, such as in”no good" or “not true”; a lexicon-based method like this is based on unigrams only. For many kinds of text (like the narrative examples below), there are not sustained sections of sarcasm or negated text, so this is not an important effect. Also, we can use a tidy text approach to begin to understand what kinds of negation words are important in a given text; see Chapter 9 for an extended example of such an analysis."</em></p>
+<p><em>“Not every English word is in the lexicons because many English words are pretty neutral. It is important to keep in mind that these methods do not take into account qualifiers before a word, such as in”no good" or “not true”; a lexicon-based method like this is based on unigrams only. For many kinds of text (like the narrative examples below), there are not sustained sections of sarcasm or negated text, so this is not an important effect."</em></p>
 </blockquote>
 <p>and</p>
 <blockquote>
-<p><em>“One last caveat is that the size of the chunk of text that we use to add up unigram sentiment scores can have an effect on an analysis. A text the size of many paragraphs can often have positive a nd negative sentiment averaged out to about zero, while sentence-sized or paragraph-sized text often works better.”</em></p>
+<p><em>“One last caveat is that the size of the chunk of text that we use to add up unigram sentiment scores can have an effect on an analysis. A text the size of many paragraphs can often have positive and negative sentiment averaged out to about zero, while sentence-sized or paragraph-sized text often works better.”</em></p>
 </blockquote>
-<h2 id="joining-together-tidy-text-data-with-lexicons">Joining together tidy text data with lexicons</h2>
-<p>Now that we have our data in a tidy text format and we have learned about different types of lexicons in application for sentiment analysis, we can join the words together using an inner join function.</p>
-<p>For example, what are the most common joy words in the book <em>Emma</em>? Here we will use the <code>nrc</code> lexicon and join the <code>tidy_books</code> dataset with the <code>nrc_joy</code> lexicon using the <code>inner_join()</code> function.</p>
+<h3 id="joining-together-tidy-text-data-with-lexicons">Joining together tidy text data with lexicons</h3>
+<p>Now that we have our data in a tidy text format and we have learned about different types of lexicons in application for sentiment analysis, we can join the words together using a join function.</p>
+<p>For example, what are the most common joy words in the book <em>Emma</em>? Here we will use the <code>nrc</code> lexicon and join the <code>tidy_books</code> dataset with the <code>nrc_joy</code> lexicon using the <code>inner_join()</code> function in <code>dplyr</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrc_joy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
@@ -2241,7 +2251,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 5 Sense &amp; Sensibility         25       1 comfortably positive 
 6 Sense &amp; Sensibility         28       1 goodness    positive </code></pre>
 </div>
-<p>Then we can count how many positive and negative words there are in each section of the books. We create an index to help us keep track of where we are in the narriative, which uses integer division, and counts up sections of 80 lines of text.</p>
+<p>Then we can count how many positive and negative words there are in each section of the books. We create an index to help us keep track of where we are in the narrative, which uses integer division, and counts up sections of 80 lines of text.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
@@ -2268,7 +2278,8 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 <p>Finally, we use <code>spread()</code> to have positive and negative counts in different columns, and then use <code>mutate()</code> to calculate a net sentiment (positive - negative).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jane_austen_sentiment</span> <span class='op'>&lt;-</span> <span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jane_austen_sentiment</span> <span class='op'>&lt;-</span> 
+  <span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
   <span class='fu'>inner_join</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>count</span><span class='op'>(</span><span class='va'>book</span>, index <span class='op'>=</span> <span class='va'>linenumber</span> <span class='op'>%/%</span> <span class='fl'>80</span>, <span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>spread</span><span class='op'>(</span><span class='va'>sentiment</span>, <span class='va'>n</span>, fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
@@ -2303,7 +2314,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 <p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-35-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>We can see how the sentiment trajectory of the novel changes over time.</p>
-<h2 id="word-clouds">Word clouds</h2>
+<h3 id="word-clouds">Word clouds</h3>
 <p>You can also do things like create word clouds using the <code>wordcloud</code> package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2317,7 +2328,9 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 </div>
 <p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-36-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="converting-to-and-from-tidy-and-non-tidy-formats">Converting to and from tidy and non-tidy formats</h1>
+<p><a href="https://www.tidytextmining.com/dtm.html" class="uri">https://www.tidytextmining.com/dtm.html</a></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
