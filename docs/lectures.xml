@@ -7,7 +7,19 @@
     <description>JHU Advanced Data Science
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 07 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Tidytext and sentiment analysis</title>
+      <dc:creator>Stephanie Hicks</dc:creator>
+      <link>https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis</link>
+      <description>Introduction to tidytext and sentiment analysis</description>
+      <category>tidyverse</category>
+      <category>tidytext</category>
+      <category>sentiment analysis</category>
+      <guid>https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis</guid>
+      <pubDate>Tue, 16 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://images-na.ssl-images-amazon.com/images/I/A1YUH7-W5AL.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Linear Classification</title>
       <dc:creator>Stephanie Hicks</dc:creator>

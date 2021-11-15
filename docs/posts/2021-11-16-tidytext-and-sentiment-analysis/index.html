@@ -1,0 +1,3163 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>JHU Advanced Data Science 2021: Tidytext and sentiment analysis</title>
+
+<meta property="description" itemprop="description" content="Introduction to tidytext and sentiment analysis"/>
+
+<link rel="canonical" href="https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-11-16"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-11-16"/>
+<meta name="article:author" content="Stephanie Hicks"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="JHU Advanced Data Science 2021: Tidytext and sentiment analysis"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Introduction to tidytext and sentiment analysis"/>
+<meta property="og:url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="JHU Advanced Data Science 2021"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="JHU Advanced Data Science 2021: Tidytext and sentiment analysis"/>
+<meta property="twitter:description" content="Introduction to tidytext and sentiment analysis"/>
+<meta property="twitter:url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"/>
+
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="JHU Advanced Data Science 2021: Tidytext and sentiment analysis"/>
+<meta name="citation_fulltext_html_url" content="https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"/>
+<meta name="citation_fulltext_world_readable" content=""/>
+<meta name="citation_online_date" content="2021/11/16"/>
+<meta name="citation_publication_date" content="2021/11/16"/>
+<meta name="citation_author" content="Stephanie Hicks"/>
+<meta name="citation_author_institution" content="Department of Biostatistics, Johns Hopkins"/>
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY-NC-SA"]},{"type":"character","attributes":{},"value":["Tidytext and sentiment analysis"]},{"type":"character","attributes":{},"value":["Introduction to tidytext and sentiment analysis"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Stephanie Hicks"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/"]},{"type":"character","attributes":{},"value":["Department of Biostatistics, Johns Hopkins"]},{"type":"character","attributes":{},"value":["https://www.jhsph.edu"]}]}]},{"type":"character","attributes":{},"value":["11-16-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]},{"type":"character","attributes":{},"value":["tidyverse","tidytext","sentiment analysis"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["tidytext-and-sentiment-analysis_files/anchor-4.2.2/anchor.min.js","tidytext-and-sentiment-analysis_files/bowser-1.9.3/bowser.min.js","tidytext-and-sentiment-analysis_files/distill-2.2.21/template.v2.js","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-21-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-22-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-25-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-26-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-34-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-35-1.png","tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-36-1.png","tidytext-and-sentiment-analysis_files/header-attrs-2.10/header-attrs.js","tidytext-and-sentiment-analysis_files/jquery-1.11.3/jquery.min.js","tidytext-and-sentiment-analysis_files/popper-2.6.0/popper.min.js","tidytext-and-sentiment-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","tidytext-and-sentiment-analysis_files/tippy-6.2.7/tippy-light-border.css","tidytext-and-sentiment-analysis_files/tippy-6.2.7/tippy.css","tidytext-and-sentiment-analysis_files/tippy-6.2.7/tippy.umd.min.js","tidytext-and-sentiment-analysis_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #2B3851FF; /* #0F2E3D; */
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #2B3851FF; /* #0F2E3D; */
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+
+
+
+
+/* -----------div tips------------- */
+
+
+  div.puzzle, div.fyi, div.demo, div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+  }
+  
+div.puzzle {
+  background-image: url("Your-turn.png");
+}
+
+div.fyi {
+ background-image: url("images/fyi.png");
+}
+
+div.demo {
+  background-image: url("images/Live-code.png");
+}
+
+div.note {
+  background-image: url("images/lightbulb.png");
+}
+
+  .questions {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 50px;
+    color: #000000 ;
+    background-color: #9BB1BBFF;
+    border: solid 5px #000000;
+    background-image: url("images/study.png");
+  }
+  
+  
+   .resources {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 50px;
+    color: #000000;
+    background-color: #ECBD95FF; /* #e5d468; */
+    border: solid 5px #000000;
+    background-image: url("images/list.png");
+  }
+
+.keyideas{
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #441F29;
+    background-color: #E56889;
+    border: solid 5px #441F29;
+    background-image: url('images/important.png') ;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Tidytext and sentiment analysis","description":"Introduction to tidytext and sentiment analysis","authors":[{"author":"Stephanie Hicks","authorURL":"https://stephaniehicks.com/","affiliation":"Department of Biostatistics, Johns Hopkins","affiliationURL":"https://www.jhsph.edu","orcidID":""}],"publishedDate":"2021-11-16T00:00:00.000+00:00","citationText":"Hicks, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a class="logo" href="https://stephaniehicks.com/jhuads2021">
+<img src="../../images/ads2020-small.png" alt="Logo"/>
+</a>
+<a href="../../index.html" class="title">JHU Advanced Data Science 2021</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Home</a>
+<a href="../../about.html">General Information</a>
+<a href="../../lectures.html">Lectures</a>
+<a href="../../index.xml">
+<i class="fa fa-rss" aria-hidden="true"></i>
+</a>
+<a href="https://github.com/stephaniehicks/jhuads2021" aria-label="Link to source">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Tidytext and sentiment analysis</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../lectures.html#category:tidyverse" class="dt-tag">tidyverse</a>
+  <a href="../../lectures.html#category:tidytext" class="dt-tag">tidytext</a>
+  <a href="../../lectures.html#category:sentiment_analysis" class="dt-tag">sentiment analysis</a>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Introduction to tidytext and sentiment analysis</p></p>
+</div>
+
+<div class="d-byline">
+  Stephanie Hicks <a href="https://stephaniehicks.com/" class="uri">https://stephaniehicks.com/</a> (Department of Biostatistics, Johns Hopkins)<a href="https://www.jhsph.edu" class="uri">https://www.jhsph.edu</a>
+  
+<br/>11-16-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#pre-lecture-materials">Pre-lecture materials</a>
+<ul>
+<li><a href="#read-ahead">Read ahead</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li><a href="#learning-objectives">Learning objectives</a></li>
+<li><a href="#motivation">Motivation</a></li>
+<li><a href="#tidy-text">Tidy text</a>
+<ul>
+<li><a href="#what-is-a-tidy-format">What is a <em>tidy</em> format?</a></li>
+<li><a href="#what-is-this-common-philosphy">What is this common philosphy?</a></li>
+<li><a href="#what-is-a-tidy-text-format">What is a <em>tidy text</em> format?</a></li>
+<li><a href="#why-is-this-format-useful">Why is this format useful?</a></li>
+<li><a href="#how-does-it-work">How does it work?</a></li>
+<li><a href="#text-mining-and-tokens">Text Mining and Tokens</a></li>
+</ul></li>
+<li><a href="#example-text-from-works-of-jane-austen">Example: text from works of Jane Austen</a></li>
+<li><a href="#sentiment-analysis">Sentiment Analysis</a>
+<ul>
+<li><a href="#the-sentiments-dataset">The <code>sentiments</code> dataset</a></li>
+<li><a href="#joining-together-tidy-text-data-with-lexicons">Joining together tidy text data with lexicons</a></li>
+<li><a href="#word-clouds">Word clouds</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<!-- Add interesting quote -->
+<h1 id="pre-lecture-materials">Pre-lecture materials</h1>
+<h3 id="read-ahead">Read ahead</h3>
+<h3 id="acknowledgements">Acknowledgements</h3>
+<p>Material for this lecture was borrowed and adopted from</p>
+<ul>
+<li><a href="https://www.tidytextmining.com/">Text mining with R: A Tidy Approach</a> from Julia Silge and David Robinson which uses the <a href="https://github.com/juliasilge/tidytext"><code>tidytext</code></a> R package</li>
+<li></li>
+<li></li>
+</ul>
+<h1 id="learning-objectives">Learning objectives</h1>
+<div class="keyideas">
+<p><strong>At the end of this lesson you will:</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<h1 id="motivation">Motivation</h1>
+<p>Analyzing text data such as Twitter content, books or news articles is commonly performed in data science.</p>
+<p>In this lecture, we will be asking the following questions:</p>
+<blockquote>
+<p>Which are the most commonly used words from Jane Austen’s novels? Which are the most positive or negative words? How does the sentiment (e.g. positive vs negative) of the text change across each novel?</p>
+</blockquote>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="https://images-na.ssl-images-amazon.com/images/I/A1YUH7-W5AL.jpg" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://images-na.ssl-images-amazon.com/images/I/A1YUH7-W5AL.jpg">image source</a>]</p>
+<p>To answer these questions, we will need to learn about a few things. Specifically,</p>
+<ol type="1">
+<li>How to convert words in documents to a <em>tidy text</em> format using the <code>tidytext</code> R package</li>
+<li>A little bit about <a href="https://www.tidytextmining.com/sentiment.html">sentiment analysis</a></li>
+</ol>
+<h1 id="tidy-text">Tidy text</h1>
+<p>In previous courses, you have learned about the tidy data principles and the <code>tidyverse</code> R packages as a way to make handling data easier and more effective. These packages depend on data being formatted in a particular way. The idea with tidy text is to treat text as data frames of individual words and apply the same tidy data principles to make text mining tasks easier and consistent with already developed tools.</p>
+<p>First let’s recall what a <em>tidy</em> data format means.</p>
+<h3 id="what-is-a-tidy-format">What is a <em>tidy</em> format?</h3>
+<p>First, the <a href="https://www.tidyverse.org">tidyverse</a> is</p>
+<blockquote>
+<p>“an opinionated collection of R packages designed for data science. All packages share an underlying philosophy and common APIs.”</p>
+</blockquote>
+<p>Another way of putting it is that it is a set of packages that are useful specifically for data manipulation, exploration and visualization with a common philosophy.</p>
+<h3 id="what-is-this-common-philosphy">What is this common philosphy?</h3>
+<p>The common philosophy is called <em>“tidy”</em> data. It is a standard way of mapping the meaning of a dataset to its structure.</p>
+<p>In <em>tidy</em> data:</p>
+<ul>
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each type of observational unit forms a table.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="http://r4ds.had.co.nz/images/tidy-1.png" width="95%" style="display: block; margin: auto;" /></p>
+</div>
+<p>Working with <strong>tidy data is useful</strong> because it creates a structured way of organizing data values within a data set. This makes the data analysis process more efficient and simplifies the development of data analysis tools that work together.</p>
+<p>In this way, you can focus on the problem you are investigating, rather than the uninteresting logistics of data.</p>
+<h3 id="what-is-a-tidy-text-format">What is a <em>tidy text</em> format?</h3>
+<p>When dealing with <em>text</em> data, the <em>tidy text</em> format is defined as a table <strong>with one-token-per-row</strong>, where a <em>token</em> is a meaningful unit of text (e.g. a word, pair of words, sentence, paragraph, etc).</p>
+<p>Using a given set of token, we can <em>tokenize</em> text, or split the text into the defined tokens of interest along the rows. We will learn more about how to do this using functions in the <a href="https://github.com/juliasilge/tidytext"><code>tidytext</code></a> R package.</p>
+<p>In contrast, other data structures that are commonly used to store text data in text mining applications:</p>
+<ul>
+<li><strong>string</strong>: text can, of course, be stored as strings, i.e., character vectors, within R, and often text data is first read into memory in this form.</li>
+<li><strong>corpus</strong>: these types of objects typically contain raw strings annotated with additional metadata and details.</li>
+<li><strong>document-term matrix</strong>: This is a sparse matrix describing a collection (i.e., a corpus) of documents with one row for each document and one column for each term. The value in the matrix is typically word count.</li>
+</ul>
+<p>I won’t describing these other formats in greater detail, but encourage you to read about them if interested in this topic.</p>
+<h3 id="why-is-this-format-useful">Why is this format useful?</h3>
+<p>One of the biggest advantages of transforming text data to the tidy text format is that it allows data to transition smoothly between other packages that adhere to the <code>tidyverse</code> framework (e.g. <code>ggplot2</code>, <code>dplyr</code>, etc).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="https://www.tidytextmining.com/images/tmwr_0101.png" alt="A flowchart of a typical text analysis using tidy data principles." width="90%" />
+<p class="caption">
+Figure 1: A flowchart of a typical text analysis using tidy data principles.
+</p>
+</div>
+</div>
+<p>[<a href="https://www.tidytextmining.com/images/tmwr_0101.png">image source</a>]</p>
+<p>In addition, a user can transition between the tidy text format for e.g data visualization with <code>ggplot2</code>, but then also convert data to other data structures (e.g. document-term matrix) that is commonly used in machine learning applications.</p>
+<h3 id="how-does-it-work">How does it work?</h3>
+<p>The main workhorse function in the <code>tidytext</code> R package to tokenize text a data frame is the <code>unnest_tokens(tbl, output, input)</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>unnest_tokens</span>
+</code></pre>
+</div>
+</div>
+<p>In addition to the data frame (<code>tbl</code>), the function needs two basic arguments:</p>
+<ol type="1">
+<li><code>output</code> or the output column name that will be created (e.g. string) as the text is unnested into it</li>
+<li><code>input</code> or input column name that the text comes from and gets split</li>
+</ol>
+<p>Let’s try out the <code>unnest_tokens()</code> function using the first paragraph in the preface of Roger’s <a href="https://leanpub.com/rprogramming">R Programming for Data Science</a> book.</p>
+<p>First, we load a few R packages</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://stringr.tidyverse.org'>stringr</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span> <span class='co'>## needs to be installed</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/janeaustenr'>janeaustenr</a></span><span class='op'>)</span> <span class='co'>## needs to be installed</span>
+</code></pre>
+</div>
+</div>
+<p>And then we load in the text</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface</span> <span class='op'>&lt;-</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"I started using R in 1998 when I was a college undergraduate working on my senior thesis."</span>, 
+    <span class='st'>"The version was 0.63."</span>,  
+    <span class='st'>"I was an applied mathematics major with a statistics concentration and I was working with Dr. Nicolas Hengartner on an analysis of word frequencies in classic texts (Shakespeare, Milton, etc.)."</span>, 
+    <span class='st'>"The idea was to see if we could identify the authorship of each of the texts based on how frequently they used certain words."</span>, 
+    <span class='st'>"We downloaded the data from Project Gutenberg and used some basic linear discriminant analysis for the modeling."</span>,
+    <span class='st'>"The work was eventually published and was my first ever peer-reviewed publication."</span>, 
+    <span class='st'>"I guess you could argue it was my first real 'data science' experience."</span><span class='op'>)</span>
+
+<span class='va'>peng_preface</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;I started using R in 1998 when I was a college undergraduate working on my senior thesis.&quot;                                                                                                        
+[2] &quot;The version was 0.63.&quot;                                                                                                                                                                            
+[3] &quot;I was an applied mathematics major with a statistics concentration and I was working with Dr. Nicolas Hengartner on an analysis of word frequencies in classic texts (Shakespeare, Milton, etc.).&quot;
+[4] &quot;The idea was to see if we could identify the authorship of each of the texts based on how frequently they used certain words.&quot;                                                                    
+[5] &quot;We downloaded the data from Project Gutenberg and used some basic linear discriminant analysis for the modeling.&quot;                                                                                 
+[6] &quot;The work was eventually published and was my first ever peer-reviewed publication.&quot;                                                                                                               
+[7] &quot;I guess you could argue it was my first real &#39;data science&#39; experience.&quot;                                                                                                                          </code></pre>
+</div>
+<p>Turns out Roger performed a similar analysis as an undergraduate student!</p>
+<p>He goes to say that back then no one was using R (but a little bit of something called S-PLUS), so I can only imagine how different it was to accomplish a task like the one we are going to do today compared to when he was an undergraduate.</p>
+<p>Here we use the <code>tibble()</code> function to construct a data frame from the character strings in <code>peng_preface</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface_df</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>line<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>7</span>, text<span class='op'>=</span><span class='va'>peng_preface</span><span class='op'>)</span>
+<span class='va'>peng_preface_df</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 7 × 2
+   line text                                                          
+  &lt;int&gt; &lt;chr&gt;                                                         
+1     1 I started using R in 1998 when I was a college undergraduate …
+2     2 The version was 0.63.                                         
+3     3 I was an applied mathematics major with a statistics concentr…
+4     4 The idea was to see if we could identify the authorship of ea…
+5     5 We downloaded the data from Project Gutenberg and used some b…
+6     6 The work was eventually published and was my first ever peer-…
+7     7 I guess you could argue it was my first real &#39;data science&#39; e…</code></pre>
+</div>
+<h3 id="text-mining-and-tokens">Text Mining and Tokens</h3>
+<p>Next, we will use the <code>unnest_tokens()</code> function where we will call the output column to be created <code>word</code> and the input column <code>text</code> from the <code>peng_preface_df</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_token</span> <span class='op'>&lt;-</span> 
+  <span class='va'>peng_preface_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>word</span>, input <span class='op'>=</span> <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"words"</span><span class='op'>)</span>
+
+<span class='va'>peng_token</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word   
+  &lt;int&gt; &lt;chr&gt;  
+1     1 i      
+2     1 started
+3     1 using  
+4     1 r      
+5     1 in     
+6     1 1998   </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_token</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word      
+  &lt;int&gt; &lt;chr&gt;     
+1     7 my        
+2     7 first     
+3     7 real      
+4     7 data      
+5     7 science   
+6     7 experience</code></pre>
+</div>
+<p>The argument <code>token="words"</code> defines the unit for tokenization. The default is <code>"words"</code>, but there are lots of other options.</p>
+<p>For example, we could tokenize by <code>"characters"</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"characters"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word 
+  &lt;int&gt; &lt;chr&gt;
+1     1 i    
+2     1 s    
+3     1 t    
+4     1 a    
+5     1 r    
+6     1 t    </code></pre>
+</div>
+<p>or something called <a href="https://en.wikipedia.org/wiki/N-gram">ngrams</a>, which is defined by Wikipedia as a <em>“contiguous sequence of n items from a given sample of text or speech”</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"ngrams"</span>, n<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word           
+  &lt;int&gt; &lt;chr&gt;          
+1     1 i started using
+2     1 started using r
+3     1 using r in     
+4     1 r in 1998      
+5     1 in 1998 when   
+6     1 1998 when i    </code></pre>
+</div>
+<p>Another option is to use the <code>character_shingles</code> option, which is similar to tokenizing like <code>ngrams</code>, except the units are characters instead of words.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"character_shingles"</span>, n <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word 
+  &lt;int&gt; &lt;chr&gt;
+1     1 ista 
+2     1 star 
+3     1 tart 
+4     1 arte 
+5     1 rted 
+6     1 tedu </code></pre>
+</div>
+<p>You can also create custom functions for tokenization.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>peng_preface_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='fu'>stringr</span><span class='fu'>::</span><span class='va'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span>, pattern <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+   line word   
+  &lt;int&gt; &lt;chr&gt;  
+1     1 i      
+2     1 started
+3     1 using  
+4     1 r      
+5     1 in     
+6     1 1998   </code></pre>
+</div>
+<h1 id="example-text-from-works-of-jane-austen">Example: text from works of Jane Austen</h1>
+<p>We will use the text from six published novels from Jane Austen, which are available in the <a href="https://cran.r-project.org/web/packages/janeaustenr/index.html"><code>janeaustenr</code></a> R package. The <a href="https://www.tidytextmining.com/tidytext.html#tidyausten">authors</a> describe the format:</p>
+<blockquote>
+<p>"The package provides the text in a one-row-per-line format, where a line is this context is analogous to a literal printed line in a physical book.</p>
+<p>The package contains:</p>
+<ul>
+<li><code>sensesensibility</code>: Sense and Sensibility, published in 1811</li>
+<li><code>prideprejudice</code>: Pride and Prejudice, published in 1813</li>
+<li><code>mansfieldpark</code>: Mansfield Park, published in 1814</li>
+<li><code>emma</code>: Emma, published in 1815</li>
+<li><code>northangerabbey</code>: Northanger Abbey, published posthumously in 1818</li>
+<li><code>persuasion</code>: Persuasion, also published posthumously in 1818</li>
+</ul>
+<p>There is also a function <code>austen_books()</code> that returns a tidy data frame of all 6 novels."</p>
+</blockquote>
+<p>Let’s load in the text from <code>prideprejudice</code> and look at how the data are stored.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/janeaustenr'>janeaustenr</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>prideprejudice</span>, <span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;PRIDE AND PREJUDICE&quot;                                                        
+ [2] &quot;&quot;                                                                           
+ [3] &quot;By Jane Austen&quot;                                                             
+ [4] &quot;&quot;                                                                           
+ [5] &quot;&quot;                                                                           
+ [6] &quot;&quot;                                                                           
+ [7] &quot;Chapter 1&quot;                                                                  
+ [8] &quot;&quot;                                                                           
+ [9] &quot;&quot;                                                                           
+[10] &quot;It is a truth universally acknowledged, that a single man in possession&quot;    
+[11] &quot;of a good fortune, must be in want of a wife.&quot;                              
+[12] &quot;&quot;                                                                           
+[13] &quot;However little known the feelings or views of such a man may be on his&quot;     
+[14] &quot;first entering a neighbourhood, this truth is so well fixed in the minds&quot;   
+[15] &quot;of the surrounding families, that he is considered the rightful property&quot;   
+[16] &quot;of some one or other of their daughters.&quot;                                   
+[17] &quot;&quot;                                                                           
+[18] &quot;\&quot;My dear Mr. Bennet,\&quot; said his lady to him one day, \&quot;have you heard that&quot;
+[19] &quot;Netherfield Park is let at last?\&quot;&quot;                                         
+[20] &quot;&quot;                                                                           </code></pre>
+</div>
+<p>We see each line is in a character vector with elements of about 70 characters.</p>
+<p>Similar to what we did above with Roger’s preface, we can turn the text of character strings into a data frame and then convert it into a one-row-per-line dataframe using the <code>unnest_tokens()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>prideprejudice</span><span class='op'>)</span> 
+  
+<span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"words"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 122,204 × 1
+   word     
+   &lt;chr&gt;    
+ 1 pride    
+ 2 and      
+ 3 prejudice
+ 4 by       
+ 5 jane     
+ 6 austen   
+ 7 chapter  
+ 8 1        
+ 9 it       
+10 is       
+# … with 122,194 more rows</code></pre>
+</div>
+<p>We can also divide it by paragraphs:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>paragraph</span>, <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"paragraphs"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10,721 × 1
+   paragraph                                                          
+   &lt;chr&gt;                                                              
+ 1 &quot;pride and prejudice&quot;                                              
+ 2 &quot;by jane austen&quot;                                                   
+ 3 &quot;chapter 1&quot;                                                        
+ 4 &quot;it is a truth universally acknowledged, that a single man in poss…
+ 5 &quot;of a good fortune, must be in want of a wife.&quot;                    
+ 6 &quot;however little known the feelings or views of such a man may be o…
+ 7 &quot;first entering a neighbourhood, this truth is so well fixed in th…
+ 8 &quot;of the surrounding families, that he is considered the rightful p…
+ 9 &quot;of some one or other of their daughters.&quot;                         
+10 &quot;\&quot;my dear mr. bennet,\&quot; said his lady to him one day, \&quot;have you …
+# … with 10,711 more rows</code></pre>
+</div>
+<p><strong>Note</strong>: what you name the output column, e.g. <code>paragraph</code> in this case, doesn’t affect it, it’s just good to give it a consistent name.</p>
+<p>We could also divide it by sentence:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>sentence</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"sentences"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code># A tibble: 15,545 × 1
+   sentence                                                           
+   &lt;chr&gt;                                                              
+ 1 &quot;pride and prejudice&quot;                                              
+ 2 &quot;by jane austen&quot;                                                   
+ 3 &quot;chapter 1&quot;                                                        
+ 4 &quot;it is a truth universally acknowledged, that a single man in poss…
+ 5 &quot;of a good fortune, must be in want of a wife.&quot;                    
+ 6 &quot;however little known the feelings or views of such a man may be o…
+ 7 &quot;first entering a neighbourhood, this truth is so well fixed in th…
+ 8 &quot;of the surrounding families, that he is considered the rightful p…
+ 9 &quot;of some one or other of their daughters.&quot;                         
+10 &quot;\&quot;my dear mr.&quot;                                                    
+# … with 15,535 more rows</code></pre>
+</div>
+<p><strong>Note</strong>: this is tricked by terms like “Mr.” and “Mrs.”</p>
+<p>One neat trick is that we can unnest by two layers: paragraph and then word. This lets us keep track of which paragraph is which.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paragraphs</span> <span class='op'>&lt;-</span> 
+  <span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>paragraph</span>, <span class='va'>text</span>, token <span class='op'>=</span> <span class='st'>"paragraphs"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>mutate</span><span class='op'>(</span>paragraph_number <span class='op'>=</span> <span class='fu'>row_number</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> 
+
+<span class='va'>paragraphs</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10,721 × 2
+   paragraph                                          paragraph_number
+   &lt;chr&gt;                                                         &lt;int&gt;
+ 1 &quot;pride and prejudice&quot;                                             1
+ 2 &quot;by jane austen&quot;                                                  2
+ 3 &quot;chapter 1&quot;                                                       3
+ 4 &quot;it is a truth universally acknowledged, that a s…                4
+ 5 &quot;of a good fortune, must be in want of a wife.&quot;                   5
+ 6 &quot;however little known the feelings or views of su…                6
+ 7 &quot;first entering a neighbourhood, this truth is so…                7
+ 8 &quot;of the surrounding families, that he is consider…                8
+ 9 &quot;of some one or other of their daughters.&quot;                        9
+10 &quot;\&quot;my dear mr. bennet,\&quot; said his lady to him one…               10
+# … with 10,711 more rows</code></pre>
+</div>
+<p><strong>Note</strong>: We use <code>mutate()</code> to annotate a paragraph number quantity to keep track of paragraphs in the original format.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>paragraphs</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>paragraph</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 122,204 × 2
+   paragraph_number word     
+              &lt;int&gt; &lt;chr&gt;    
+ 1                1 pride    
+ 2                1 and      
+ 3                1 prejudice
+ 4                2 by       
+ 5                2 jane     
+ 6                2 austen   
+ 7                3 chapter  
+ 8                3 1        
+ 9                4 it       
+10                4 is       
+# … with 122,194 more rows</code></pre>
+</div>
+<p>We notice there are many what are called <em>stop words</em> (“the”, “of”, “to”, and so forth in English). Often in text analysis, we will want to remove stop words because stop words are words that are not useful for an analysis. We can remove stop words (kept in the <code>tidytext</code> dataset <code>stop_words</code>) with an <code>anti_join()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span>
+
+<span class='va'>stop_words</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 × 2
+   word        lexicon
+   &lt;chr&gt;       &lt;chr&gt;  
+ 1 a           SMART  
+ 2 a&#39;s         SMART  
+ 3 able        SMART  
+ 4 about       SMART  
+ 5 above       SMART  
+ 6 according   SMART  
+ 7 accordingly SMART  
+ 8 across      SMART  
+ 9 actually    SMART  
+10 after       SMART  </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>words_by_paragraph</span> <span class='op'>&lt;-</span> 
+  <span class='va'>paragraphs</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>paragraph</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>anti_join</span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span>
+
+<span class='va'>words_by_paragraph</span> 
+</code></pre>
+</div>
+<pre><code># A tibble: 37,246 × 2
+   paragraph_number word        
+              &lt;int&gt; &lt;chr&gt;       
+ 1                1 pride       
+ 2                1 prejudice   
+ 3                2 jane        
+ 4                2 austen      
+ 5                3 chapter     
+ 6                3 1           
+ 7                4 truth       
+ 8                4 universally 
+ 9                4 acknowledged
+10                4 single      
+# … with 37,236 more rows</code></pre>
+</div>
+<p>Because we have stored our data in a tidy dataset, we can use <code>tidyverse</code> packages for exploratory data analysis.</p>
+<p>For example, here we use <code>dplyr</code>’s <code>count()</code> function to find the most common words in the book</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>words_by_paragraph</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+  word          n
+  &lt;chr&gt;     &lt;int&gt;
+1 elizabeth   597
+2 darcy       373
+3 bennet      294
+4 miss        283
+5 jane        264
+6 bingley     257</code></pre>
+</div>
+<p>Then use <code>ggplot2</code> to plot the most commonly used words from the book.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>words_by_paragraph</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>150</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>xlab</span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>coord_flip</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can also do this for all of her books using the <code>austen_books()</code> object</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/janeaustenr/man/austen_books.html'>austen_books</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 2
+  text                    book               
+  &lt;chr&gt;                   &lt;fct&gt;              
+1 &quot;SENSE AND SENSIBILITY&quot; Sense &amp; Sensibility
+2 &quot;&quot;                      Sense &amp; Sensibility
+3 &quot;by Jane Austen&quot;        Sense &amp; Sensibility
+4 &quot;&quot;                      Sense &amp; Sensibility
+5 &quot;(1811)&quot;                Sense &amp; Sensibility
+6 &quot;&quot;                      Sense &amp; Sensibility</code></pre>
+</div>
+<p>We can do some data wrangling that keep tracks of the line number and chapter (using a regex) to find where all the chapters are.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>original_books</span> <span class='op'>&lt;-</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/janeaustenr/man/austen_books.html'>austen_books</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>book</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>linenumber <span class='op'>=</span> <span class='fu'>row_number</span><span class='op'>(</span><span class='op'>)</span>,
+         chapter <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>text</span>, <span class='fu'><a href='https://stringr.tidyverse.org/reference/modifiers.html'>regex</a></span><span class='op'>(</span><span class='st'>"^chapter [\\divxlc]"</span>,
+                                                 ignore_case <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='va'>original_books</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 73,422 × 4
+   text                    book                linenumber chapter
+   &lt;chr&gt;                   &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt;
+ 1 &quot;SENSE AND SENSIBILITY&quot; Sense &amp; Sensibility          1       0
+ 2 &quot;&quot;                      Sense &amp; Sensibility          2       0
+ 3 &quot;by Jane Austen&quot;        Sense &amp; Sensibility          3       0
+ 4 &quot;&quot;                      Sense &amp; Sensibility          4       0
+ 5 &quot;(1811)&quot;                Sense &amp; Sensibility          5       0
+ 6 &quot;&quot;                      Sense &amp; Sensibility          6       0
+ 7 &quot;&quot;                      Sense &amp; Sensibility          7       0
+ 8 &quot;&quot;                      Sense &amp; Sensibility          8       0
+ 9 &quot;&quot;                      Sense &amp; Sensibility          9       0
+10 &quot;CHAPTER 1&quot;             Sense &amp; Sensibility         10       1
+# … with 73,412 more rows</code></pre>
+</div>
+<p>Finally, we can restructure it to a one-token-per-row format using the <code>unnest_tokens()</code> function and remove stop words using the <code>anti_join()</code> function in <code>dplyr</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_books</span> <span class='op'>&lt;-</span> <span class='va'>original_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>text</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>anti_join</span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span>
+
+<span class='va'>tidy_books</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 217,609 × 4
+   book                linenumber chapter word       
+   &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      
+ 1 Sense &amp; Sensibility          1       0 sense      
+ 2 Sense &amp; Sensibility          1       0 sensibility
+ 3 Sense &amp; Sensibility          3       0 jane       
+ 4 Sense &amp; Sensibility          3       0 austen     
+ 5 Sense &amp; Sensibility          5       0 1811       
+ 6 Sense &amp; Sensibility         10       1 chapter    
+ 7 Sense &amp; Sensibility         10       1 1          
+ 8 Sense &amp; Sensibility         13       1 family     
+ 9 Sense &amp; Sensibility         13       1 dashwood   
+10 Sense &amp; Sensibility         13       1 settled    
+# … with 217,599 more rows</code></pre>
+</div>
+<p>Here are the most commonly used words across all of Jane Austen’s books.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>600</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>xlab</span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>coord_flip</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-26-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="sentiment-analysis">Sentiment Analysis</h1>
+<p>In the previous section, we explored the <em>tidy text</em> format and showed how we can calculate things such as word frequency.</p>
+<p>Next, we are going to look at something called <em>opinion mining</em> or <em>sentiment analysis</em>. The <a href="https://www.tidytextmining.com/sentiment.html">tidytext authors</a> write:</p>
+<blockquote>
+<p><em>“When human readers approach a text, we use our understanding of the emotional intent of words to infer whether a section of text is positive or negative, or perhaps characterized by some other more nuanced emotion like surprise or disgust. We can use the tools of text mining to approach the emotional content of text programmatically, as shown in the figure below”</em></p>
+</blockquote>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<img src="https://www.tidytextmining.com/images/tmwr_0201.png" alt="A flowchart of a typical text analysis that uses tidytext for sentiment analysis." width="90%" />
+<p class="caption">
+Figure 2: A flowchart of a typical text analysis that uses tidytext for sentiment analysis.
+</p>
+</div>
+</div>
+<p>[<a href="https://www.tidytextmining.com/images/tmwr_0201.png">image source</a>]</p>
+<blockquote>
+<p><em>“One way to analyze the sentiment of a text is to consider the text as a combination of its individual words and the sentiment content of the whole text as the sum of the sentiment content of the individual words. This isn’t the only way to approach sentiment analysis, but it is an often-used approach, and an approach that naturally takes advantage of the tidy tool ecosystem.”</em></p>
+</blockquote>
+<p>Let’s try using sentiment analysis on the Jane Austen books.</p>
+<h2 id="the-sentiments-dataset">The <code>sentiments</code> dataset</h2>
+<p>Inside the <code>tidytext</code> package are several sentiment lexicons. A few things to note:</p>
+<ul>
+<li>The lexicons are based on unigrams (single words)</li>
+<li>The lexicons contain many English words and the words are assigned scores for positive/negative sentiment, and also possibly emotions like joy, anger, sadness, and so forth</li>
+</ul>
+<p>You can use the <code>get_sentiments()</code> function to extract a specific lexicon.</p>
+<p>The <code>nrc</code> lexicon categorizes words into categories of positive, negative, anger, anticipation, disgust, fear, joy, sadness, surprise, and trust</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 13,901 × 2
+   word        sentiment
+   &lt;chr&gt;       &lt;chr&gt;    
+ 1 abacus      trust    
+ 2 abandon     fear     
+ 3 abandon     negative 
+ 4 abandon     sadness  
+ 5 abandoned   anger    
+ 6 abandoned   fear     
+ 7 abandoned   negative 
+ 8 abandoned   sadness  
+ 9 abandonment anger    
+10 abandonment fear     
+# … with 13,891 more rows</code></pre>
+</div>
+<p>The <code>bing</code> lexicon categorizes words in a binary fashion into positive and negative categories</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6,786 × 2
+   word        sentiment
+   &lt;chr&gt;       &lt;chr&gt;    
+ 1 2-faces     negative 
+ 2 abnormal    negative 
+ 3 abolish     negative 
+ 4 abominable  negative 
+ 5 abominably  negative 
+ 6 abominate   negative 
+ 7 abomination negative 
+ 8 abort       negative 
+ 9 aborted     negative 
+10 aborts      negative 
+# … with 6,776 more rows</code></pre>
+</div>
+<p>The <code>AFINN</code> lexicon assigns words with a score that runs between -5 and 5, with negative scores indicating negative sentiment and positive scores indicating positive sentiment</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"afinn"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2,477 × 2
+   word       value
+   &lt;chr&gt;      &lt;dbl&gt;
+ 1 abandon       -2
+ 2 abandoned     -2
+ 3 abandons      -2
+ 4 abducted      -2
+ 5 abduction     -2
+ 6 abductions    -2
+ 7 abhor         -3
+ 8 abhorred      -3
+ 9 abhorrent     -3
+10 abhors        -3
+# … with 2,467 more rows</code></pre>
+</div>
+<p>The authors of the <code>tidytext</code> package note:</p>
+<blockquote>
+<p><em>“How were these sentiment lexicons put together and validated? They were constructed via either crowdsourcing (using, for example, Amazon Mechanical Turk) or by the labor of one of the authors, and were validated using some combination of crowdsourcing again, restaurant or movie reviews, or Twitter data. Given this information, we may hesitate to apply these sentiment lexicons to styles of text dramatically different from what they were validated on, such as narrative fiction from 200 years ago. While it is true that using these sentiment lexicons with, for example, Jane Austen’s novels may give us less accurate results than with tweets sent by a contemporary writer, we still can measure the sentiment content for words that are shared across the lexicon and the text.”</em></p>
+</blockquote>
+<p>Two other caveats:</p>
+<blockquote>
+<p><em>“Not every English word is in the lexicons because many English words are pretty neutral. It is important to keep in mind that these methods do not take into account qualifiers before a word, such as in”no good" or “not true”; a lexicon-based method like this is based on unigrams only. For many kinds of text (like the narrative examples below), there are not sustained sections of sarcasm or negated text, so this is not an important effect. Also, we can use a tidy text approach to begin to understand what kinds of negation words are important in a given text; see Chapter 9 for an extended example of such an analysis."</em></p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p><em>“One last caveat is that the size of the chunk of text that we use to add up unigram sentiment scores can have an effect on an analysis. A text the size of many paragraphs can often have positive a nd negative sentiment averaged out to about zero, while sentence-sized or paragraph-sized text often works better.”</em></p>
+</blockquote>
+<h2 id="joining-together-tidy-text-data-with-lexicons">Joining together tidy text data with lexicons</h2>
+<p>Now that we have our data in a tidy text format and we have learned about different types of lexicons in application for sentiment analysis, we can join the words together using an inner join function.</p>
+<p>For example, what are the most common joy words in the book <em>Emma</em>? Here we will use the <code>nrc</code> lexicon and join the <code>tidy_books</code> dataset with the <code>nrc_joy</code> lexicon using the <code>inner_join()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nrc_joy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"joy"</span><span class='op'>)</span>
+
+<span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>book</span> <span class='op'>==</span> <span class='st'>"Emma"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>nrc_joy</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 298 × 2
+   word          n
+   &lt;chr&gt;     &lt;int&gt;
+ 1 friend      166
+ 2 hope        143
+ 3 happy       125
+ 4 love        117
+ 5 deal         92
+ 6 found        92
+ 7 happiness    76
+ 8 pretty       68
+ 9 true         66
+10 comfort      65
+# … with 288 more rows</code></pre>
+</div>
+<p>We can do things like investigate how the sentiment of the text changes throughout each of Jane’s novels.</p>
+<p>Here we will use the <code>bing</code> lexicon, find a sentiment score for each word, and then use <code>inner_join()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inner_join</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 5
+  book                linenumber chapter word        sentiment
+  &lt;fct&gt;                    &lt;int&gt;   &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;    
+1 Sense &amp; Sensibility         16       1 respectable positive 
+2 Sense &amp; Sensibility         18       1 advanced    positive 
+3 Sense &amp; Sensibility         20       1 death       negative 
+4 Sense &amp; Sensibility         21       1 loss        negative 
+5 Sense &amp; Sensibility         25       1 comfortably positive 
+6 Sense &amp; Sensibility         28       1 goodness    positive </code></pre>
+</div>
+<p>Then we can count how many positive and negative words there are in each section of the books. We create an index to help us keep track of where we are in the narriative, which uses integer division, and counts up sections of 80 lines of text.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inner_join</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>book</span>, index <span class='op'>=</span> <span class='va'>linenumber</span> <span class='op'>%/%</span> <span class='fl'>80</span>, <span class='va'>sentiment</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code># A tibble: 1,840 × 4
+   book                index sentiment     n
+   &lt;fct&gt;               &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt;
+ 1 Sense &amp; Sensibility     0 negative     16
+ 2 Sense &amp; Sensibility     0 positive     26
+ 3 Sense &amp; Sensibility     1 negative     19
+ 4 Sense &amp; Sensibility     1 positive     44
+ 5 Sense &amp; Sensibility     2 negative     12
+ 6 Sense &amp; Sensibility     2 positive     23
+ 7 Sense &amp; Sensibility     3 negative     15
+ 8 Sense &amp; Sensibility     3 positive     22
+ 9 Sense &amp; Sensibility     4 negative     16
+10 Sense &amp; Sensibility     4 positive     29
+# … with 1,830 more rows</code></pre>
+</div>
+<p><strong>Note</strong>: The <code>%/%</code> operator does integer division (<code>x %/% y</code> is equivalent to <code>floor(x/y)</code>) so the index keeps track of which 80-line section of text we are counting up negative and positive sentiment in.</p>
+<p>Finally, we use <code>spread()</code> to have positive and negative counts in different columns, and then use <code>mutate()</code> to calculate a net sentiment (positive - negative).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jane_austen_sentiment</span> <span class='op'>&lt;-</span> <span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>inner_join</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"bing"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>book</span>, index <span class='op'>=</span> <span class='va'>linenumber</span> <span class='op'>%/%</span> <span class='fl'>80</span>, <span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>spread</span><span class='op'>(</span><span class='va'>sentiment</span>, <span class='va'>n</span>, fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='va'>positive</span> <span class='op'>-</span> <span class='va'>negative</span><span class='op'>)</span>
+
+<span class='va'>jane_austen_sentiment</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 920 × 5
+   book                index negative positive sentiment
+   &lt;fct&gt;               &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Sense &amp; Sensibility     0       16       26        10
+ 2 Sense &amp; Sensibility     1       19       44        25
+ 3 Sense &amp; Sensibility     2       12       23        11
+ 4 Sense &amp; Sensibility     3       15       22         7
+ 5 Sense &amp; Sensibility     4       16       29        13
+ 6 Sense &amp; Sensibility     5       16       39        23
+ 7 Sense &amp; Sensibility     6       24       37        13
+ 8 Sense &amp; Sensibility     7       22       39        17
+ 9 Sense &amp; Sensibility     8       30       35         5
+10 Sense &amp; Sensibility     9       14       18         4
+# … with 910 more rows</code></pre>
+</div>
+<p>Then we can plot the sentiment scores across the sections of each novel:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span><span class='va'>jane_austen_sentiment</span>, <span class='fu'>aes</span><span class='op'>(</span><span class='va'>index</span>, <span class='va'>sentiment</span>, fill <span class='op'>=</span> <span class='va'>book</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>book</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-35-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>We can see how the sentiment trajectory of the novel changes over time.</p>
+<h2 id="word-clouds">Word clouds</h2>
+<p>You can also do things like create word clouds using the <code>wordcloud</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://blog.fellstat.com/?cat=11'>wordcloud</a></span><span class='op'>)</span>
+
+<span class='va'>tidy_books</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>anti_join</span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span>, max.words <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="tidytext-and-sentiment-analysis_files/figure-html5/unnamed-chunk-36-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<div class="article-footer">
+  <p class="social_footer">
+    <span class="disqus-comments">
+      <i class="fas fa-comments"></i>
+      &nbsp;
+      <span class="disqus-comment-count" data-disqus-identifier="posts/2021-11-16-tidytext-and-sentiment-analysis/">Comment on this article</span>
+    </span>
+    <span class="article-sharing">
+      Share: &nbsp;
+      <a href="https://twitter.com/share?text=Tidytext%20and%20sentiment%20analysis&amp;url=https%3A%2F%2Fstephaniehicks.com%2Fjhuads2021%2Fposts%2F2021-11-16-tidytext-and-sentiment-analysis%2F">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fstephaniehicks.com%2Fjhuads2021%2Fposts%2F2021-11-16-tidytext-and-sentiment-analysis%2F&amp;title=Tidytext%20and%20sentiment%20analysis">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </span>
+  </p>
+  <script id="dsq-count-scr" src="https://jhuads2021.disqus.com/count.js" async></script>
+  <div id="disqus_thread" class="hidden"></div>
+  <script type="text/javascript" cookie-consent="functionality">
+var disqus_config = function () {
+  this.page.url = 'https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/';
+  this.page.identifier = 'posts/2021-11-16-tidytext-and-sentiment-analysis/';
+};
+(function() {
+  var d = document, s = d.createElement('script');
+  s.src = 'https://jhuads2021.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();
+</script>
+</div>
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">Hicks (2021, Nov. 16). JHU Advanced Data Science 2021: Tidytext and sentiment analysis. Retrieved from https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{hicks2021tidytext,
+  author = {Hicks, Stephanie},
+  title = {JHU Advanced Data Science 2021: Tidytext and sentiment analysis},
+  url = {https://stephaniehicks.com/jhuads2021/posts/2021-11-16-tidytext-and-sentiment-analysis/},
+  year = {2021}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
