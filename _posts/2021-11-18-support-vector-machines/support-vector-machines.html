@@ -111,12 +111,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","draft"]}},"value":[{"type":"character","attributes":{},"value":["Support vector machines"]},{"type":"character","attributes":{},"value":["Introduction to support vector machines (SVMs)\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Stephanie Hicks"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/"]},{"type":"character","attributes":{},"value":["Department of Biostatistics, Johns Hopkins"]},{"type":"character","attributes":{},"value":["https://www.jhsph.edu"]}]}]},{"type":"character","attributes":{},"value":["11-18-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]},{"type":"character","attributes":{},"value":["machine learning","support vector machines"]},{"type":"logical","attributes":{},"value":[true]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Support vector machines"]},{"type":"character","attributes":{},"value":["Introduction to support vector machines (SVMs)\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Stephanie Hicks"]},{"type":"character","attributes":{},"value":["https://stephaniehicks.com/"]},{"type":"character","attributes":{},"value":["Department of Biostatistics, Johns Hopkins"]},{"type":"character","attributes":{},"value":["https://www.jhsph.edu"]}]}]},{"type":"character","attributes":{},"value":["11-18-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]},{"type":"character","attributes":{},"value":["machine learning","support vector machines"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["support-vector-machines_files/anchor-4.2.2/anchor.min.js","support-vector-machines_files/bowser-1.9.3/bowser.min.js","support-vector-machines_files/distill-2.2.21/template.v2.js","support-vector-machines_files/header-attrs-2.10/header-attrs.js","support-vector-machines_files/jquery-1.11.3/jquery.min.js","support-vector-machines_files/popper-2.6.0/popper.min.js","support-vector-machines_files/tippy-6.2.7/tippy-bundle.umd.min.js","support-vector-machines_files/tippy-6.2.7/tippy-light-border.css","support-vector-machines_files/tippy-6.2.7/tippy.css","support-vector-machines_files/tippy-6.2.7/tippy.umd.min.js","support-vector-machines_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["support-vector-machines_files/anchor-4.2.2/anchor.min.js","support-vector-machines_files/bowser-1.9.3/bowser.min.js","support-vector-machines_files/distill-2.2.21/template.v2.js","support-vector-machines_files/figure-html5/unnamed-chunk-20-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-21-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-22-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-37-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-40-1.png","support-vector-machines_files/header-attrs-2.10/header-attrs.js","support-vector-machines_files/jquery-1.11.3/jquery.min.js","support-vector-machines_files/popper-2.6.0/popper.min.js","support-vector-machines_files/tippy-6.2.7/tippy-bundle.umd.min.js","support-vector-machines_files/tippy-6.2.7/tippy-light-border.css","support-vector-machines_files/tippy-6.2.7/tippy.css","support-vector-machines_files/tippy-6.2.7/tippy.umd.min.js","support-vector-machines_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1488,83 +1488,1014 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#pre-lecture-materials">Pre-lecture materials</a>
 <ul>
-<li><a href="#read-ahead">Read ahead</a></li>
 <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul></li>
 <li><a href="#learning-objectives">Learning objectives</a></li>
-<li><a href="#section-1">Section 1</a>
+<li><a href="#motivation">Motivation</a>
 <ul>
-<li><a href="#subsection-1">Subsection 1</a></li>
-<li><a href="#subsection-2">Subsection 2</a></li>
-<li><a href="#subsection-3">Subsection 3</a></li>
+<li><a href="#how-does-it-work">How does it work?</a></li>
+<li><a href="#hyperplanes">Hyperplanes</a></li>
+<li><a href="#maximal-margin-hyperplane-or-classifer">Maximal Margin Hyperplane (or Classifer)</a></li>
+<li><a href="#support-vector-classifer">Support Vector Classifer</a></li>
+<li><a href="#support-vector-classifier-with-non-linear-boundaries">Support Vector Classifier with Non-Linear boundaries</a></li>
 </ul></li>
-<li><a href="#section-2">Section 2</a></li>
-<li><a href="#post-lecture-materials">Post-lecture materials</a>
+<li><a href="#support-vector-machines">Support Vector Machines</a>
 <ul>
-<li><a href="#final-questions">Final Questions</a></li>
-<li><a href="#additional-resources">Additional Resources</a></li>
+<li><a href="#advantages">Advantages</a></li>
+<li><a href="#disadvantages">Disadvantages</a></li>
 </ul></li>
+<li><a href="#data">Data</a>
+<ul>
+<li><a href="#import-data">Import data</a></li>
+<li><a href="#wrangling-data">Wrangling data</a></li>
+<li><a href="#eda">EDA</a></li>
+</ul></li>
+<li><a href="#classification-models">Classification models</a>
+<ul>
+<li><a href="#support-vector-machines-1">Support Vector Machines</a></li>
+<li><a href="#logistic-regression">Logistic regression</a></li>
+<li><a href="#random-forests">Random Forests</a></li>
+<li><a href="#bagging-and-boosting">Bagging and boosting</a></li>
+<li><a href="#checking-test-error-rate">Checking test error rate</a></li>
+</ul></li>
+<li><a href="#summary">Summary</a></li>
 </ul>
 </nav>
 </div>
 <!-- Add interesting quote -->
 <h1 id="pre-lecture-materials">Pre-lecture materials</h1>
-<h3 id="read-ahead">Read ahead</h3>
-<div class="resources">
-<p><strong>Before class, you can prepare by reading the following materials:</strong></p>
-<ol type="1">
-<li></li>
-</ol>
-</div>
 <h3 id="acknowledgements">Acknowledgements</h3>
 <p>Material for this lecture was borrowed and adopted from</p>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li><a href="https://www.statlearning.com">An Introduction to Statistical Learning, 2nd edition</a> by James, Witten, Hastie and Tibshirani</li>
+<li><a href="https://jhu-advdatasci.github.io/2019/" class="uri">https://jhu-advdatasci.github.io/2019/</a></li>
 </ul>
 <h1 id="learning-objectives">Learning objectives</h1>
 <div class="keyideas">
 <p><strong>At the end of this lesson you will:</strong></p>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>Understand what are hyperplanes, maximal margin hyperplanes, support vector classifiers (with and without linear boundaries), and Support Vector Machines (SVM)</li>
+<li>Know how to build a SVM with the <code>caret</code> R package</li>
 </ul>
 </div>
-<h1 id="section-1">Section 1</h1>
-<h3 id="subsection-1">Subsection 1</h3>
-<h3 id="subsection-2">Subsection 2</h3>
-<div class="questions">
-<p><strong>Questions:</strong></p>
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<h1 id="motivation">Motivation</h1>
+<p>In this lecture, we will be asking the question:</p>
+<blockquote>
+<p>Can we identify a voice as male or female, based upon acoustic properties of the voice and speech?</p>
+</blockquote>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="http://acoustics.org/pressroom/httpdocs/162nd/Images/Elliot_Figure%2014%20-%20Frequency%20ranges%20for%20common%20sounds.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<h3 id="subsection-3">Subsection 3</h3>
-<h1 id="section-2">Section 2</h1>
-<h1 id="post-lecture-materials">Post-lecture materials</h1>
-<h3 id="final-questions">Final Questions</h3>
-<p>Here are some post-lecture questions to help you think about the material discussed.</p>
-<div class="questions">
-<p><strong>Questions:</strong></p>
+<p>[<a href="http://acoustics.org/pressroom/httpdocs/162nd/Images/Elliot_Figure%2014%20-%20Frequency%20ranges%20for%20common%20sounds.jpg">image source</a>]</p>
+<p>Determining a person’s gender as male or female, based upon a sample of their voice seems to initially be a feasible task. Often, the human ear can easily detect the difference between a male or female voice within the first few spoken words. However, designing a computer program to do this turns out to be a bit trickier.</p>
+<p>To accomplish that goal, we will learn about another machine learning algorithm called <em>support vector machines</em> (SVMs). SVMs have been around since the 1990s and originated of the computer science community. They are form of supervised learning.</p>
+<p>SVMs are widely applied to pattern classification and regression problems, such as:</p>
 <ol type="1">
-<li></li>
-<li></li>
-<li></li>
+<li>Handwritten digits classification</li>
+<li>Speech recognition</li>
+<li>Facial expression classification</li>
+<li>Text classification</li>
 </ol>
+<p>The original idea was to build a classifier for which training data can be separated using some type of linear hyperplane. We want a hyperplane that maximizes the distance between the hyperplane to the nearest data point in either class.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_max_margin.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<h3 id="additional-resources">Additional Resources</h3>
-<div class="resources">
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>In the case when we cannot draw a linear hyperplane to separate the two classes of points (this is more typical), we can use adapt the idea and build a non-linear classifer. The key idea is to apply a “kernel trick”. We’ll learn more about that later in the lecture.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_radial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p><strong>Note</strong>: We will focus on the case when there are only two classes, but there are also extensions of SVMs in the case when there are more than two classes.</p>
+<h3 id="how-does-it-work">How does it work?</h3>
+<p>Given a dataset with a set of features and set of labels, we want to build a <em>support vector machine</em> (SVMs) to predict classes for new observations.</p>
+<p>To understand what is a SVM let’s build up to it and consider some other types of classifiers (or hyperplanes) and how it relates to SVMs. First, let’s define what is a hyperplane.</p>
+<h3 id="hyperplanes">Hyperplanes</h3>
+<p>A <em>hyperplane</em> is formally defined as a flat affine subspace of a dimension <span class="math inline">\(p-1\)</span>. e.g. In two dimensions, a hyperplane is a flat one-dimensional subspace (or a line). In this case, a hyperplane is defined by</p>
+<p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 = 0 \]</span></p>
+<p>for <span class="math inline">\(X = (X_1, X_2)^{T}\)</span> and for parameters <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. If there are <span class="math inline">\(X = (X_1, X_2)^{T}\)</span> that do not satisify the above, i.e</p>
+<p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 &gt; 0 \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 &lt; 0 \]</span></p>
+<p>Then, we can think of the hyperplane as dividing the two-dimensional space into two halves.</p>
+<p>In the figure below, the hyperplane <span class="math inline">\(1 + 2X_1 + 3X_2 = 0\)</span> is shown. The set of points in the blue region is <span class="math inline">\(1 + 2X_1 + 3X_2 &gt; 0\)</span> and the purple region is the set of points for which <span class="math inline">\(1 + 2X_1 + 3X_2 &lt; 0\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_hyperplane.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>More formally, let’s say we have a set of <span class="math inline">\(n\)</span> training observations <span class="math inline">\(X_i = (X_{i1}, X_{i2})^T\)</span> in with two features (<span class="math inline">\(p=2\)</span>) and each training observation has a known label <span class="math inline">\(y_i \in \{-1,1\}\)</span> where the observations from the blue class are labeled as <span class="math inline">\(y_i = 1\)</span> and those from the purple class are <span class="math inline">\(y_i = -1\)</span>.</p>
+<p>A hyperplane that separates the observations</p>
+<p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 &gt; 0 \text{ if } y_i = 1 \]</span></p>
+<p>or</p>
+<p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 &lt; 0 \text{ if } y_i = -1 \]</span> or</p>
+<p><span class="math display">\[ y_i (\beta_0 + \beta_1 X_1 + \beta_2 X_2) &lt; 0 \text{ for all } i\in(1, \ldots, n) \]</span></p>
+<p>There can be many hyperplanes that separate these points in our example. For example, the figure on the left shows three hyperplanes in black (out of many). If we pick one hyperplane, the figure on the right shows a grid of blue an purple points indicating the decision rule made by a classifer defined by this hyperplane.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_multiple_hyperplane.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>More formally, we can classify a test observation <span class="math inline">\(x^{*}\)</span> based on the sign of of</p>
+<p><span class="math display">\[ f(x^{*}) = \beta_0 + \beta_1 x_1^{*} + \beta_2 x_2^{*} \]</span></p>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>If <span class="math inline">\(f(x^{*})\)</span> is positive, then we assign <span class="math inline">\(x^{*}\)</span> to the blue class.</li>
+<li>If <span class="math inline">\(f(x^{*})\)</span> is negative, then we assign <span class="math inline">\(x^{*}\)</span> to the purple class.</li>
 </ul>
+<p>In addition to the sign, we can also consider the <em>magnitude</em> of <span class="math inline">\(f(x^{*})\)</span>.</p>
+<ul>
+<li>If <span class="math inline">\(f(x^{*})\)</span> is far from zero, then <span class="math inline">\(x^{*}\)</span> is far away from the hyperplane (i.e. more confidence in our class assignment).</li>
+<li>If <span class="math inline">\(f(x^{*})\)</span> is close to zero, then <span class="math inline">\(x^{*}\)</span> is close to the hyperplane (i.e. less certain about the class assignment for <span class="math inline">\(x^{*}\)</span>).</li>
+</ul>
+<p>But, the problem is this still can lead to an infinite number of possible separating hyperplanes. How can we decide what is the “best” hyperplane?</p>
+<h3 id="maximal-margin-hyperplane-or-classifer">Maximal Margin Hyperplane (or Classifer)</h3>
+<p>The <em>maximal margin hyperplane</em> is the hyperlane that separates the farthest from training observations.</p>
+<p>In the figure below, the maximal margin hyperplane is shown as a solid line. The margin is the distance from the solid line to either of the dashed lines. The two blue points and the purple point that lie on the dashed lines are the <em>support vectors</em> (they “support” the maximal margin hyperplane in the sense that if these points were moved slightly then the maximal margin hyperplane would move as well), and the distance from those points to the margin is indicated by arrows. The purple and blue grid indicates the decision rule made by a classifier based on this separating hyperplane.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_max_margin.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p><strong>Note</strong>: although the maximal margin classifier is often successful, it can also lead to overfitting when <span class="math inline">\(p\)</span> is large. So we want to explore the use of cross-validation.</p>
+<p>To construct a maximal margin classifier using <span class="math inline">\(n\)</span> training observations <span class="math inline">\(x_1, \ldots, x_n \in \mathbb{R}^p\)</span> and associated class labels <span class="math inline">\(y_1 \ldots, y_n \in \{-1, 1\}\)</span>, the maximal margin hyperplane is the solution to the optimization problem:</p>
+<p><span class="math display">\[ \underset{\beta_0, \beta_1, \ldots, \beta_p, M}{\text{maximize}} M \]</span> subject to <span class="math inline">\(\sum_{j=1}^p \beta_j^2 = 1\)</span> and</p>
+<p><span class="math display">\[ y_i (\beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p) \geq M \text{ for all } i\in(1, \ldots, n) \]</span></p>
+<p>This guarantees that each observation will be on the correct side of the hyperplane and at least a distance of <span class="math inline">\(M\)</span> from the hyperplane. Therefore, you can think of <span class="math inline">\(M\)</span> as the <em>margin</em> of our hyperplane.</p>
+<p>This works great if <em>a separating hyperplane exists</em>. However, many times, that isn’t true and there is no solution with <span class="math inline">\(M &gt; 0\)</span>. So instead we can try to find a hyperplane that <em>almost</em> separates the classes.</p>
+<h3 id="support-vector-classifer">Support Vector Classifer</h3>
+<p>Consider the following data that cannot be separated by a hyperplane.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_nonsepcase.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>We could consider building a <em>support vector classifer</em> or a <em>soft margin classifer</em> that misclassifies a few training observations in order to do a better job of classifying the remaining observations.</p>
+<p>The margin is <em>soft</em> because it can be violated by some of the training observations. An observation can be not only on the wrong side of the margin, but also on the wrong side of the hyperplane.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_svclassifier.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>On the left there are observations that are on the right side of the hyperplane, but the wrong side of the margin. On the right are observations that are on the wrong side of the hyperplane and the wrong side of the margin.</p>
+<p>In fact, when there is no separating hyperplane, such a situation is inevitable. Observations on the wrong side of the hyperplane correspond to training observations that are misclassified by the support vector classifier (i.e. right figure above).</p>
+<p>Now, the optimization problem is:</p>
+<p><span class="math display">\[ \underset{\beta_0, \beta_1, \ldots, \beta_p, \epsilon_1, \ldots, \epsilon_n, M}{\text{maximize}} M \]</span> subject to <span class="math inline">\(\sum_{j=1}^p \beta_j^2 = 1\)</span></p>
+<p><span class="math display">\[ y_i (\beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p) \geq M (1-\epsilon_i)  \]</span> for all <span class="math inline">\(i\in(1, \ldots, n)\)</span>, <span class="math inline">\(\epsilon_i \geq 0\)</span>, <span class="math inline">\(\sum_{i=1}^n \epsilon_i \leq C\)</span> where <span class="math inline">\(C\)</span> is a nonnegative tuning parameter (typically chosen using cross-validation). The <span class="math inline">\(\epsilon_1, \ldots, \epsilon_n\)</span> are often called <em>slack variables</em> that allow observations to be on the wrong side of the margin or hyperplane.</p>
+<h4 id="comments-on-the-tuning-parameter-c">Comments on the tuning parameter <span class="math inline">\(C\)</span></h4>
+<p>We see that <span class="math inline">\(C\)</span> bounds the sum of the <span class="math inline">\(\epsilon_i\)</span>’s, so you think about it as a “budget” for the amount of margin that can be violated in the <span class="math inline">\(n\)</span> observations.</p>
+<ul>
+<li>If <span class="math inline">\(C = 0\)</span> <span class="math inline">\(\Rightarrow\)</span> No budget for violations to the margin and <span class="math inline">\(\epsilon_1 = \ldots = \epsilon_n = 0\)</span>. This is essentially the <em>maximal margin hyperplane</em> (but only if the two classes are separable).</li>
+<li>If <span class="math inline">\(C &gt; 0\)</span> <span class="math inline">\(\Rightarrow\)</span> No more than <span class="math inline">\(C\)</span> observations can be on the wrong side of the hyperplane, because if an observation is on the wrong side of the hyperplane then <span class="math inline">\(\epsilon_i &gt; 1\)</span>, and we saw above, this requires that <span class="math inline">\(\sum_{i=1}^n \epsilon_i \leq C\)</span>.</li>
+</ul>
+<p>In general, as the budget <span class="math inline">\(C\)</span> increases, we become more tolerant of violations to the margin, and so the margin will widen. Conversely, as <span class="math inline">\(C\)</span> decreases, we become less tolerant of violations to the margin and so the margin narrows.</p>
+<p>Another way of thinking about <span class="math inline">\(C\)</span> is that it basically controls the bias-variance trade-off.</p>
+<ul>
+<li>When <span class="math inline">\(C\)</span> is small, we seek narrow margins that are rarely violated; this amounts to a classifier that is highly fit to the data, which may have low bias but high variance.</li>
+<li>When <span class="math inline">\(C\)</span> is larger, the margin is wider and we allow more violations to it; this amounts to fitting the data less hard and obtaining a classifier that is potentially more biased but may have lower variance.</li>
+</ul>
+<p>Interestingly, it turns out that only the observations that lie on the margin or that violate the margin (also known as <em>support vectors</em>) will affect the hyperplane (and hence classification).</p>
+<p>This make sense. When <span class="math inline">\(C\)</span> is large, the margin is wide, and many observations violate the margin, thus there are many support vectors (potentially more bias, but less variance). When <span class="math inline">\(C\)</span> is small, the margin is small, not many observations violate the margin, thus very few support vectors (potentially low bias and high variance).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_fourclassifiers.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>But what if we want to consider non-linear boundaries?</p>
+<h3 id="support-vector-classifier-with-non-linear-boundaries">Support Vector Classifier with Non-Linear boundaries</h3>
+<p>Thus far, the support vector classifier has been very useful for classification in the setting with two classes and if the classes can be separated by a linear hyperplane (with or without some violations of margins of error). However, more often than not, the boundry will need to be more flexible and consider non-linear class boundaries.</p>
+<p>Consider the following data on the left plot. A linear support classifier (applied in the right plot) will perform poorly.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_nonlinear_boundary.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>When using linear regression, if there is a non-linear relationship between the predictos and outcome, a solution is to enlarge the feature space to include e.g. quadratic and cubic terms</p>
+<p>Therefore, a solution to our problem is to enlarge the feature space using functions of the predictors (i.e.  quadratic and cubic terms or higher) in order to address the non-linearity.</p>
+<p>So instead of fitting a support vector classifier with <span class="math inline">\(p\)</span> features <span class="math inline">\((X_1, X_2, \ldots, X_p)\)</span>, we could try using <span class="math inline">\(2p\)</span> features <span class="math inline">\((X_1, X_1^2, X_2, X_2^2, \ldots, X_p, X_p^2)\)</span>.</p>
+<p>Now, the optimization problem becomes:</p>
+<p><span class="math display">\[ \underset{\beta_0, \beta_{11}, \beta_{12}, \ldots, \beta_{p1}, \beta_{p2}, \epsilon_1, \ldots, \epsilon_n, M}{\text{maximize}} M \]</span> subject to</p>
+<p><span class="math display">\[ y_i (\beta_0 + \sum_{j=1}^p \beta_{j1} x_{ij} + \sum_{j=1}^p \beta_{j2} x_{ij}^2) \geq M (1-\epsilon_i)  \]</span> <span class="math inline">\(\sum_{i=1}^n \epsilon_i \leq C\)</span>, <span class="math inline">\(\epsilon_i \geq 0\)</span>, <span class="math inline">\(\sum_{j=1}^p \sum_{k=1}^2 \beta_{jk}^2 = 1\)</span></p>
+<h4 id="why-does-this-lead-to-a-non-linear-boundary">Why does this lead to a non-linear boundary?</h4>
+<p>In the enlarged feature space, the decision boundary that is found is still linear. But in the original feature space, the decision boundary is of the form <span class="math inline">\(q(x) = 0\)</span>, where <span class="math inline">\(q\)</span> is a quadratic polynomial, and its solutions are generally non-linear.</p>
+<p>As you can imagine, there are many ways to enlarge the feature space e.g. include higher-order polynomial terms or interaction terms such as <span class="math inline">\(X_1 X_2\)</span>. We could easily end up with a large number of features leading to unmanagable computations.</p>
+<p>In the next section, we will learn about the <em>support vector machine</em> that allows us to enlarge the feature space in an efficient way.</p>
+<h1 id="support-vector-machines">Support Vector Machines</h1>
+<p>The <em>support vector machine</em> (SVM) is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using <em>kernels</em>.</p>
+<p>The details of how exactly how the support vector classifier is computed is quite technical, so I won’t go into it here. However, it’s sufficient to know that the solution to the support vector classifier problem involves only the inner products of the observations (as opposed to the observations themselves). The inner product of two observations <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_{i^{&#39;}}\)</span> is given by</p>
+<p><span class="math display">\[ \langle x_i, x_{i^{&#39;}} \rangle = \sum_{j=1}^P x_{ij} x_{i^{&#39;}j}\]</span></p>
+<p>For example, the linear support vector classifier can be represented as</p>
+<p><span class="math display">\[ f(x) = \beta_0 + \sum_{i=1}^n \alpha_i \langle x, x_{i} \rangle \]</span></p>
+<p>where there are <span class="math inline">\(n\)</span> parameters <span class="math inline">\(\alpha_i\)</span> (one per training observation).</p>
+<p>To <strong>estimate the parameters</strong> <span class="math inline">\(\alpha_1, \ldots, \alpha_n\)</span> and <span class="math inline">\(\beta_0\)</span>, we need to take <span class="math inline">\({n \choose 2}\)</span> inner products between all pairs of training observations <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_{i^{&#39;}}\)</span>.</p>
+<p>To <strong>evaluate the function</strong> <span class="math inline">\(f(x)\)</span>, all we need is the inner product between a new point <span class="math inline">\(x\)</span> and each of the training points <span class="math inline">\(x_i\)</span>. Interestingly, it turns out that <span class="math inline">\(\alpha_i\)</span> is nonzero only for the support vectors (points in the margin). Another way of stating this is if a training observation is not a support vector, then its <span class="math inline">\(\alpha_i\)</span> is equals zero.</p>
+<p>So if we consider <span class="math inline">\(\mathcal{S}\)</span> as the collection of indicies for support points, then we can rewrite the above to</p>
+<p><span class="math display">\[ f(x) = \beta_0 + \sum_{i \in \mathcal{S}} \alpha_i \langle x, x_{i} \rangle \]</span> And this involves a lot fewer points!</p>
+<p>Ok, now suppose that instead of the inner product, we consider a generalization of the inner product of the form</p>
+<p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) \]</span></p>
+<p>where <span class="math inline">\(K\)</span> is some function called a <em>kernel</em>.</p>
+<p>You can think of a kernel as a function that quantifies the similiarity of two observations. For example,</p>
+<p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \sum_{j=1}^p x_{ij} x_{i^{&#39;}j} \]</span></p>
+<p>is a <em>linear kernel</em> (linear in the features) and would return the support vector classifier. In contrast, this kernel is called a <em>polynomial kernel</em> of degree <span class="math inline">\(d\)</span>. If <span class="math inline">\(d &gt; 1\)</span>, then the support vector classifier results in a more flexible boundaary.</p>
+<p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \Big(1 + \sum_{j=1}^p x_{ij} x_{i^{&#39;}j} \Big)^d \]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_polynomial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<p>When the support vector classifier is combined with non-linear kernels (such as above), the resulting classifier is known as a <em>support vector machine</em>.</p>
+<p>Another popular kernel is the <em>radial kernel</em>:</p>
+<p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \exp \Big(-\gamma \sum_{j=1}^p (x_{ij} - x_{i^{&#39;}j})^2 \Big) \]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="../../images/svm_radial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<h3 id="advantages">Advantages</h3>
+<ol type="1">
+<li>SVMs are effective when the number of features is quite large.</li>
+<li>It works effectively even if the number of features are greater than the number of samples.</li>
+<li>Non-Linear data can also be classified using customized hyperplanes built by using kernel trick.</li>
+<li>It is a robust model to solve prediction problems since it maximizes margin.</li>
+</ol>
+<h3 id="disadvantages">Disadvantages</h3>
+<ol type="1">
+<li>The biggest limitation of SVMs is the choice of the kernel. The wrong choice of the kernel can lead to an increase in error percentage.</li>
+<li>With a greater number of samples, it can result in poor performance.</li>
+<li>SVMs have good generalization performance but they can be extremely slow in the test phase.</li>
+<li>SVMs have high algorithmic complexity and extensive memory requirements due to the use of quadratic programming.</li>
+</ol>
+<p>Let’s try out these concepts on the data from our original question:</p>
+<blockquote>
+<p>Can we identify a voice as male or female, based upon acoustic properties of the voice and speech?</p>
+</blockquote>
+<h1 id="data">Data</h1>
+<p>The data we will use is from <a href="https://www.kaggle.com/primaryobjects/voicegender">kaggle</a> and is available in a <code>.csv</code> file.</p>
+<p>A description of the data from Kaggle:</p>
+<blockquote>
+<p>“This database was created to identify a voice as male or female, based upon acoustic properties of the voice and speech. The dataset consists of 3,168 recorded voice samples, collected from male and female speakers. The voice samples are pre-processed by acoustic analysis in R using the <a href="https://cran.r-project.org/web/packages/seewave/index.html">seewave</a> and <a href="https://cran.r-project.org/web/packages/tuneR/index.html">tuneR</a> packages.”</p>
+</blockquote>
+<p>We can actually dig a bit deeper and go to the <a href="http://www.primaryobjects.com/2016/06/22/identifying-the-gender-of-a-voice-using-machine-learning/">website</a> where the data origianlly came from to learn more about how the dataset was created:</p>
+<blockquote>
+<p>“Each voice sample is stored as a <code>.WAV</code> file, which is then pre-processed for acoustic analysis using the specan function from the <a href="https://cran.r-project.org/web/packages/warbleR/warbleR.pdf">WarbleR</a> R package. Specan measures 22 acoustic parameters on acoustic signals for which the start and end times are provided.”</p>
+</blockquote>
+<blockquote>
+<p>“The output from the pre-processed WAV files were saved into a CSV file, containing 3168 rows and 21 columns (20 columns for each feature and one label column for the classification of male or female).”</p>
+</blockquote>
+<p>The following acoustic properties of each voice are measured (<a href="https://www.kaggle.com/primaryobjects/voicegender/home">described on Kaggle’s website</a>):</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>meanfreq</code></td>
+<td style="text-align: left;">mean frequency (in kHz)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sd</code></td>
+<td style="text-align: left;">standard deviation of frequency</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>median</code></td>
+<td style="text-align: left;">median frequency (in kHz)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Q25</code></td>
+<td style="text-align: left;">first quantile (in kHz)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Q75</code></td>
+<td style="text-align: left;">third quantile (in kHz)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IQR</code></td>
+<td style="text-align: left;">interquantile range (in kHz)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>skew</code></td>
+<td style="text-align: left;">skewness</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>kurt</code></td>
+<td style="text-align: left;">kurtosis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sp.ent</code></td>
+<td style="text-align: left;">spectral entropy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sfm</code></td>
+<td style="text-align: left;">spectral flatness</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>mode</code></td>
+<td style="text-align: left;">mode frequency</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>centroid</code></td>
+<td style="text-align: left;">frequency centroid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>peakf</code></td>
+<td style="text-align: left;">peak frequency (frequency with highest energy)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>meanfun</code></td>
+<td style="text-align: left;">average of fundamental frequency measured across acoustic signal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>minfun</code></td>
+<td style="text-align: left;">minimum fundamental frequency measured across acoustic signal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>maxfun</code></td>
+<td style="text-align: left;">maximum fundamental frequency measured across acoustic signal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>meandom</code></td>
+<td style="text-align: left;">average of dominant frequency measured across acoustic signal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>mindom</code></td>
+<td style="text-align: left;">minimum of dominant frequency measured across acoustic signal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>maxdom</code></td>
+<td style="text-align: left;">maximum of dominant frequency measured across acoustic signal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dfrange</code></td>
+<td style="text-align: left;">range of dominant frequency measured across acoustic signal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>modindx</code></td>
+<td style="text-align: left;">modulation index. Calculated as the accumulated absolute difference between adjacent measurements of fundamental frequencies divided by the frequency range</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>label</code></td>
+<td style="text-align: left;">male or female</td>
+</tr>
+</tbody>
+</table>
+<h3 id="import-data">Import data</h3>
+<p>First, we load a few R packages</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/topepo/caret/'>caret</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>kernlab</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggobi.github.io/ggally/'>GGally</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Let’s read in the <code>voice.csv</code> file into R using the <code>read_csv()</code> function in the <code>readr</code> R package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"data"</span>, <span class='st'>"voice.csv"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>voice</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 3,168 × 21
+   meanfreq     sd median     Q25    Q75    IQR  skew    kurt sp.ent
+      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+ 1   0.0598 0.0642 0.0320 0.0151  0.0902 0.0751 12.9   274.    0.893
+ 2   0.0660 0.0673 0.0402 0.0194  0.0927 0.0733 22.4   635.    0.892
+ 3   0.0773 0.0838 0.0367 0.00870 0.132  0.123  30.8  1025.    0.846
+ 4   0.151  0.0721 0.158  0.0966  0.208  0.111   1.23    4.18  0.963
+ 5   0.135  0.0791 0.125  0.0787  0.206  0.127   1.10    4.33  0.972
+ 6   0.133  0.0796 0.119  0.0680  0.210  0.142   1.93    8.31  0.963
+ 7   0.151  0.0745 0.160  0.0929  0.206  0.113   1.53    5.99  0.968
+ 8   0.161  0.0768 0.144  0.111   0.232  0.121   1.40    4.77  0.959
+ 9   0.142  0.0780 0.139  0.0882  0.209  0.120   1.10    4.07  0.971
+10   0.134  0.0804 0.121  0.0756  0.202  0.126   1.19    4.79  0.975
+# … with 3,158 more rows, and 12 more variables: sfm &lt;dbl&gt;,
+#   mode &lt;dbl&gt;, centroid &lt;dbl&gt;, meanfun &lt;dbl&gt;, minfun &lt;dbl&gt;,
+#   maxfun &lt;dbl&gt;, meandom &lt;dbl&gt;, mindom &lt;dbl&gt;, maxdom &lt;dbl&gt;,
+#   dfrange &lt;dbl&gt;, modindx &lt;dbl&gt;, label &lt;chr&gt;</code></pre>
+</div>
+<p>Next, let’s get an overall summary of the range of values in the dataset.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>voice</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    meanfreq             sd              median       
+ Min.   :0.03936   Min.   :0.01836   Min.   :0.01097  
+ 1st Qu.:0.16366   1st Qu.:0.04195   1st Qu.:0.16959  
+ Median :0.18484   Median :0.05916   Median :0.19003  
+ Mean   :0.18091   Mean   :0.05713   Mean   :0.18562  
+ 3rd Qu.:0.19915   3rd Qu.:0.06702   3rd Qu.:0.21062  
+ Max.   :0.25112   Max.   :0.11527   Max.   :0.26122  
+      Q25                 Q75               IQR         
+ Min.   :0.0002288   Min.   :0.04295   Min.   :0.01456  
+ 1st Qu.:0.1110865   1st Qu.:0.20875   1st Qu.:0.04256  
+ Median :0.1402864   Median :0.22568   Median :0.09428  
+ Mean   :0.1404556   Mean   :0.22476   Mean   :0.08431  
+ 3rd Qu.:0.1759388   3rd Qu.:0.24366   3rd Qu.:0.11418  
+ Max.   :0.2473469   Max.   :0.27347   Max.   :0.25223  
+      skew              kurt              sp.ent      
+ Min.   : 0.1417   Min.   :   2.068   Min.   :0.7387  
+ 1st Qu.: 1.6496   1st Qu.:   5.670   1st Qu.:0.8618  
+ Median : 2.1971   Median :   8.319   Median :0.9018  
+ Mean   : 3.1402   Mean   :  36.569   Mean   :0.8951  
+ 3rd Qu.: 2.9317   3rd Qu.:  13.649   3rd Qu.:0.9287  
+ Max.   :34.7255   Max.   :1309.613   Max.   :0.9820  
+      sfm               mode           centroid      
+ Min.   :0.03688   Min.   :0.0000   Min.   :0.03936  
+ 1st Qu.:0.25804   1st Qu.:0.1180   1st Qu.:0.16366  
+ Median :0.39634   Median :0.1866   Median :0.18484  
+ Mean   :0.40822   Mean   :0.1653   Mean   :0.18091  
+ 3rd Qu.:0.53368   3rd Qu.:0.2211   3rd Qu.:0.19915  
+ Max.   :0.84294   Max.   :0.2800   Max.   :0.25112  
+    meanfun            minfun             maxfun      
+ Min.   :0.05557   Min.   :0.009775   Min.   :0.1031  
+ 1st Qu.:0.11700   1st Qu.:0.018223   1st Qu.:0.2540  
+ Median :0.14052   Median :0.046110   Median :0.2712  
+ Mean   :0.14281   Mean   :0.036802   Mean   :0.2588  
+ 3rd Qu.:0.16958   3rd Qu.:0.047904   3rd Qu.:0.2775  
+ Max.   :0.23764   Max.   :0.204082   Max.   :0.2791  
+    meandom             mindom             maxdom         
+ Min.   :0.007812   Min.   :0.004883   Min.   : 0.007812  
+ 1st Qu.:0.419828   1st Qu.:0.007812   1st Qu.: 2.070312  
+ Median :0.765795   Median :0.023438   Median : 4.992188  
+ Mean   :0.829211   Mean   :0.052647   Mean   : 5.047277  
+ 3rd Qu.:1.177166   3rd Qu.:0.070312   3rd Qu.: 7.007812  
+ Max.   :2.957682   Max.   :0.458984   Max.   :21.867188  
+    dfrange          modindx           label          
+ Min.   : 0.000   Min.   :0.00000   Length:3168       
+ 1st Qu.: 2.045   1st Qu.:0.09977   Class :character  
+ Median : 4.945   Median :0.13936   Mode  :character  
+ Mean   : 4.995   Mean   :0.17375                     
+ 3rd Qu.: 6.992   3rd Qu.:0.20918                     
+ Max.   :21.844   Max.   :0.93237                     </code></pre>
+</div>
+<p>A quick glimpse over the data shows us that we have 20 numeric columns with differing ranges and magnitudes.</p>
+<h3 id="wrangling-data">Wrangling data</h3>
+<p>It would be nice to get a picture of how these features are different across the <code>male</code> and <code>female</code> observations. One way to do that is to use <code>ggplot()</code> to explore differences in distribution with boxplots and histograms.</p>
+<p>First, let’s transform the data from a wide format to a long format using the <code>gather()</code> function in the <code>tidyr</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice_long</span> <span class='op'>&lt;-</span> <span class='va'>voice</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>gather</span><span class='op'>(</span>key <span class='op'>=</span> <span class='va'>feature</span>, value <span class='op'>=</span> <span class='va'>value</span>, <span class='op'>-</span><span class='va'>label</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voice_long</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 × 3
+  label feature   value
+  &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 male  meanfreq 0.0598
+2 male  meanfreq 0.0660
+3 male  meanfreq 0.0773
+4 male  meanfreq 0.151 
+5 male  meanfreq 0.135 
+6 male  meanfreq 0.133 </code></pre>
+</div>
+<p>We also can transform the <code>label</code> column which contains <code>male</code> and <code>female</code> character strings into <code>1</code>s and <code>0</code>s where <code>1</code> represents <code>male</code> and <code>0</code> represents `female.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>voice</span><span class='op'>$</span><span class='va'>label</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+female   male 
+  1584   1584 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice_labels</span> <span class='op'>&lt;-</span> <span class='va'>voice</span><span class='op'>$</span><span class='va'>label</span>
+
+<span class='va'>voice</span> <span class='op'>&lt;-</span> <span class='va'>voice</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>label</span><span class='op'>==</span><span class='st'>"male"</span>,<span class='fl'>1</span>,<span class='fl'>0</span><span class='op'>)</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>label</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Just as a sanity check:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>voice_labels</span>, <span class='va'>voice</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>            
+voice_labels    0    1
+      female 1584    0
+      male      0 1584</code></pre>
+</div>
+<p>Whew ok good!</p>
+<h3 id="eda">EDA</h3>
+<p>If we wanted to create boxplots of all twenty variables colored by whether the observation was male or female, we can use the</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice_long</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>value</span>, colour <span class='op'>=</span> <span class='va'>label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>geom_boxplot</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span> <span class='va'>feature</span>, scales<span class='op'>=</span><span class='st'>'free_y'</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='cn'>NULL</span>, y <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice_long</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span><span class='va'>value</span>, fill <span class='op'>=</span> <span class='va'>label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>geom_density</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span> <span class='va'>feature</span>, scales<span class='op'>=</span><span class='st'>'free'</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='cn'>NULL</span>, y <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span> 
+        <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<p>These are great to look at the distributions separately, but it would also be good to get an idea of how the features are related to each other.</p>
+<p>To do that, another useful plotting function for exploratory data analysi is the <code>ggpairs()</code> function from the <code>GGally</code> package:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>IQR</span>, <span class='va'>meanfun</span>, <span class='va'>Q25</span>, <span class='va'>sd</span>, <span class='va'>sfm</span>, <span class='va'>sp.ent</span>, <span class='va'>y</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://ggobi.github.io/ggally/reference/ggpairs.html'>ggpairs</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>colour<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<h1 id="classification-models">Classification models</h1>
+<p>Next, we will build a few models to classify the recorded voice samples as male or female using features available. First, we will look at SVMs and then we will compare to other models that we have already seen that are useful for classification including logistic regression and random forests.</p>
+<h3 id="support-vector-machines-1">Support Vector Machines</h3>
+<p>Before we build an SVM classifier, let’s split our data into a <code>train_set</code> and <code>test_set</code> using the <code>createDataParition()</code> function in the <code>caret</code> R package.</p>
+<p>We’ll just split it in half for the purposes of the lecture.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1234</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1234</span><span class='op'>)</span>
+<span class='va'>train_set</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/createDataPartition.html'>createDataPartition</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>voice</span><span class='op'>$</span><span class='va'>y</span>, 
+                                p <span class='op'>=</span> <span class='fl'>0.5</span>, list<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='va'>train_dat</span> <span class='op'>=</span> <span class='va'>voice</span><span class='op'>[</span><span class='va'>train_set</span>,<span class='op'>]</span>
+<span class='va'>test_dat</span> <span class='op'>=</span> <span class='va'>voice</span><span class='op'>[</span><span class='op'>-</span><span class='va'>train_set</span>,<span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>We can look at the dimensions of the two datasets to make sure they have been split in half.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>train_dat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1584   21</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>test_dat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1584   21</code></pre>
+</div>
+<p>And they have! Ok, before we build a SVM using <code>train()</code> function (we’ve seen this before), let’s use the <code>trainControl()</code> function. Here, we select <code>method=cv</code> with 10-fold cross-validation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>control</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/trainControl.html'>trainControl</a></span><span class='op'>(</span>method<span class='op'>=</span><span class='st'>"cv"</span>, number<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>metric</span> <span class='op'>&lt;-</span> <span class='st'>"Accuracy"</span>
+</code></pre>
+</div>
+</div>
+<h4 id="svm-with-linear-kernel">SVM with linear kernel</h4>
+<p>First, we will use the <code>train()</code> function from the <code>caret</code> R package with the argument <code>method=svmLinear</code> to build a SVM with linear kernel.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_svmLinear</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/train.html'>train</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"svmLinear"</span>,
+                metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span><span class='op'>)</span>
+<span class='va'>fit_svmLinear</span>
+</code></pre>
+</div>
+<pre><code>Support Vector Machines with Linear Kernel 
+
+1584 samples
+  20 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 1424, 1426, 1426, 1425, 1426, 1426, ... 
+Resampling results:
+
+  Accuracy   Kappa    
+  0.9722233  0.9444468
+
+Tuning parameter &#39;C&#39; was held constant at a value of 1</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_svmLinear</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_svmLinear</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_svmLinear</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 775  19
+         1  17 773
+                                         
+               Accuracy : 0.9773         
+                 95% CI : (0.9687, 0.984)
+    No Information Rate : 0.5            
+    P-Value [Acc &gt; NIR] : &lt;2e-16         
+                                         
+                  Kappa : 0.9545         
+                                         
+ Mcnemar&#39;s Test P-Value : 0.8676         
+                                         
+            Sensitivity : 0.9785         
+            Specificity : 0.9760         
+         Pos Pred Value : 0.9761         
+         Neg Pred Value : 0.9785         
+             Prevalence : 0.5000         
+         Detection Rate : 0.4893         
+   Detection Prevalence : 0.5013         
+      Balanced Accuracy : 0.9773         
+                                         
+       &#39;Positive&#39; Class : 0              
+                                         </code></pre>
+</div>
+<h4 id="svm-with-polynomial-kernel">SVM with polynomial kernel</h4>
+<p>Next, we will use the <code>train()</code> function from the <code>caret</code> R package with the argument <code>method=svmPoly</code> to build a SVM with polynomial kernel.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_svmPoly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/train.html'>train</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"svmPoly"</span>,
+                metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span><span class='op'>)</span>
+<span class='va'>fit_svmPoly</span>
+</code></pre>
+</div>
+<pre><code>Support Vector Machines with Polynomial Kernel 
+
+1584 samples
+  20 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 1425, 1425, 1426, 1426, 1426, 1425, ... 
+Resampling results across tuning parameters:
+
+  degree  scale  C     Accuracy   Kappa    
+  1       0.001  0.25  0.8876682  0.7752831
+  1       0.001  0.50  0.8965130  0.7929541
+  1       0.001  1.00  0.9123079  0.8245470
+  1       0.010  0.25  0.9318884  0.8637212
+  1       0.010  0.50  0.9564923  0.9129594
+  1       0.010  1.00  0.9653372  0.9306550
+  1       0.100  0.25  0.9684818  0.9369517
+  1       0.100  0.50  0.9684738  0.9369354
+  1       0.100  1.00  0.9728923  0.9457742
+  2       0.001  0.25  0.8965130  0.7929541
+  2       0.001  0.50  0.9116750  0.8232812
+  2       0.001  1.00  0.9262081  0.8523590
+  2       0.010  0.25  0.9634344  0.9268506
+  2       0.010  0.50  0.9672160  0.9344180
+  2       0.010  1.00  0.9691028  0.9381925
+  2       0.100  0.25  0.9690829  0.9381582
+  2       0.100  0.50  0.9716105  0.9432131
+  2       0.100  1.00  0.9722474  0.9444863
+  3       0.001  0.25  0.9078776  0.8156823
+  3       0.001  0.50  0.9205278  0.8409935
+  3       0.001  1.00  0.9413622  0.8826757
+  3       0.010  0.25  0.9672160  0.9344182
+  3       0.010  0.50  0.9691028  0.9381941
+  3       0.010  1.00  0.9678370  0.9356624
+  3       0.100  0.25  0.9690789  0.9381492
+  3       0.100  0.50  0.9716066  0.9432057
+  3       0.100  1.00  0.9747632  0.9495179
+
+Accuracy was used to select the optimal model using the
+ largest value.
+The final values used for the model were degree = 3, scale = 0.1
+ and C = 1.</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_svmPoly</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_svmPoly</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_svmPoly</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 789   3
+         1   3 789
+                                          
+               Accuracy : 0.9962          
+                 95% CI : (0.9918, 0.9986)
+    No Information Rate : 0.5             
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.9924          
+                                          
+ Mcnemar&#39;s Test P-Value : 1               
+                                          
+            Sensitivity : 0.9962          
+            Specificity : 0.9962          
+         Pos Pred Value : 0.9962          
+         Neg Pred Value : 0.9962          
+             Prevalence : 0.5000          
+         Detection Rate : 0.4981          
+   Detection Prevalence : 0.5000          
+      Balanced Accuracy : 0.9962          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<h4 id="svm-with-radial-basis-kernel">SVM with radial basis kernel</h4>
+<p>Next, we will use the <code>train()</code> function from the <code>caret</code> R package with the argument <code>method=svmRadial</code> to build a SVM with radial basis kernel.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_svmRadial</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/train.html'>train</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"svmRadial"</span>,
+                       metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span><span class='op'>)</span>
+<span class='va'>fit_svmRadial</span>
+</code></pre>
+</div>
+<pre><code>Support Vector Machines with Radial Basis Function Kernel 
+
+1584 samples
+  20 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 1426, 1424, 1426, 1426, 1426, 1426, ... 
+Resampling results across tuning parameters:
+
+  C     Accuracy   Kappa    
+  0.25  0.9658863  0.9317722
+  0.50  0.9722114  0.9444228
+  1.00  0.9747391  0.9494778
+
+Tuning parameter &#39;sigma&#39; was held constant at a value of 0.05522729
+Accuracy was used to select the optimal model using the
+ largest value.
+The final values used for the model were sigma = 0.05522729 and C = 1.</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_svmRadial</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_svmRadial</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_svmRadial</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 784  16
+         1   8 776
+                                          
+               Accuracy : 0.9848          
+                 95% CI : (0.9775, 0.9903)
+    No Information Rate : 0.5             
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.9697          
+                                          
+ Mcnemar&#39;s Test P-Value : 0.153           
+                                          
+            Sensitivity : 0.9899          
+            Specificity : 0.9798          
+         Pos Pred Value : 0.9800          
+         Neg Pred Value : 0.9898          
+             Prevalence : 0.5000          
+         Detection Rate : 0.4949          
+   Detection Prevalence : 0.5051          
+      Balanced Accuracy : 0.9848          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<h3 id="logistic-regression">Logistic regression</h3>
+<p>Now, just for fun, let’s compare to some other classification approaches that we have previously learned about.</p>
+<p>First, let’s try logistic regression.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/caret/man/train.html'>train</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>.</span>, data <span class='op'>=</span> <span class='va'>train_dat</span>, trControl <span class='op'>=</span> <span class='va'>control</span>, 
+                 method <span class='op'>=</span> <span class='st'>'glm'</span>, family <span class='op'>=</span> <span class='st'>'binomial'</span><span class='op'>)</span>
+<span class='va'>fit_glm</span>
+</code></pre>
+</div>
+<pre><code>Generalized Linear Model 
+
+1584 samples
+  20 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 1426, 1425, 1425, 1425, 1425, 1426, ... 
+Resampling results:
+
+  Accuracy   Kappa    
+  0.9634026  0.9268036</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_glm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_glm</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/caret/man/confusionMatrix.html'>confusionMatrix</a></span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_glm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 770  20
+         1  22 772
+                                          
+               Accuracy : 0.9735          
+                 95% CI : (0.9643, 0.9808)
+    No Information Rate : 0.5             
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.947           
+                                          
+ Mcnemar&#39;s Test P-Value : 0.8774          
+                                          
+            Sensitivity : 0.9722          
+            Specificity : 0.9747          
+         Pos Pred Value : 0.9747          
+         Neg Pred Value : 0.9723          
+             Prevalence : 0.5000          
+         Detection Rate : 0.4861          
+   Detection Prevalence : 0.4987          
+      Balanced Accuracy : 0.9735          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<p>That’s actually not so bad.</p>
+<h3 id="random-forests">Random Forests</h3>
+<p>Next let’s try random forests.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_rf</span> <span class='op'>&lt;-</span> <span class='fu'>train</span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"rf"</span>, 
+                metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_rf</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'>confusionMatrix</span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_rf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 792   0
+         1   0 792
+                                     
+               Accuracy : 1          
+                 95% CI : (0.9977, 1)
+    No Information Rate : 0.5        
+    P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
+                                     
+                  Kappa : 1          
+                                     
+ Mcnemar&#39;s Test P-Value : NA         
+                                     
+            Sensitivity : 1.0        
+            Specificity : 1.0        
+         Pos Pred Value : 1.0        
+         Neg Pred Value : 1.0        
+             Prevalence : 0.5        
+         Detection Rate : 0.5        
+   Detection Prevalence : 0.5        
+      Balanced Accuracy : 1.0        
+                                     
+       &#39;Positive&#39; Class : 0          
+                                     </code></pre>
+</div>
+<p>I’m forgetting where the performance of a random forest model compared to everyone else. So let’s take a closer look.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>class_results</span> <span class='op'>&lt;-</span> <span class='fu'>resamples</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>glm<span class='op'>=</span><span class='va'>fit_glm</span>, rf<span class='op'>=</span><span class='va'>fit_rf</span>, 
+                  fit_svmLinear<span class='op'>=</span><span class='va'>fit_svmLinear</span>, fit_svmPoly<span class='op'>=</span><span class='va'>fit_svmPoly</span>, 
+                  fit_svmRadial<span class='op'>=</span><span class='va'>fit_svmRadial</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>class_results</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+summary.resamples(object = class_results)
+
+Models: glm, rf, fit_svmLinear, fit_svmPoly, fit_svmRadial 
+Number of resamples: 10 
+
+Accuracy 
+                   Min.   1st Qu.    Median      Mean   3rd Qu.
+glm           0.9493671 0.9511882 0.9621646 0.9634026 0.9731510
+rf            0.9493671 0.9637867 0.9715986 0.9715747 0.9811022
+fit_svmLinear 0.9430380 0.9684042 0.9746835 0.9722233 0.9794304
+fit_svmPoly   0.9559748 0.9653690 0.9779277 0.9747632 0.9811022
+fit_svmRadial 0.9493671 0.9699367 0.9749214 0.9747391 0.9810127
+                   Max. NA&#39;s
+glm           0.9873418    0
+rf            0.9937107    0
+fit_svmLinear 0.9937107    0
+fit_svmPoly   0.9873418    0
+fit_svmRadial 0.9874214    0
+
+Kappa 
+                   Min.   1st Qu.    Median      Mean   3rd Qu.
+glm           0.8987342 0.9024092 0.9243240 0.9268036 0.9463027
+rf            0.8987342 0.9275622 0.9431962 0.9431465 0.9621966
+fit_svmLinear 0.8860759 0.9368090 0.9493671 0.9444468 0.9588608
+fit_svmPoly   0.9119114 0.9307089 0.9558544 0.9495179 0.9622011
+fit_svmRadial 0.8987342 0.9398734 0.9498418 0.9494778 0.9620253
+                   Max. NA&#39;s
+glm           0.9746835    0
+rf            0.9874199    0
+fit_svmLinear 0.9874219    0
+fit_svmPoly   0.9746835    0
+fit_svmRadial 0.9748418    0</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/graphics-defunct.html'>dotplot</a></span><span class='op'>(</span><span class='va'>class_results</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<p>So it looks like SVM does give us a bit of a performance boost over logistic regression or random forests.</p>
+<h3 id="bagging-and-boosting">Bagging and boosting</h3>
+<p>What about bagging or boosting? Here, we try comparing existing results to both bagging and boosting (what we learned previously in class).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_treebag</span> <span class='op'>&lt;-</span> <span class='fu'>train</span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"treebag"</span>, 
+                metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span><span class='op'>)</span>
+
+<span class='va'>fit_boost</span> <span class='op'>&lt;-</span> <span class='fu'>train</span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>.</span>, data<span class='op'>=</span><span class='va'>train_dat</span>, method<span class='op'>=</span><span class='st'>"gbm"</span>, 
+                metric<span class='op'>=</span><span class='va'>metric</span>, trControl<span class='op'>=</span><span class='va'>control</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># summarize results</span>
+<span class='va'>class_results</span> <span class='op'>&lt;-</span> <span class='fu'>resamples</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>glm<span class='op'>=</span><span class='va'>fit_glm</span>, rf<span class='op'>=</span><span class='va'>fit_rf</span>, 
+                  fit_svmLinear<span class='op'>=</span><span class='va'>fit_svmLinear</span>, fit_svmPoly<span class='op'>=</span><span class='va'>fit_svmPoly</span>, 
+                  fit_svmRadial<span class='op'>=</span><span class='va'>fit_svmRadial</span>,
+                  fit_treebag <span class='op'>=</span> <span class='va'>fit_treebag</span>,
+                  fit_boost <span class='op'>=</span> <span class='va'>fit_boost</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/graphics-defunct.html'>dotplot</a></span><span class='op'>(</span><span class='va'>class_results</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-40-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<h3 id="checking-test-error-rate">Checking test error rate</h3>
+<p>OK, so now that I have selected the SVM (Poly) classifier as the one that I will use (built on our <code>train_dat</code>), we can classify the recorded voice samples in our <code>test_dat</code> using the <code>predict()</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>test_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>pred_svmPoly_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_svmPoly</span>, <span class='va'>newdata</span><span class='op'>)</span>
+<span class='fu'>confusionMatrix</span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>test_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_svmPoly_test</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction   0   1
+         0 778  22
+         1  14 770
+                                         
+               Accuracy : 0.9773         
+                 95% CI : (0.9687, 0.984)
+    No Information Rate : 0.5            
+    P-Value [Acc &gt; NIR] : &lt;2e-16         
+                                         
+                  Kappa : 0.9545         
+                                         
+ Mcnemar&#39;s Test P-Value : 0.2433         
+                                         
+            Sensitivity : 0.9823         
+            Specificity : 0.9722         
+         Pos Pred Value : 0.9725         
+         Neg Pred Value : 0.9821         
+             Prevalence : 0.5000         
+         Detection Rate : 0.4912         
+   Detection Prevalence : 0.5051         
+      Balanced Accuracy : 0.9773         
+                                         
+       &#39;Positive&#39; Class : 0              
+                                         </code></pre>
+</div>
+<h1 id="summary">Summary</h1>
+<p>Still need to write this part.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -1572,6 +2503,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

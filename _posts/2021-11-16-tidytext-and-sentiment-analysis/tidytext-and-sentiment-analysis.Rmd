@@ -329,8 +329,10 @@ pp_book_df %>%
 We can also divide it by paragraphs:
 
 ```{r}
-pp_book_df %>% 
-  unnest_tokens(output = paragraph, input = text, token="paragraphs")
+tmp <- pp_book_df %>% 
+  unnest_tokens(output = paragraph, input = text, token="paragraphs") 
+head(tmp)
+tmp[5,1]
 ```
 
 **Note**: what you name the output column, e.g. `paragraph` in this 

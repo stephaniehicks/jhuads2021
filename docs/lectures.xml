@@ -7,7 +7,18 @@
     <description>JHU Advanced Data Science
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Support vector machines</title>
+      <dc:creator>Stephanie Hicks</dc:creator>
+      <link>https://stephaniehicks.com/jhuads2021/posts/2021-11-18-support-vector-machines</link>
+      <description>Introduction to support vector machines (SVMs)</description>
+      <category>machine learning</category>
+      <category>support vector machines</category>
+      <guid>https://stephaniehicks.com/jhuads2021/posts/2021-11-18-support-vector-machines</guid>
+      <pubDate>Thu, 18 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="http://acoustics.org/pressroom/httpdocs/162nd/Images/Elliot_Figure%2014%20-%20Frequency%20ranges%20for%20common%20sounds.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Tidytext and sentiment analysis</title>
       <dc:creator>Stephanie Hicks</dc:creator>

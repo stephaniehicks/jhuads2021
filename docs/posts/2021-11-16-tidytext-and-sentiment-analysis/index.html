@@ -2612,24 +2612,28 @@ Figure 1: A flowchart of a typical text analysis using tidy data principles.
 <p>We can also divide it by paragraphs:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>paragraph</span>, input <span class='op'>=</span> <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"paragraphs"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span> <span class='op'>&lt;-</span> <span class='va'>pp_book_df</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>output <span class='op'>=</span> <span class='va'>paragraph</span>, input <span class='op'>=</span> <span class='va'>text</span>, token<span class='op'>=</span><span class='st'>"paragraphs"</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>tmp</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 10,721 × 1
-   paragraph                                                          
-   &lt;chr&gt;                                                              
- 1 &quot;pride and prejudice&quot;                                              
- 2 &quot;by jane austen&quot;                                                   
- 3 &quot;chapter 1&quot;                                                        
- 4 &quot;it is a truth universally acknowledged, that a single man in poss…
- 5 &quot;of a good fortune, must be in want of a wife.&quot;                    
- 6 &quot;however little known the feelings or views of such a man may be o…
- 7 &quot;first entering a neighbourhood, this truth is so well fixed in th…
- 8 &quot;of the surrounding families, that he is considered the rightful p…
- 9 &quot;of some one or other of their daughters.&quot;                         
-10 &quot;\&quot;my dear mr. bennet,\&quot; said his lady to him one day, \&quot;have you …
-# … with 10,711 more rows</code></pre>
+<pre><code># A tibble: 6 × 1
+  paragraph                                                           
+  &lt;chr&gt;                                                               
+1 pride and prejudice                                                 
+2 by jane austen                                                      
+3 chapter 1                                                           
+4 it is a truth universally acknowledged, that a single man in posses…
+5 of a good fortune, must be in want of a wife.                       
+6 however little known the feelings or views of such a man may be on …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tmp</span><span class='op'>[</span><span class='fl'>5</span>,<span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 × 1
+  paragraph                                    
+  &lt;chr&gt;                                        
+1 of a good fortune, must be in want of a wife.</code></pre>
 </div>
 <p><strong>Note</strong>: what you name the output column, e.g. <code>paragraph</code> in this case, doesn’t affect it, it’s just good to give it a consistent name.</p>
 <p>We could also divide it by sentence:</p>
@@ -3106,7 +3110,7 @@ Figure 2: A flowchart of a typical text analysis that uses tidytext for sentimen
 </div>
 <h1 id="converting-to-and-from-tidy-and-non-tidy-formats">Converting to and from tidy and non-tidy formats</h1>
 <p><a href="https://www.tidytextmining.com/dtm.html" class="uri">https://www.tidytextmining.com/dtm.html</a></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
