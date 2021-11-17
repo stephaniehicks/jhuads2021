@@ -66,7 +66,7 @@ knitr::include_graphics("http://acoustics.org/pressroom/httpdocs/162nd/Images/El
 
 Determining a person's gender as male or female, based upon 
 a sample of their voice seems to initially be a feasible task. 
-Often, the human ear can easily detect the difference between 
+Often, the human ear can detect the difference between 
 a male or female voice within the first few spoken words.
 However, designing a computer program to do this turns out to
 be a bit trickier.
@@ -100,7 +100,7 @@ knitr::include_graphics("../../images/svm_max_margin.png")
 
 In the case when we cannot draw a linear hyperplane to 
 separate the two classes of points (this is more typical), 
-we can use adapt the idea and build a non-linear classifer. 
+we can adapt the idea and build a non-linear classifier. 
 The key idea is to apply a "kernel trick". We'll learn more 
 about that later in the lecture. 
 
@@ -110,10 +110,13 @@ knitr::include_graphics("../../images/svm_radial_kernel.png")
 
 [[image source](https://www.springer.com/us/book/9781461471370)]
 
+:::keyideas 
 
 **Note**: We will focus on the case when there are only 
 two classes, but there are also extensions of SVMs in the 
 case when there are more than two classes. 
+
+:::
 
 ### How does it work?
 
@@ -123,13 +126,15 @@ predict classes for new observations.
 
 To understand what is a SVM let's build up to it and 
 consider some other types of classifiers (or hyperplanes) 
-and how it relates to SVMs. First, let's define what is a 
+and how it relates to SVMs. First, let's use a plain ole 
 hyperplane. 
 
 ### Hyperplanes 
 
 A _hyperplane_ is formally defined as a flat affine subspace
-of a dimension $p-1$. e.g. In two dimensions, a hyperplane is
+of a dimension $p-1$. 
+
+For example, in two dimensions, a hyperplane is
 a flat one-dimensional subspace (or a line). In this case, a 
 hyperplane is defined by 
 
@@ -216,16 +221,21 @@ The _maximal margin hyperplane_ is the hyperlane that
 separates the farthest from training observations.  
 
 In the figure below, the maximal margin hyperplane 
-is shown as a solid line. The margin is the distance 
+is shown as a solid line. 
+
+The **margin** is the distance 
 from the solid line to either of the dashed lines. 
+
 The two blue points and the purple point that lie on 
-the dashed lines are the _support vectors_ (they 
+the dashed lines are the **support vectors** (they 
 "support" the maximal margin hyperplane in the sense
 that if these points were moved slightly then the 
 maximal margin hyperplane would move as well), and the 
 distance from those points to the margin is indicated 
-by arrows. The purple and blue grid indicates the 
-decision rule made by a classifier based on this 
+by arrows. 
+
+The purple and blue grid indicates the 
+**decision rule** made by a classifier based on this 
 separating hyperplane.
 
 ```{r, echo=FALSE}
@@ -234,29 +244,49 @@ knitr::include_graphics("../../images/svm_max_margin.png")
 
 [[image source](https://www.springer.com/us/book/9781461471370)]
 
-**Note**: although the maximal margin classifier is often successful,
-it can also lead to overfitting when $p$ is large. So we want to
-explore the use of cross-validation.  
+:::keyideas 
+
+
+This is a really power idea and this is what SVMs are built on. BUT
+
+**Pro tip**: Although the maximal margin classifier is often successful,
+it can also lead to overfitting when $p$ is large. So if you use
+this, it's important to explore the use of cross-validation. 
+
+:::
 
 To construct a maximal margin classifier using $n$ training 
 observations $x_1, \ldots, x_n \in \mathbb{R}^p$ and associated class labels 
 $y_1 \ldots, y_n \in \{-1, 1\}$, the maximal margin hyperplane 
 is the solution to the optimization problem: 
 
-$$ \underset{\beta_0, \beta_1, \ldots, \beta_p, M}{\text{maximize}} M $$
+$$ \underset{\beta_0, \beta_1, \ldots, \beta_p, M}{\text{maximize }} M $$
 subject to $\sum_{j=1}^p \beta_j^2 = 1$  and 
 
 $$ y_i (\beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p) \geq M \text{ for all } i\in(1, \ldots, n) $$
 
+:::keyideas
+
+**Note**: 
+
+- SVM uses L2 regularization on the $\beta$ coefficients (like ridge regression) vs L1 regularization (like in Lasso regression)
+
+- L1 regularization might be better / less susceptible to outliers. In fact there are L1 SVMs
+
+:::
+
+
 This guarantees that each observation will be on the correct
 side of the hyperplane and at least a distance of $M$ from 
 the hyperplane. Therefore, you can think of $M$ as the 
-_margin_ of our hyperplane. 
+**margin** of our hyperplane. 
 
-This works great if _a separating hyperplane exists_. However, 
+This works great if **a separating hyperplane exists**. However, 
 many times, that isn't true and there is no solution with 
 $M > 0$. So instead we can try to find a hyperplane that 
-_almost_ separates the classes. 
+**almost** separates the classes (with some penalty or cost 
+associated with each observation that is is on the wrong side 
+of the hyperplane).
 
 ### Support Vector Classifer
 
@@ -269,12 +299,12 @@ knitr::include_graphics("../../images/svm_nonsepcase.png")
 
 [[image source](https://www.springer.com/us/book/9781461471370)]
 
-We could consider building a _support vector classifer_ 
-or a _soft margin classifer_ that misclassifies a few 
+We could consider building a **support vector classifer** 
+or a **soft margin classifer** that misclassifies a few 
 training observations in order to do a better job of 
 classifying the remaining observations. 
 
-The margin is _soft_ because it can be violated by some 
+The margin is **soft** because it can be violated by some 
 of the training observations. An observation can be 
 not only on the wrong side of the margin, but also 
 on the wrong side of the hyperplane. 
@@ -309,6 +339,14 @@ The $\epsilon_1, \ldots, \epsilon_n$ are often called
 _slack variables_ that allow observations to be on the 
 wrong side of the margin or hyperplane. 
 
+:::keyideas
+
+**Note**: 
+
+-  L2 regularization in SVMs is imposes a bigger (quadratic vs linear) loss for points that violate the margin in SVMs
+
+:::
+
 #### Comments on the tuning parameter $C$
 
 We see that $C$ bounds the sum of the $\epsilon_i$'s, so you think about 
@@ -331,10 +369,12 @@ the bias-variance trade-off.
 
 Interestingly, it turns out that only the observations 
 that lie on the margin or that violate the margin 
-(also known as _support vectors_) will affect the 
+(also known as **support vectors**) will affect the 
 hyperplane (and hence classification). 
 
-This make sense. When $C$ is large, the margin is wide, 
+This make sense. But why? 
+
+When $C$ is large, the margin is wide, 
 and many observations violate the margin, thus there 
 are many support vectors (potentially more bias, but 
 less variance). When $C$ is small, the margin is small, 
@@ -349,7 +389,7 @@ knitr::include_graphics("../../images/svm_fourclassifiers.png")
 [[image source](https://www.springer.com/us/book/9781461471370)]
 
 
-But what if we want to consider non-linear boundaries? 
+OK, but what if we want to consider non-linear boundaries? 
 
 ### Support Vector Classifier with Non-Linear boundaries 
 
@@ -371,7 +411,7 @@ knitr::include_graphics("../../images/svm_nonlinear_boundary.png")
 [[image source](https://www.springer.com/us/book/9781461471370)]
 
 When using linear regression, if there is a non-linear relationship 
-between the predictos and outcome, a solution is to enlarge the feature 
+between the predictors and outcome, a solution is to enlarge the feature 
 space to include e.g. quadratic and cubic terms
 
 Therefore, a solution to our problem is to enlarge the 
@@ -404,14 +444,14 @@ space e.g. include higher-order polynomial terms or interaction
 terms such as $X_1 X_2$. We could easily end up with a large 
 number of features leading to unmanagable computations. 
 
-In the next section, we will learn about the _support vector machine_
+In the next section, we will learn about the **support vector machine**
 that allows us to enlarge the feature space in an efficient way. 
 
 # Support Vector Machines
 
-The _support vector machine_ (SVM) is an extension of the 
+The **support vector machine** (SVM) is an extension of the 
 support vector classifier that results from enlarging 
-the feature space in a specific way, using _kernels_. 
+the feature space in a specific way, using **kernels**. 
 
 The details of how exactly how the support vector classifier
 is computed is quite technical, so I won't go into it here. 
@@ -460,11 +500,13 @@ For example,
 
 $$ K( x_i, x_{i^{'}} ) = \sum_{j=1}^p x_{ij} x_{i^{'}j} $$
 
-is a _linear kernel_ (linear in the features) and would
-return the support vector classifier. In contrast, 
-this kernel is called a _polynomial kernel_ of degree $d$. 
+is a **linear kernel** (linear in the features) and would
+return the support vector classifier. 
+
+In contrast, 
+this kernel is called a **polynomial kernel** of degree $d$. 
 If $d > 1$, then the support vector classifier results 
-in a more flexible boundaary. 
+in a more flexible boundary. 
 
 $$ K( x_i, x_{i^{'}} ) = \Big(1 + \sum_{j=1}^p x_{ij} x_{i^{'}j} \Big)^d $$
 
@@ -477,9 +519,9 @@ knitr::include_graphics("../../images/svm_polynomial_kernel.png")
 
 When the support vector classifier is combined with 
 non-linear kernels (such as above), the resulting classifier
-is known as a _support vector machine_. 
+is known as a **support vector machine**. 
 
-Another popular kernel is the _radial kernel_: 
+Another popular kernel is the **radial kernel**: 
 
 $$ K( x_i, x_{i^{'}} ) = \exp \Big(-\gamma \sum_{j=1}^p (x_{ij} - x_{i^{'}j})^2 \Big) $$
 
@@ -616,12 +658,13 @@ One way to do that is to use `ggplot()` to explore
 differences in distribution with boxplots and histograms. 
 
 First, let's transform the data from a wide format
-to a long format using the `gather()` function in the 
+to a long format using the `pivot_longer()` function in the 
 `tidyr` package. 
 
 ```{r}
 voice_long <- voice %>% 
-  gather(key = feature, value = value, -label)
+  pivot_longer(cols = -label, names_to = "feature", values_to = "value")
+ 
 head(voice_long)
 ```
 
@@ -832,15 +875,7 @@ fit_rf <- train(y~., data=train_dat, method="rf",
                 metric=metric, trControl=control)
 ```
 
-```{r}
-newdata <- as.data.frame(select(train_dat, -y))
-pred_rf <- predict(fit_rf, newdata)
-confusionMatrix(reference=train_dat$y, pred_rf)
-```
-
-I'm forgetting where the performance of a random 
-forest model compared to everyone else. So let's 
-take a closer look. 
+So let's compare random forest and logistic regression to the SVM fits. 
 
 ```{r}
 class_results <- resamples(list(glm=fit_glm, rf=fit_rf, 
@@ -896,6 +931,3 @@ pred_svmPoly_test <- predict(fit_svmPoly, newdata)
 confusionMatrix(reference=test_dat$y, pred_svmPoly_test)
 ```
 
-# Summary 
-
-Still need to write this part.

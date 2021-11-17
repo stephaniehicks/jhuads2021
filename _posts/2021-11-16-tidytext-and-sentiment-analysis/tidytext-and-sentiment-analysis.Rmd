@@ -663,7 +663,93 @@ tidy_books %>%
 
 # Converting to and from tidy and non-tidy formats 
 
-https://www.tidytextmining.com/dtm.html
+In this section, we want to convert our tidy text data constructed with the 
+`unnest_tokens()` function (useable by packages in the tidyverse) into a 
+different format that can be used by packages for natural language processing 
+or other types of machine learning algorithms in non-tidy formats. 
+
+In the figure below, we see how an analysis might switch between tidy and non-tidy data structures and tools. 
+
+```{r, echo=FALSE, out.width = '90%', fig.cap=" A flowchart of a typical text analysis that combines tidytext with other tools and data formats, particularly the tm or quanteda packages. This chapter shows how to convert back and forth between document-term matrices and tidy data frames, as well as converting from a Corpus object to a text data frame."}
+knitr::include_graphics("https://www.tidytextmining.com/images/tmwr_0501.png")
+```
+
+[[image source](https://www.tidytextmining.com/images/tmwr_0501.png)]
+
+To introduce some of these toosl, we first need to introduce **document-term matrices**, as well as **casting** a tidy data frame into a sparse matrix. 
 
 
+### Document-term matrix
+
+One of the most common structures that text mining packages work with 
+is the **document-term matrix** (or DTM). This is a matrix where:
+
+- each row represents one document (such as a book or article),
+- each column represents one term, and
+- each value (typically) contains the number of appearances of that term in that document.
+
+Since most pairings of document and term do not occur (they have the value zero), DTMs are usually implemented as sparse matrices. 
+
+These objects can be treated as though they were matrices (for example, accessing particular rows and columns), but are stored in a more efficient format. 
+
+DTM objects **cannot be used directly with tidy tools**, just as tidy data frames cannot be used as input for most text mining packages. Thus, the `tidytext` package provides two verbs that convert between the two formats.
+
+- `tidy()` turns a document-term matrix into a tidy data frame. This verb comes from the `broom` package, which provides similar tidying functions for many statistical models and objects.
+- `cast()` turns a tidy one-term-per-row data frame into a matrix. `tidytext` provides three variations of this verb, each converting to a different type of matrix: `cast_sparse()` (converting to a sparse matrix from the `Matrix` package), `cast_dtm()` (converting to a `DocumentTermMatrix` object from `tm`), and `cast_dfm()` (converting to a `dfm` object from `quanteda`).
+
+A DTM is typically comparable to a tidy data frame after a count or a group_by/summarize that contains counts or another statistic for each combination of a term and document.
+
+### Creating DocumentTermMatrix objects
+
+Perhaps the most widely used implementation of DTMs in R is the `DocumentTermMatrix` class in the `tm` package. Many available text mining datasets are provided in this format. 
+
+Let's create a sparse with `cast_sparse()` function and then a `dtm` with the `cast_dtm()` function: 
+
+```{r}
+tidy_austen <- 
+  austen_books() %>%
+    mutate(line = row_number()) %>%
+    unnest_tokens(word, text) %>%
+    anti_join(stop_words)
+
+tidy_austen
+```
+
+First, we'll make a sparse matrix with `cast_sparse(data, row, column, value)`: 
+
+```{r}
+austen_sparse <- tidy_austen %>%
+    count(line, word) %>%
+    cast_sparse(row = line, column = word, value = n)
+
+austen_sparse
+```
+
+Next, we'll make a `dtm` object with `cast_dtm(data, document, matrix)`: 
+
+```{r}
+austen_dtm <- tidy_austen %>%
+    count(line, word) %>%
+    cast_dtm(document = line, term = word, value = n)
+
+austen_dtm
+```
+
+```{r}
+class(austen_dtm)  
+dim(austen_dtm)
+as.matrix(austen_dtm[1:20, 1:10])
+```
+
+
+Now we have `r dim(austen_dtm)[1]` observations and `r dim(austen_dtm)[2]` features. 
+
+With these matricies, you can start to leverage the NLP methods and software. 
+For example, in text mining, we often have collections of documents, such as blog posts or news articles, that we’d like to divide into natural groups so that we can understand them separately. 
+
+**Topic modeling** is a method for **unsupervised classification** of such documents, similar to clustering on numeric data, which finds natural groups of items even when we’re not sure what we are looking for.
+
+Latent Dirichlet allocation (LDA) is a particularly popular method for fitting a topic model. It treats each document as a mixture of topics, and each topic as a mixture of words. This allows documents to “overlap” each other in terms of content, rather than being separated into discrete groups, in a way that mirrors typical use of natural language.
+
+We can also perform **supervised analyses** to build a classifier to classify lines of text from our `austen_sparse` or `austen_dtm` objects. 
 

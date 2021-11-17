@@ -129,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["support-vector-machines_files/anchor-4.2.2/anchor.min.js","support-vector-machines_files/bowser-1.9.3/bowser.min.js","support-vector-machines_files/distill-2.2.21/template.v2.js","support-vector-machines_files/figure-html5/unnamed-chunk-20-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-21-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-22-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-37-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-40-1.png","support-vector-machines_files/header-attrs-2.10/header-attrs.js","support-vector-machines_files/jquery-1.11.3/jquery.min.js","support-vector-machines_files/popper-2.6.0/popper.min.js","support-vector-machines_files/tippy-6.2.7/tippy-bundle.umd.min.js","support-vector-machines_files/tippy-6.2.7/tippy-light-border.css","support-vector-machines_files/tippy-6.2.7/tippy.css","support-vector-machines_files/tippy-6.2.7/tippy.umd.min.js","support-vector-machines_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["support-vector-machines_files/anchor-4.2.2/anchor.min.js","support-vector-machines_files/bowser-1.9.3/bowser.min.js","support-vector-machines_files/distill-2.2.21/template.v2.js","support-vector-machines_files/figure-html5/unnamed-chunk-20-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-21-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-22-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-36-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-37-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-39-1.png","support-vector-machines_files/figure-html5/unnamed-chunk-40-1.png","support-vector-machines_files/header-attrs-2.10/header-attrs.js","support-vector-machines_files/jquery-1.11.3/jquery.min.js","support-vector-machines_files/popper-2.6.0/popper.min.js","support-vector-machines_files/tippy-6.2.7/tippy-bundle.umd.min.js","support-vector-machines_files/tippy-6.2.7/tippy-light-border.css","support-vector-machines_files/tippy-6.2.7/tippy.css","support-vector-machines_files/tippy-6.2.7/tippy.umd.min.js","support-vector-machines_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2294,7 +2294,6 @@ d-appendix d-footnote-list a.footnote-backlink {
 <li><a href="#bagging-and-boosting">Bagging and boosting</a></li>
 <li><a href="#checking-test-error-rate">Checking test error rate</a></li>
 </ul></li>
-<li><a href="#summary">Summary</a></li>
 </ul>
 </nav>
 </div>
@@ -2323,7 +2322,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p><img src="http://acoustics.org/pressroom/httpdocs/162nd/Images/Elliot_Figure%2014%20-%20Frequency%20ranges%20for%20common%20sounds.jpg" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="http://acoustics.org/pressroom/httpdocs/162nd/Images/Elliot_Figure%2014%20-%20Frequency%20ranges%20for%20common%20sounds.jpg">image source</a>]</p>
-<p>Determining a person’s gender as male or female, based upon a sample of their voice seems to initially be a feasible task. Often, the human ear can easily detect the difference between a male or female voice within the first few spoken words. However, designing a computer program to do this turns out to be a bit trickier.</p>
+<p>Determining a person’s gender as male or female, based upon a sample of their voice seems to initially be a feasible task. Often, the human ear can detect the difference between a male or female voice within the first few spoken words. However, designing a computer program to do this turns out to be a bit trickier.</p>
 <p>To accomplish that goal, we will learn about another machine learning algorithm called <em>support vector machines</em> (SVMs). SVMs have been around since the 1990s and originated of the computer science community. They are form of supervised learning.</p>
 <p>SVMs are widely applied to pattern classification and regression problems, such as:</p>
 <ol type="1">
@@ -2337,17 +2336,20 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p><img src="../../images/svm_max_margin.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p>In the case when we cannot draw a linear hyperplane to separate the two classes of points (this is more typical), we can use adapt the idea and build a non-linear classifer. The key idea is to apply a “kernel trick”. We’ll learn more about that later in the lecture.</p>
+<p>In the case when we cannot draw a linear hyperplane to separate the two classes of points (this is more typical), we can adapt the idea and build a non-linear classifier. The key idea is to apply a “kernel trick”. We’ll learn more about that later in the lecture.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_radial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
+<div class="keyideas">
 <p><strong>Note</strong>: We will focus on the case when there are only two classes, but there are also extensions of SVMs in the case when there are more than two classes.</p>
+</div>
 <h3 id="how-does-it-work">How does it work?</h3>
 <p>Given a dataset with a set of features and set of labels, we want to build a <em>support vector machine</em> (SVMs) to predict classes for new observations.</p>
-<p>To understand what is a SVM let’s build up to it and consider some other types of classifiers (or hyperplanes) and how it relates to SVMs. First, let’s define what is a hyperplane.</p>
+<p>To understand what is a SVM let’s build up to it and consider some other types of classifiers (or hyperplanes) and how it relates to SVMs. First, let’s use a plain ole hyperplane.</p>
 <h3 id="hyperplanes">Hyperplanes</h3>
-<p>A <em>hyperplane</em> is formally defined as a flat affine subspace of a dimension <span class="math inline">\(p-1\)</span>. e.g. In two dimensions, a hyperplane is a flat one-dimensional subspace (or a line). In this case, a hyperplane is defined by</p>
+<p>A <em>hyperplane</em> is formally defined as a flat affine subspace of a dimension <span class="math inline">\(p-1\)</span>.</p>
+<p>For example, in two dimensions, a hyperplane is a flat one-dimensional subspace (or a line). In this case, a hyperplane is defined by</p>
 <p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 = 0 \]</span></p>
 <p>for <span class="math inline">\(X = (X_1, X_2)^{T}\)</span> and for parameters <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>. If there are <span class="math inline">\(X = (X_1, X_2)^{T}\)</span> that do not satisify the above, i.e</p>
 <p><span class="math display">\[ \beta_0 + \beta_1 X_1 + \beta_2 X_2 &gt; 0 \]</span></p>
@@ -2384,25 +2386,38 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>But, the problem is this still can lead to an infinite number of possible separating hyperplanes. How can we decide what is the “best” hyperplane?</p>
 <h3 id="maximal-margin-hyperplane-or-classifer">Maximal Margin Hyperplane (or Classifer)</h3>
 <p>The <em>maximal margin hyperplane</em> is the hyperlane that separates the farthest from training observations.</p>
-<p>In the figure below, the maximal margin hyperplane is shown as a solid line. The margin is the distance from the solid line to either of the dashed lines. The two blue points and the purple point that lie on the dashed lines are the <em>support vectors</em> (they “support” the maximal margin hyperplane in the sense that if these points were moved slightly then the maximal margin hyperplane would move as well), and the distance from those points to the margin is indicated by arrows. The purple and blue grid indicates the decision rule made by a classifier based on this separating hyperplane.</p>
+<p>In the figure below, the maximal margin hyperplane is shown as a solid line.</p>
+<p>The <strong>margin</strong> is the distance from the solid line to either of the dashed lines.</p>
+<p>The two blue points and the purple point that lie on the dashed lines are the <strong>support vectors</strong> (they “support” the maximal margin hyperplane in the sense that if these points were moved slightly then the maximal margin hyperplane would move as well), and the distance from those points to the margin is indicated by arrows.</p>
+<p>The purple and blue grid indicates the <strong>decision rule</strong> made by a classifier based on this separating hyperplane.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_max_margin.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p><strong>Note</strong>: although the maximal margin classifier is often successful, it can also lead to overfitting when <span class="math inline">\(p\)</span> is large. So we want to explore the use of cross-validation.</p>
+<div class="keyideas">
+<p>This is a really power idea and this is what SVMs are built on. BUT</p>
+<p><strong>Pro tip</strong>: Although the maximal margin classifier is often successful, it can also lead to overfitting when <span class="math inline">\(p\)</span> is large. So if you use this, it’s important to explore the use of cross-validation.</p>
+</div>
 <p>To construct a maximal margin classifier using <span class="math inline">\(n\)</span> training observations <span class="math inline">\(x_1, \ldots, x_n \in \mathbb{R}^p\)</span> and associated class labels <span class="math inline">\(y_1 \ldots, y_n \in \{-1, 1\}\)</span>, the maximal margin hyperplane is the solution to the optimization problem:</p>
-<p><span class="math display">\[ \underset{\beta_0, \beta_1, \ldots, \beta_p, M}{\text{maximize}} M \]</span> subject to <span class="math inline">\(\sum_{j=1}^p \beta_j^2 = 1\)</span> and</p>
+<p><span class="math display">\[ \underset{\beta_0, \beta_1, \ldots, \beta_p, M}{\text{maximize }} M \]</span> subject to <span class="math inline">\(\sum_{j=1}^p \beta_j^2 = 1\)</span> and</p>
 <p><span class="math display">\[ y_i (\beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p) \geq M \text{ for all } i\in(1, \ldots, n) \]</span></p>
-<p>This guarantees that each observation will be on the correct side of the hyperplane and at least a distance of <span class="math inline">\(M\)</span> from the hyperplane. Therefore, you can think of <span class="math inline">\(M\)</span> as the <em>margin</em> of our hyperplane.</p>
-<p>This works great if <em>a separating hyperplane exists</em>. However, many times, that isn’t true and there is no solution with <span class="math inline">\(M &gt; 0\)</span>. So instead we can try to find a hyperplane that <em>almost</em> separates the classes.</p>
+<div class="keyideas">
+<p><strong>Note</strong>:</p>
+<ul>
+<li><p>SVM uses L2 regularization on the <span class="math inline">\(\beta\)</span> coefficients (like ridge regression) vs L1 regularization (like in Lasso regression)</p></li>
+<li><p>L1 regularization might be better / less susceptible to outliers. In fact there are L1 SVMs</p></li>
+</ul>
+</div>
+<p>This guarantees that each observation will be on the correct side of the hyperplane and at least a distance of <span class="math inline">\(M\)</span> from the hyperplane. Therefore, you can think of <span class="math inline">\(M\)</span> as the <strong>margin</strong> of our hyperplane.</p>
+<p>This works great if <strong>a separating hyperplane exists</strong>. However, many times, that isn’t true and there is no solution with <span class="math inline">\(M &gt; 0\)</span>. So instead we can try to find a hyperplane that <strong>almost</strong> separates the classes (with some penalty or cost associated with each observation that is is on the wrong side of the hyperplane).</p>
 <h3 id="support-vector-classifer">Support Vector Classifer</h3>
 <p>Consider the following data that cannot be separated by a hyperplane.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_nonsepcase.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p>We could consider building a <em>support vector classifer</em> or a <em>soft margin classifer</em> that misclassifies a few training observations in order to do a better job of classifying the remaining observations.</p>
-<p>The margin is <em>soft</em> because it can be violated by some of the training observations. An observation can be not only on the wrong side of the margin, but also on the wrong side of the hyperplane.</p>
+<p>We could consider building a <strong>support vector classifer</strong> or a <strong>soft margin classifer</strong> that misclassifies a few training observations in order to do a better job of classifying the remaining observations.</p>
+<p>The margin is <strong>soft</strong> because it can be violated by some of the training observations. An observation can be not only on the wrong side of the margin, but also on the wrong side of the hyperplane.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_svclassifier.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
@@ -2412,6 +2427,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Now, the optimization problem is:</p>
 <p><span class="math display">\[ \underset{\beta_0, \beta_1, \ldots, \beta_p, \epsilon_1, \ldots, \epsilon_n, M}{\text{maximize}} M \]</span> subject to <span class="math inline">\(\sum_{j=1}^p \beta_j^2 = 1\)</span></p>
 <p><span class="math display">\[ y_i (\beta_0 + \beta_1 x_1 + \ldots + \beta_p x_p) \geq M (1-\epsilon_i)  \]</span> for all <span class="math inline">\(i\in(1, \ldots, n)\)</span>, <span class="math inline">\(\epsilon_i \geq 0\)</span>, <span class="math inline">\(\sum_{i=1}^n \epsilon_i \leq C\)</span> where <span class="math inline">\(C\)</span> is a nonnegative tuning parameter (typically chosen using cross-validation). The <span class="math inline">\(\epsilon_1, \ldots, \epsilon_n\)</span> are often called <em>slack variables</em> that allow observations to be on the wrong side of the margin or hyperplane.</p>
+<div class="keyideas">
+<p><strong>Note</strong>:</p>
+<ul>
+<li>L2 regularization in SVMs is imposes a bigger (quadratic vs linear) loss for points that violate the margin in SVMs</li>
+</ul>
+</div>
 <h4 id="comments-on-the-tuning-parameter-c">Comments on the tuning parameter <span class="math inline">\(C\)</span></h4>
 <p>We see that <span class="math inline">\(C\)</span> bounds the sum of the <span class="math inline">\(\epsilon_i\)</span>’s, so you think about it as a “budget” for the amount of margin that can be violated in the <span class="math inline">\(n\)</span> observations.</p>
 <ul>
@@ -2424,13 +2445,14 @@ d-appendix d-footnote-list a.footnote-backlink {
 <li>When <span class="math inline">\(C\)</span> is small, we seek narrow margins that are rarely violated; this amounts to a classifier that is highly fit to the data, which may have low bias but high variance.</li>
 <li>When <span class="math inline">\(C\)</span> is larger, the margin is wider and we allow more violations to it; this amounts to fitting the data less hard and obtaining a classifier that is potentially more biased but may have lower variance.</li>
 </ul>
-<p>Interestingly, it turns out that only the observations that lie on the margin or that violate the margin (also known as <em>support vectors</em>) will affect the hyperplane (and hence classification).</p>
-<p>This make sense. When <span class="math inline">\(C\)</span> is large, the margin is wide, and many observations violate the margin, thus there are many support vectors (potentially more bias, but less variance). When <span class="math inline">\(C\)</span> is small, the margin is small, not many observations violate the margin, thus very few support vectors (potentially low bias and high variance).</p>
+<p>Interestingly, it turns out that only the observations that lie on the margin or that violate the margin (also known as <strong>support vectors</strong>) will affect the hyperplane (and hence classification).</p>
+<p>This make sense. But why?</p>
+<p>When <span class="math inline">\(C\)</span> is large, the margin is wide, and many observations violate the margin, thus there are many support vectors (potentially more bias, but less variance). When <span class="math inline">\(C\)</span> is small, the margin is small, not many observations violate the margin, thus very few support vectors (potentially low bias and high variance).</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_fourclassifiers.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p>But what if we want to consider non-linear boundaries?</p>
+<p>OK, but what if we want to consider non-linear boundaries?</p>
 <h3 id="support-vector-classifier-with-non-linear-boundaries">Support Vector Classifier with Non-Linear boundaries</h3>
 <p>Thus far, the support vector classifier has been very useful for classification in the setting with two classes and if the classes can be separated by a linear hyperplane (with or without some violations of margins of error). However, more often than not, the boundry will need to be more flexible and consider non-linear class boundaries.</p>
 <p>Consider the following data on the left plot. A linear support classifier (applied in the right plot) will perform poorly.</p>
@@ -2438,7 +2460,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p><img src="../../images/svm_nonlinear_boundary.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p>When using linear regression, if there is a non-linear relationship between the predictos and outcome, a solution is to enlarge the feature space to include e.g. quadratic and cubic terms</p>
+<p>When using linear regression, if there is a non-linear relationship between the predictors and outcome, a solution is to enlarge the feature space to include e.g. quadratic and cubic terms</p>
 <p>Therefore, a solution to our problem is to enlarge the feature space using functions of the predictors (i.e.  quadratic and cubic terms or higher) in order to address the non-linearity.</p>
 <p>So instead of fitting a support vector classifier with <span class="math inline">\(p\)</span> features <span class="math inline">\((X_1, X_2, \ldots, X_p)\)</span>, we could try using <span class="math inline">\(2p\)</span> features <span class="math inline">\((X_1, X_1^2, X_2, X_2^2, \ldots, X_p, X_p^2)\)</span>.</p>
 <p>Now, the optimization problem becomes:</p>
@@ -2447,9 +2469,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h4 id="why-does-this-lead-to-a-non-linear-boundary">Why does this lead to a non-linear boundary?</h4>
 <p>In the enlarged feature space, the decision boundary that is found is still linear. But in the original feature space, the decision boundary is of the form <span class="math inline">\(q(x) = 0\)</span>, where <span class="math inline">\(q\)</span> is a quadratic polynomial, and its solutions are generally non-linear.</p>
 <p>As you can imagine, there are many ways to enlarge the feature space e.g. include higher-order polynomial terms or interaction terms such as <span class="math inline">\(X_1 X_2\)</span>. We could easily end up with a large number of features leading to unmanagable computations.</p>
-<p>In the next section, we will learn about the <em>support vector machine</em> that allows us to enlarge the feature space in an efficient way.</p>
+<p>In the next section, we will learn about the <strong>support vector machine</strong> that allows us to enlarge the feature space in an efficient way.</p>
 <h1 id="support-vector-machines">Support Vector Machines</h1>
-<p>The <em>support vector machine</em> (SVM) is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using <em>kernels</em>.</p>
+<p>The <strong>support vector machine</strong> (SVM) is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using <strong>kernels</strong>.</p>
 <p>The details of how exactly how the support vector classifier is computed is quite technical, so I won’t go into it here. However, it’s sufficient to know that the solution to the support vector classifier problem involves only the inner products of the observations (as opposed to the observations themselves). The inner product of two observations <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_{i^{&#39;}}\)</span> is given by</p>
 <p><span class="math display">\[ \langle x_i, x_{i^{&#39;}} \rangle = \sum_{j=1}^P x_{ij} x_{i^{&#39;}j}\]</span></p>
 <p>For example, the linear support vector classifier can be represented as</p>
@@ -2464,14 +2486,15 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>where <span class="math inline">\(K\)</span> is some function called a <em>kernel</em>.</p>
 <p>You can think of a kernel as a function that quantifies the similiarity of two observations. For example,</p>
 <p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \sum_{j=1}^p x_{ij} x_{i^{&#39;}j} \]</span></p>
-<p>is a <em>linear kernel</em> (linear in the features) and would return the support vector classifier. In contrast, this kernel is called a <em>polynomial kernel</em> of degree <span class="math inline">\(d\)</span>. If <span class="math inline">\(d &gt; 1\)</span>, then the support vector classifier results in a more flexible boundaary.</p>
+<p>is a <strong>linear kernel</strong> (linear in the features) and would return the support vector classifier.</p>
+<p>In contrast, this kernel is called a <strong>polynomial kernel</strong> of degree <span class="math inline">\(d\)</span>. If <span class="math inline">\(d &gt; 1\)</span>, then the support vector classifier results in a more flexible boundary.</p>
 <p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \Big(1 + \sum_{j=1}^p x_{ij} x_{i^{&#39;}j} \Big)^d \]</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_polynomial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>[<a href="https://www.springer.com/us/book/9781461471370">image source</a>]</p>
-<p>When the support vector classifier is combined with non-linear kernels (such as above), the resulting classifier is known as a <em>support vector machine</em>.</p>
-<p>Another popular kernel is the <em>radial kernel</em>:</p>
+<p>When the support vector classifier is combined with non-linear kernels (such as above), the resulting classifier is known as a <strong>support vector machine</strong>.</p>
+<p>Another popular kernel is the <strong>radial kernel</strong>:</p>
 <p><span class="math display">\[ K( x_i, x_{i^{&#39;}} ) = \exp \Big(-\gamma \sum_{j=1}^p (x_{ij} - x_{i^{&#39;}j})^2 \Big) \]</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="../../images/svm_radial_kernel.png" width="90%" style="display: block; margin: auto;" /></p>
@@ -2707,11 +2730,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>A quick glimpse over the data shows us that we have 20 numeric columns with differing ranges and magnitudes.</p>
 <h3 id="wrangling-data">Wrangling data</h3>
 <p>It would be nice to get a picture of how these features are different across the <code>male</code> and <code>female</code> observations. One way to do that is to use <code>ggplot()</code> to explore differences in distribution with boxplots and histograms.</p>
-<p>First, let’s transform the data from a wide format to a long format using the <code>gather()</code> function in the <code>tidyr</code> package.</p>
+<p>First, let’s transform the data from a wide format to a long format using the <code>pivot_longer()</code> function in the <code>tidyr</code> package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>voice_long</span> <span class='op'>&lt;-</span> <span class='va'>voice</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>gather</span><span class='op'>(</span>key <span class='op'>=</span> <span class='va'>feature</span>, value <span class='op'>=</span> <span class='va'>value</span>, <span class='op'>-</span><span class='va'>label</span><span class='op'>)</span>
+  <span class='fu'>pivot_longer</span><span class='op'>(</span>cols <span class='op'>=</span> <span class='op'>-</span><span class='va'>label</span>, names_to <span class='op'>=</span> <span class='st'>"feature"</span>, values_to <span class='op'>=</span> <span class='st'>"value"</span><span class='op'>)</span>
+ 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>voice_long</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2719,11 +2743,11 @@ d-appendix d-footnote-list a.footnote-backlink {
   label feature   value
   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
 1 male  meanfreq 0.0598
-2 male  meanfreq 0.0660
-3 male  meanfreq 0.0773
-4 male  meanfreq 0.151 
-5 male  meanfreq 0.135 
-6 male  meanfreq 0.133 </code></pre>
+2 male  sd       0.0642
+3 male  median   0.0320
+4 male  Q25      0.0151
+5 male  Q75      0.0902
+6 male  IQR      0.0751</code></pre>
 </div>
 <p>We also can transform the <code>label</code> column which contains <code>male</code> and <code>female</code> character strings into <code>1</code>s and <code>0</code>s where <code>1</code> represents <code>male</code> and <code>0</code> represents `female.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3115,42 +3139,7 @@ Prediction   0   1
 </code></pre>
 </div>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>newdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>select</span><span class='op'>(</span><span class='va'>train_dat</span>, <span class='op'>-</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>pred_rf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_rf</span>, <span class='va'>newdata</span><span class='op'>)</span>
-<span class='fu'>confusionMatrix</span><span class='op'>(</span>reference<span class='op'>=</span><span class='va'>train_dat</span><span class='op'>$</span><span class='va'>y</span>, <span class='va'>pred_rf</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>Confusion Matrix and Statistics
-
-          Reference
-Prediction   0   1
-         0 792   0
-         1   0 792
-                                     
-               Accuracy : 1          
-                 95% CI : (0.9977, 1)
-    No Information Rate : 0.5        
-    P-Value [Acc &gt; NIR] : &lt; 2.2e-16  
-                                     
-                  Kappa : 1          
-                                     
- Mcnemar&#39;s Test P-Value : NA         
-                                     
-            Sensitivity : 1.0        
-            Specificity : 1.0        
-         Pos Pred Value : 1.0        
-         Neg Pred Value : 1.0        
-             Prevalence : 0.5        
-         Detection Rate : 0.5        
-   Detection Prevalence : 0.5        
-      Balanced Accuracy : 1.0        
-                                     
-       &#39;Positive&#39; Class : 0          
-                                     </code></pre>
-</div>
-<p>I’m forgetting where the performance of a random forest model compared to everyone else. So let’s take a closer look.</p>
+<p>So let’s compare random forest and logistic regression to the SVM fits.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>class_results</span> <span class='op'>&lt;-</span> <span class='fu'>resamples</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>glm<span class='op'>=</span><span class='va'>fit_glm</span>, rf<span class='op'>=</span><span class='va'>fit_rf</span>, 
@@ -3199,7 +3188,7 @@ fit_svmRadial 0.9748418    0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/graphics-defunct.html'>dotplot</a></span><span class='op'>(</span><span class='va'>class_results</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-36-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <p>So it looks like SVM does give us a bit of a performance boost over logistic regression or random forests.</p>
 <h3 id="bagging-and-boosting">Bagging and boosting</h3>
@@ -3230,7 +3219,7 @@ fit_svmRadial 0.9748418    0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/graphics-defunct.html'>dotplot</a></span><span class='op'>(</span><span class='va'>class_results</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-40-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="support-vector-machines_files/figure-html5/unnamed-chunk-39-1.png" width="90%" style="display: block; margin: auto;" /></p>
 </div>
 <h3 id="checking-test-error-rate">Checking test error rate</h3>
 <p>OK, so now that I have selected the SVM (Poly) classifier as the one that I will use (built on our <code>train_dat</code>), we can classify the recorded voice samples in our <code>test_dat</code> using the <code>predict()</code> function.</p>
@@ -3269,9 +3258,7 @@ Prediction   0   1
        &#39;Positive&#39; Class : 0              
                                          </code></pre>
 </div>
-<h1 id="summary">Summary</h1>
-<p>Still need to write this part.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
