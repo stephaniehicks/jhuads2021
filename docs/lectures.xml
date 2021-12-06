@@ -7,7 +7,31 @@
     <description>JHU Advanced Data Science
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 18 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>SQL Basics</title>
+      <dc:creator>Stephanie Hicks</dc:creator>
+      <link>https://stephaniehicks.com/jhuads2021/posts/2021-12-06-sql-basics</link>
+      <description>Introduction to SQL basics in R</description>
+      <category>large data</category>
+      <category>tidyverse</category>
+      <category>SQL</category>
+      <guid>https://stephaniehicks.com/jhuads2021/posts/2021-12-06-sql-basics</guid>
+      <pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://upload.wikimedia.org/wikipedia/commons/8/8d/Relational_model_concepts.png" medium="image" type="image/png"/>
+    </item>
+    <item>
+      <title>Strategies to deal with large data in R</title>
+      <dc:creator>Stephanie Hicks</dc:creator>
+      <link>https://stephaniehicks.com/jhuads2021/posts/2021-12-06-dealing-with-large-data</link>
+      <description>Introduction to dealing with large data in R.</description>
+      <category>large data</category>
+      <category>tidyverse</category>
+      <category>SQL</category>
+      <guid>https://stephaniehicks.com/jhuads2021/posts/2021-12-06-dealing-with-large-data</guid>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://blog.codinghorror.com/content/images/2014/May/internet-latency-usa.png" medium="image" type="image/png"/>
+    </item>
     <item>
       <title>Support vector machines</title>
       <dc:creator>Stephanie Hicks</dc:creator>
