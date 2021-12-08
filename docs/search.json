@@ -6,7 +6,7 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\nTBA\n\n\n\n",
-      "last_modified": "2021-12-07T23:52:57-05:00"
+      "last_modified": "2021-12-08T12:58:35-05:00"
     },
     {
       "path": "index.html",
@@ -19,7 +19,7 @@
         }
       ],
       "contents": "\nWelcome to Advanced Data Science II at Johns Hopkins Bloomberg School of Public Health!\nAcknowledgements\nThe materials here are developed and maintained by Stephanie Hicks, but they are part of a larger set of materials in ADS 2021.\nThe course materials are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Linked and embedded materials are governed by their own licenses. I assume that all external materials used or embedded here are covered under the educational fair use policy. If this is not the case and any material displayed here violates copyright, please let me know and I will remove it.\n\n\n\n",
-      "last_modified": "2021-12-07T23:52:57-05:00"
+      "last_modified": "2021-12-08T12:58:36-05:00"
     },
     {
       "path": "lectures.html",
@@ -27,7 +27,7 @@
       "description": "A new article created using the Distill format.\n",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-12-07T23:52:58-05:00"
+      "last_modified": "2021-12-08T12:58:36-05:00"
     }
   ],
   "collections": ["posts/posts.json"]
