@@ -7,7 +7,19 @@
     <description>JHU Advanced Data Science
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 06 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Python for R users</title>
+      <dc:creator>Stephanie Hicks</dc:creator>
+      <link>https://stephaniehicks.com/jhuads2021/posts/2021-12-08-python-for-r-users</link>
+      <description>Introduction to using Python in R and the reticulate package</description>
+      <category>python</category>
+      <category>reticulate</category>
+      <category>R Markdown</category>
+      <guid>https://stephaniehicks.com/jhuads2021/posts/2021-12-08-python-for-r-users</guid>
+      <pubDate>Wed, 08 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://rstudio.github.io/reticulate/images/reticulated_python.png" medium="image" type="image/png"/>
+    </item>
     <item>
       <title>SQL Basics</title>
       <dc:creator>Stephanie Hicks</dc:creator>

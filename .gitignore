@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+data/flights.csv
+docs/data/flights.csv
+

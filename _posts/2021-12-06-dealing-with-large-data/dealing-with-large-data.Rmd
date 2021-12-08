@@ -129,8 +129,7 @@ how to execute these strategies in R.
 
 ### Data 
 
-We will use the [`nycflights13`](https://github.com/hadley/nycflights13) 
-data that we learned about previously.
+We will use the [`nycflights13`](https://github.com/hadley/nycflights13).
 
 What's in the data package?
 
@@ -144,14 +143,14 @@ This package provides the following data tables.
 - `airports`: airport names and locations
 - `airlines`: translation between two letter carrier codes and names
 
-However, this time we will cache the data from the `nycflights13` 
+Here, we will cache the data from the `nycflights13` 
 package in a form we are already familiar with (SQLite databases). 
 But there are many other data formats that you might encounter including: 
 
 - `.sqlite` (SQL database). Talk more about this in a bit. 
 - `.csv` (comma separated values). Good for storing rectangular data. However, can really slow to read and write, making them (often) unusable for large datasets. 
-- `.json` (JavaScript object notation). Key-value pairs in a partially structured format
-- `.parquet` (Apache Parquet). Developed by Cloudera and Twitter to serve as a column-based storage format, optimized for work with multi-column datasets. Can be used for [Spark data](http://spark.apache.org) or other tools in the Hadoop ecosystem. When you store data in parquet format, you actually get a whole directory worth of files. The data is split across multiple `.parquet` files, allowing it to be easily stored on multiple machines, and there are some metadata files too, describing the contents of each column. Can use [`sparklyr`](https://spark.rstudio.com) to import `.parquet` files
+- `.json` (JavaScript object notation). Key-value pairs in a partially structured format.
+- `.parquet` (Apache Parquet). Developed by Cloudera and Twitter to serve as a column-based storage format, optimized for work with multi-column datasets. Can be used for [Spark data](http://spark.apache.org) or other tools in the Hadoop ecosystem. When you store data in parquet format, you actually get a whole directory worth of files. The data is split across multiple `.parquet` files, allowing it to be easily stored on multiple machines, and there are some metadata files too, describing the contents of each column. Can use [`sparklyr`](https://spark.rstudio.com) to import `.parquet` files.
 - `.avro` (Apache Avro). Released by the Hadoop working group in 2009. It is a row-based format that is highly splittable. It is also described as a data serialization system similar to Java Serialization. The schema is stored in JSON format, while the data is stored in binary format, minimizing file size and maximizing efficiency. Can use [`sparkavro`](https://cran.r-project.org/web/packages/sparkavro/index.html) to import `.avro` files. 
 - `.zarr` (Zarr). [Zarr files](https://zarr.readthedocs.io/en/stable/) are a modern library and data format for storing chunked, compressed N-dimensional data in Python, but can work with these files using reticulate. Still very much in development though. 
 - `.h5` (Hierarchical Data Format or HDF5). Mature (20 years old) library and data format which is also designed to handle chunked compressed N-dimensional data. Can use [`rhdf5`](https://www.bioconductor.org/packages/rhdf5) and [`HDF5Array`](https://www.bioconductor.org/packages/HDF5Array) to read and write `.h5` files.
